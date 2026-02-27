@@ -20,7 +20,7 @@ format:
     self-contained: true
     fig-width: 10
     fig-height: 6
-    mainfont: "Segoe UI"
+
 execute:
   warning: false
   message: false
@@ -161,18 +161,17 @@ details.section-fold > .body { padding:16px 22px; background:white; font-size:0.
   }
 }
 
-/* ── Top navigation bar ─────────────────────────────────────────── */
+/* ── Top navigation bar – clean white/cosmo style ───────────────── */
 .navbar {
-  background: linear-gradient(90deg, #1a252f 0%, #2c3e50 50%, #34495e 100%) !important;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  background: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   border-bottom: 3px solid #3498db;
   padding: 0.55rem 1.2rem;
 }
-.navbar .navbar-brand { color: #ffffff !important; font-weight: 700; font-size: 1.05rem; letter-spacing: 0.2px; }
-.navbar .navbar-brand:hover { color: #85c1e9 !important; }
-.navbar .nav-link { color: rgba(255,255,255,0.82) !important; font-size: 0.9rem; }
-.navbar .nav-link:hover { color: #ffffff !important; }
-.navbar-toggler-icon { filter: invert(1); }
+.navbar .navbar-brand { color: #2c3e50 !important; font-weight: 700; font-size: 1.05rem; letter-spacing: 0.2px; }
+.navbar .navbar-brand:hover { color: #3498db !important; }
+.navbar .nav-link { color: #495057 !important; font-size: 0.9rem; }
+.navbar .nav-link:hover { color: #3498db !important; }
 /* Quarto sidebar TOC header */
 #quarto-sidebar .sidebar-title { font-weight: 700; color: #2c3e50; }
 #quarto-sidebar .nav-link { font-size: 0.85rem; color: #495057; }
@@ -269,12 +268,12 @@ SC = {
 }
 
 # ── Chart layout helper - matches hw1 clean white chart style ──────────
-def BL(title_text, height=440, legend_y=1.06, extra_t=0, **kw):
+def BL(title_text, height=440, legend_y=1.09, extra_t=0, **kw):
     return dict(
         title=dict(text=title_text, x=0.0, xanchor='left',
                    font=dict(size=15, color='#2C3E50', family='Segoe UI')),
         height=height,
-        margin=dict(t=105 + extra_t, b=62, l=65, r=45),
+        margin=dict(t=130 + extra_t, b=62, l=65, r=45),
         paper_bgcolor='white',
         plot_bgcolor='#F8F9FA',
         font=dict(family='Segoe UI', size=12, color='#2C3E50'),
@@ -834,7 +833,7 @@ fig = go.Figure(go.Treemap(
     labels  = list(tm_df['Label']) + list(tm_df['Sector'].unique()),
     parents = list(tm_df['Parent']) + [''] * tm_df['Sector'].nunique(),
     values  = list(tm_df['Weight%']) + [0] * tm_df['Sector'].nunique(),
-    branchvalues = 'total',
+    branchvalues = 'remainder',
     textfont = dict(size=13, family='Segoe UI', color='white'),
     marker_colors = (
         [SC.get(s, C['navy']) for s in tm_df['Sector']] +
@@ -917,13 +916,13 @@ fig.show()
 # ── Build 3-level sunburst (Fund → Sector → Stock) ────────────────────────
 sb_labels  = ['Monarch Fund']
 sb_parents = ['']
-sb_values  = [100.0]
+sb_values  = [0.0]
 sb_colors  = [C['navy']]
 
 for sec in sorted(set(sectors.values())):
     sec_w = sum(WEIGHTS.get(t,0)*100 for t,s in sectors.items() if s==sec)
     sb_labels.append(sec);  sb_parents.append('Monarch Fund')
-    sb_values.append(round(sec_w,2)); sb_colors.append(SC.get(sec, C['navy']))
+    sb_values.append(0.0); sb_colors.append(SC.get(sec, C['navy']))
 
 for t in valid_tickers:
     nm  = names.get(t,t)
@@ -937,7 +936,7 @@ fig = go.Figure(go.Sunburst(
     marker  = dict(colors=sb_colors, line=dict(color='white', width=1.8)),
     textfont= dict(size=11, family='Segoe UI'),
     insidetextorientation='radial',
-    branchvalues='total', rotation=90,
+    branchvalues='remainder', rotation=90,
     hovertemplate='<b>%{label}</b><br>Weight: %{value:.2f}%<extra></extra>',
 ))
 fig.update_layout(
