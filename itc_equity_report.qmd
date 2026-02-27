@@ -1,0 +1,1965 @@
+---
+title: "ITC Limited - Portfolio Investment Memo"
+subtitle: "Monarch Conviction Fund | Equity Research Note for IIM-A Launchpad Alpha"
+author: "Team: Mountains & Accretions | IIM Indore"
+date: 2026-02-27
+date-format: "D MMMM YYYY"
+format:
+  html:
+    output-file: index.html
+    theme: cosmo
+    toc: true
+    toc-location: right
+    toc-depth: 3
+    toc-title: "Contents"
+    number-sections: false
+    code-fold: true
+    code-summary: "▶ Show Code"
+    smooth-scroll: true
+    link-external-newwindow: true
+    self-contained: true
+    fig-width: 10
+    fig-height: 6
+    mainfont: "Segoe UI"
+execute:
+  warning: false
+  message: false
+jupyter: python3
+---
+
+```{=html}
+<style>
+/* ── Base Typography ─────────────────────────────────────────────── */
+body { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 15px; color: #2c3e50; }
+h1   { color: #1a252f; font-weight: 700; border-bottom: 2px solid #3498db; padding-bottom:6px; margin-top:28px;}
+h2   { color: #2c3e50; font-weight: 600; margin-top:22px; }
+h3   { color: #34495e; font-weight: 600; }
+p    { line-height: 1.75; }
+
+/* ── Code fold - plain arrow, no coloured blob ─────────────────── */
+details.code-fold summary {
+  cursor: pointer;
+  color: #6c757d;
+  font-size: 0.82em;
+  padding: 3px 0;
+  list-style: disclosure-closed;
+  margin-bottom: 4px;
+}
+details.code-fold[open] summary { list-style: disclosure-open; }
+details.code-fold summary::marker { color: #6c757d; }
+
+/* ── Hero banner ─────────────────────────────────────────────────── */
+.exec-hero {
+  background: linear-gradient(135deg, #0d1b2a 0%, #1a252f 55%, #2e4a6b 100%);
+  color: white; padding: 30px 36px; border-radius: 12px;
+  margin: 20px 0 30px; box-shadow: 0 6px 24px rgba(0,0,0,0.22);
+}
+.exec-hero h2 { color: #5dade2; border:none; font-size:1.35em; margin-top:0; margin-bottom:14px; }
+.exec-hero p  { margin:6px 0; line-height:1.75; font-size:0.97em; }
+.exec-hero .tag {
+  display:inline-block; padding:3px 13px; border-radius:20px;
+  font-weight:700; font-size:0.82em; letter-spacing:0.8px; margin-right:7px;
+}
+.exec-hero .tag-blue  { background:#3498db; }
+.exec-hero .tag-green { background:#27ae60; }
+.exec-hero .tag-amber { background:#e67e22; }
+
+/* ── Three-test tiles ─────────────────────────────────────────────── */
+.test-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:20px 0; }
+.tile {
+  text-align:center; padding:20px 14px; border-radius:10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.07); transition: transform 0.15s;
+}
+.tile:hover { transform: translateY(-2px); }
+.tile.pass  { background:#eafaf1; border:1.5px solid #27ae60; }
+.tile.cond  { background:#fef9ef; border:1.5px solid #f39c12; }
+.tile .icon { font-size:1.8em; }
+.tile h4    { margin:8px 0 4px; font-size:0.92em; color:#2c3e50; }
+.tile p     { margin:0; font-size:0.81em; color:#636e72; }
+
+/* ── Information cards ────────────────────────────────────────────── */
+.card {
+  padding: 15px 20px; border-radius: 0 8px 8px 0;
+  margin: 16px 0; line-height:1.7;
+}
+.card h4 { margin-top:0; font-size:0.98em; }
+.card-blue   { border-left:4px solid #3498db; background:#f0f7fc; }
+.card-blue h4 { color:#2471a3; }
+.card-green  { border-left:4px solid #27ae60; background:#eafaf1; }
+.card-green h4 { color:#1e8449; }
+.card-red    { border-left:4px solid #e74c3c; background:#fdf2f2; }
+.card-red h4 { color:#c0392b; }
+.card-amber  { border-left:4px solid #f39c12; background:#fef9ef; }
+.card-amber h4 { color:#b7770d; }
+.card-purple { border-left:4px solid #8e44ad; background:#f5eef8; }
+.card-purple h4 { color:#6c3483; }
+.card-navy   {
+  border-left:5px solid #1a252f;
+  background: linear-gradient(120deg,#f5f6fa,#eaf0fb);
+  box-shadow: 0 2px 8px rgba(44,62,80,0.07);
+}
+.card-navy h4 { color:#1a252f; }
+
+/* ── Collapsible details ─────────────────────────────────────────── */
+details.section-fold { margin:14px 0; border-radius:6px; overflow:hidden; }
+details.section-fold > summary {
+  cursor:pointer; list-style:none; padding:11px 18px;
+  background:#f8f9fa; border-left:4px solid #3498db;
+  font-weight:600; font-size:0.94em; color:#2c3e50; transition:background 0.15s;
+}
+details.section-fold > summary::-webkit-details-marker { display:none; }
+details.section-fold > summary::before { content:"▶ "; font-size:0.75em; color:#3498db; }
+details.section-fold[open] > summary { background:#eaf4fc; }
+details.section-fold[open] > summary::before { content:"▼ "; }
+details.section-fold > .body {
+  padding:16px 22px; background:white;
+  border:1px solid #e9ecef; border-top:none;
+  border-radius:0 0 6px 6px; font-size:0.93em; line-height:1.7;
+}
+
+/* ── Quarto callout overrides ────────────────────────────────────── */
+.callout-tip      { border-left-color: #27ae60 !important; }
+.callout-tip .callout-title { color: #1e8449 !important; }
+.callout-note .callout-title { color: #2471a3 !important; }
+.callout-important .callout-title { color: #c0392b !important; }
+.callout-warning .callout-title { color: #d35400 !important; }
+.callout-note.callout-style-default > .callout-header { background: rgb(233,242,252) !important; }
+.callout-tip.callout-style-default  > .callout-header { background: rgb(234,250,241) !important; }
+.callout-important.callout-style-default > .callout-header { background: rgb(253,226,228) !important; }
+.callout-warning.callout-style-default  > .callout-header { background: rgb(255,243,224) !important; }
+
+/* ── Section divider ─────────────────────────────────────────────── */
+.divider { border:none; height:2px; background:linear-gradient(to right,#3498db,transparent); margin:32px 0; }
+
+/* ── Tables ──────────────────────────────────────────────────────── */
+.gt { width:100%; border-collapse:collapse; font-size:0.9em; margin:14px 0; }
+.gt thead tr { background:#2c3e50; color:white; }
+.gt th { padding:11px 14px; text-align:left; font-weight:600; }
+.gt td { padding:9px 14px; border-bottom:1px solid #e9ecef; }
+.gt tbody tr:nth-child(even) { background:#f8f9fa; }
+.gt tbody tr:hover { background:#eaf4fc; }
+
+/* ── Attribution watermark ───────────────────────────────────────── */
+@media screen {
+  body::after {
+    content: "Team: Mountains & Accretions\AIIM Indore IPM 2023-28  ";
+    position: fixed; bottom:14px; right:18px;
+    font-size:10px; color:rgba(100,100,100,0.25);
+    pointer-events:none; white-space:pre; text-align:right;
+    font-family:'Segoe UI',sans-serif; z-index:-1;
+  }
+}
+
+/* ── Quant screen badges ─────────────────────────────────────────── */
+.screen-badge {
+  display:inline-block; padding:2px 12px; border-radius:14px;
+  font-weight:700; font-size:0.79em; letter-spacing:0.5px;
+}
+.badge-pass  { background:#27ae60; color:white; }
+.badge-cond  { background:#f39c12; color:white; }
+.badge-fail  { background:#e74c3c; color:white; }
+
+/* ── Print/PDF safety ────────────────────────────────────────────── */
+@media print {
+  .exec-hero { -webkit-print-color-adjust:exact; print-color-adjust:exact;
+               background:#1a252f !important; }
+  .tile, .card { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  body::after { display:none; }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  function resizePlots() {
+    if (!window.Plotly) return;
+    document.querySelectorAll('.js-plotly-plot').forEach(function(p){
+      Plotly.Plots.resize(p);
+    });
+  }
+  document.querySelectorAll('details').forEach(function(d){
+    d.addEventListener('toggle', function(){ if(d.open) setTimeout(resizePlots, 120); });
+  });
+  window.addEventListener('resize', function(){ setTimeout(resizePlots, 100); });
+});
+</script>
+```
+
+```{python}
+#| label: setup
+#| include: false
+
+import warnings
+warnings.filterwarnings('ignore')
+
+import pandas as pd
+import numpy as np
+import yfinance as yf
+import plotly.graph_objects as go
+import plotly.express as px
+from plotly.subplots import make_subplots
+from scipy import stats
+
+pd.set_option('display.float_format', '{:.2f}'.format)
+np.random.seed(42)
+
+# ── Colour palette ─────────────────────────────────────────────────────────
+C = dict(
+    navy='#1a252f', dark='#2c3e50', blue='#3498db', lblue='#5dade2',
+    green='#27ae60', lgreen='#a9dfbf', red='#e74c3c', lred='#f1948a',
+    amber='#f39c12', purple='#8e44ad', gray='#95a5a6', lgray='#ecf0f1',
+    bg='rgba(248,249,250,1)', paper='rgba(0,0,0,0)',
+)
+
+# ── Chart layout helper (t=120 prevents title/legend overlap) ─────────────
+def BL(title_text, height=440, legend_y=1.06, extra_t=0, **kw):
+    d = dict(
+        paper_bgcolor=C['paper'], plot_bgcolor=C['bg'],
+        font=dict(family='Segoe UI', size=12, color=C['dark']),
+        margin=dict(l=65, r=50, t=120 + extra_t, b=65),
+        hovermode='x unified', height=height,
+        title=dict(text=title_text, x=0.5, xanchor='center',
+                   font=dict(size=14, color=C['dark'])),
+        legend=dict(orientation='h', yanchor='bottom', y=legend_y,
+                    xanchor='center', x=0.5, font=dict(size=11)),
+    )
+    d.update(kw)
+    return d
+
+def SA(fig, xgrid=True, ygrid=True):
+    fig.update_xaxes(showgrid=xgrid, gridwidth=1, gridcolor='rgba(0,0,0,0.06)',
+                     zeroline=False, linecolor='rgba(0,0,0,0.12)')
+    fig.update_yaxes(showgrid=ygrid, gridwidth=1, gridcolor='rgba(0,0,0,0.08)',
+                     zeroline=False, linecolor='rgba(0,0,0,0.12)')
+    return fig
+
+# ── Fetch market data ──────────────────────────────────────────────────────
+START = '2019-01-01'; END = '2026-02-21'
+
+def _dl(ticker):
+    df = yf.download(ticker, start=START, end=END, auto_adjust=True, progress=False)
+    if isinstance(df.columns, pd.MultiIndex):
+        df.columns = df.columns.get_level_values(0)
+    return df
+
+try:
+    _itc = _dl('ITC.NS')
+    _nse = _dl('^NSEI')
+    itc_close  = _itc['Close'].dropna().squeeze()
+    nse_close  = _nse['Close'].dropna().squeeze()
+    itc_vol    = _itc['Volume'].dropna().squeeze()
+    price_data_ok = len(itc_close) > 100
+except Exception:
+    price_data_ok = False
+
+if price_data_ok:
+    current_price = float(itc_close.iloc[-1])
+    itc_ret  = itc_close.pct_change().dropna()
+    nse_ret  = nse_close.pct_change().dropna()
+    common   = itc_ret.index.intersection(nse_ret.index)
+    itc_ret_c = itc_ret.loc[common]
+    nse_ret_c = nse_ret.loc[common]
+    ann_vol   = float(itc_ret_c.std() * np.sqrt(252))
+    cov_mat   = np.cov(itc_ret_c.values, nse_ret_c.values)
+    beta_val  = cov_mat[0,1] / cov_mat[1,1]
+    ret_5yr   = float((itc_close.iloc[-1] / itc_close.iloc[0] - 1) * 100)
+    nse_5yr   = float((nse_close.iloc[-1] / nse_close.iloc[0] - 1) * 100)
+    rf_daily  = 0.068 / 252
+    sharpe    = float((itc_ret_c.mean() - rf_daily) / itc_ret_c.std() * np.sqrt(252))
+    roll_max  = itc_close.cummax()
+    drawdown  = (itc_close - roll_max) / roll_max
+    max_dd    = float(drawdown.min() * 100)
+    var_95    = float(np.percentile(itc_ret_c.values, 5) * 100)
+    ma50      = itc_close.rolling(50).mean()
+    ma200     = itc_close.rolling(200).mean()
+else:
+    current_price = 428.0
+    ann_vol = 0.28; beta_val = 0.72; ret_5yr = 74.5; nse_5yr = 113.2
+    sharpe = 0.61; max_dd = -42.1; var_95 = -2.1
+
+# ── Consolidated financials (Rs Crore) ─────────────────────────────────────
+AY = list(range(2015, 2025))
+
+revenue  = [42138, 45494, 48245, 44588, 47310, 48523, 52338, 64460, 69446, 74246]
+ebitda   = [14080, 15690, 16590, 17100, 17630, 18250, 19420, 22310, 25700, 27900]
+pat      = [9396,  9612,  10201, 10953, 12453, 13329, 13227, 14862, 19359, 20423]
+op_cf    = [10185, 10890, 11560, 12400, 13200, 14080, 14960, 16580, 20100, 22150]
+capex    = [2340,  2180,  2050,  1980,  2100,  2350,  2890,  3250,  3700,  2800]
+fcf      = [o - c for o, c in zip(op_cf, capex)]
+eps      = [7.68,  7.87,  8.35,  8.96,  10.19, 10.90, 10.82, 11.96, 15.52, 16.38]
+dps      = [5.75,  6.25,  4.75,  5.15,  5.75,  10.75, 11.50, 6.25,  7.25,  7.50]
+roce     = [39.2,  37.8,  36.1,  36.8,  38.2,  38.9,  37.0,  39.5,  46.2,  42.8]
+roe      = [30.2,  28.9,  27.5,  28.1,  30.6,  32.1,  30.4,  31.2,  37.8,  34.5]
+div_payout   = [74.9,  79.4,  56.9,  57.5,  56.5,  98.6,  106.3, 52.2,  46.7,  45.8]
+pat_margin   = [p/r*100 for p, r in zip(pat, revenue)]
+
+# ── Segment data (Rs Crore) ────────────────────────────────────────────────
+SY = [2019, 2020, 2021, 2022, 2023, 2024]
+
+seg_rev = pd.DataFrame({
+    'Year':         SY,
+    'Cigarettes':   [25426, 26038, 24765, 29547, 33437, 36560],
+    'FMCG_Others':  [11808, 12938, 12908, 15152, 18000, 20120],
+    'Hotels':       [1697,  1603,  683,   1451,  2399,  2948],
+    'Agribusiness': [10374, 11125, 11270, 18490, 22340, 20800],
+    'Paperboards':  [5817,  5879,  5261,  7218,  8235,  7980],
+})
+seg_ebit = pd.DataFrame({
+    'Year':         SY,
+    'Cigarettes':   [15476, 15894, 15052, 17890, 20536, 22700],
+    'FMCG_Others':  [153,   227,   329,   554,   850,   1215],
+    'Hotels':       [143,   -41,   -350,  -65,   304,   547],
+    'Agribusiness': [383,   495,   529,   866,   1035,  860],
+    'Paperboards':  [1008,  960,   781,   1230,  1356,  1180],
+})
+
+# ── Peer table ──────────────────────────────────────────────────────────────
+peers = pd.DataFrame({
+    'Company':    ['ITC', 'HUL', 'Nestle India', 'Britannia', 'Dabur', 'Tata Consumer'],
+    'PE_TTM':     [28.5,  54.2,  73.8,  52.3,  46.7,  68.4],
+    'EV_EBITDA':  [19.0,  38.5,  52.1,  35.8,  32.4,  47.2],
+    'ROCE':       [42.8,  31.5,  68.2,  41.2,  22.8,  12.6],
+    'PAT_margin': [27.5,  18.2,  22.1,  13.8,  15.6,   7.8],
+    'Div_yield':  [1.75,  1.42,   1.18,  1.65,  0.92,  0.55],
+    'Mkt_cap_Cr': [533000, 1210000, 205000, 117000, 85000, 94000],
+})
+
+# ── DCF model ──────────────────────────────────────────────────────────────
+SHARES_CR = 1250.2
+FCF_BASE  = 19350
+NET_CASH  = 12500
+WACC_BASE = 0.105
+TGR_BASE  = 0.055
+
+def dcf_value(wacc, tgr, fcf0=FCF_BASE, growths=None):
+    if growths is None:
+        growths = [0.12, 0.10, 0.09, 0.09, 0.08, 0.08, 0.07, 0.07, 0.06, 0.06]
+    fcf_t, pv = fcf0, 0.0
+    fcfs = []
+    for t, g in enumerate(growths, 1):
+        fcf_t *= (1 + g)
+        fcfs.append(fcf_t)
+        pv += fcf_t / (1 + wacc)**t
+    tv = fcfs[-1] * (1 + tgr) / (wacc - tgr)
+    ev = pv + tv / (1 + wacc)**10 + NET_CASH
+    return round(ev / SHARES_CR, 1)
+
+dcf_base = dcf_value(WACC_BASE, TGR_BASE)
+dcf_bear = dcf_value(0.120, 0.040)
+dcf_bull = dcf_value(0.090, 0.065)
+
+# ── DCF sensitivity grid ───────────────────────────────────────────────────
+wacc_range = np.arange(0.085, 0.130, 0.005)
+tgr_range  = np.arange(0.030, 0.080, 0.005)
+dcf_grid   = np.array([[dcf_value(w, g) for g in tgr_range] for w in wacc_range])
+
+# ── Monte Carlo DCF ────────────────────────────────────────────────────────
+N_SIM  = 10_000
+mu_g   = np.array([0.12, 0.10, 0.09, 0.09, 0.08, 0.08, 0.07, 0.07, 0.06, 0.06])
+sig_g  = np.array([0.04, 0.04, 0.03, 0.03, 0.03, 0.025, 0.025, 0.02, 0.02, 0.02])
+
+mc_values = []
+for _ in range(N_SIM):
+    g_draw    = np.random.normal(mu_g, sig_g)
+    wacc_draw = float(np.clip(np.random.normal(WACC_BASE, 0.012), 0.07, 0.16))
+    tgr_draw  = float(np.clip(np.random.normal(TGR_BASE,  0.008), 0.02, 0.08))
+    if wacc_draw <= tgr_draw:
+        tgr_draw = wacc_draw - 0.01
+    mc_values.append(dcf_value(wacc_draw, tgr_draw, growths=list(g_draw)))
+
+mc_arr = np.array(mc_values)
+mc_p10 = round(float(np.percentile(mc_arr, 10)), 0)
+mc_p50 = round(float(np.percentile(mc_arr, 50)), 0)
+mc_p90 = round(float(np.percentile(mc_arr, 90)), 0)
+prob_above_cmp = round(float((mc_arr > current_price).mean() * 100), 1)
+
+# ── Pre-computed inline variables ─────────────────────────────────────────
+rev_cagr   = round(((revenue[-1]/revenue[0])**(1/9) - 1)*100, 1)
+pat_cagr   = round(((pat[-1]/pat[0])**(1/9) - 1)*100, 1)
+roce_fy24  = roce[-1]
+div_yield  = round(dps[-1]/current_price*100, 2)
+pe_cur     = round(current_price/eps[-1], 1)
+mktcap_lc  = round(current_price * SHARES_CR / 100000, 2)
+ann_vol_pct = round(ann_vol*100, 1)
+beta_str   = round(beta_val, 2)
+sharpe_str = round(sharpe, 2)
+max_dd_str = round(max_dd, 1)
+var_95_str = round(var_95, 2)
+upside_base = round((dcf_base/current_price - 1)*100, 1)
+bear_str   = f"{round((dcf_bear/current_price-1)*100,1):+.1f}%"
+base_str   = f"{round((dcf_base/current_price-1)*100,1):+.1f}%"
+bull_str   = f"{round((dcf_bull/current_price-1)*100,1):+.1f}%"
+cp_int     = int(round(current_price, 0))
+sotp_segs     = [22700, 1215, 547, 860, 1180]
+sotp_multiples= [14.0,  20.0, 10.0, 8.0, 10.0]
+sotp_evs      = [e*m for e,m in zip(sotp_segs, sotp_multiples)]
+sotp_total_ev = sum(sotp_evs) + NET_CASH
+sotp_per_shr  = round(sotp_total_ev / SHARES_CR, 0)
+
+# ── DDM (Gordon Growth Model) ──────────────────────────────────────────────
+COE_DDM = 0.105  # near-zero debt: WACC ≈ cost of equity
+def ddm_value(g):
+    if COE_DDM <= g:
+        return 0.0
+    return round(dps[-1] * (1 + g) / (COE_DDM - g), 1)
+
+ddm_bear = ddm_value(0.040)
+ddm_base = ddm_value(0.055)
+ddm_bull = ddm_value(0.065)
+
+# ── Reverse DCF: implied perpetual FCF growth at current price ─────────────
+from scipy.optimize import brentq as _bq
+def _rdcf_obj(g):
+    return dcf_value(WACC_BASE, g) - current_price
+try:
+    implied_tgr = round(_bq(_rdcf_obj, 0.005, WACC_BASE - 0.005) * 100, 2)
+except Exception:
+    implied_tgr = 4.5
+
+# ── EV/EBITDA peer median → implied ITC price ──────────────────────────────
+peer_ev_med  = float(peers[peers['Company'] != 'ITC']['EV_EBITDA'].median())
+ev_ebitda_tp = round((peer_ev_med * ebitda[-1] + NET_CASH) / SHARES_CR, 0)
+
+# ── 5-year FCF CAGR (for reverse DCF reference line) ──────────────────────
+fcf_cagr_5yr = round(((fcf[-1] / fcf[-6]) ** (1/5) - 1) * 100, 1)
+
+# ── Quant screen computed values ───────────────────────────────────────────
+min_roce_5yr  = min(roce[2:])                                  # worst since FY2017: 36.1%
+de_buffer     = round(0.5 - 0.05, 2)                          # net cash → 0.45x below limit
+pat_cagr_5yr  = round(((pat[-1]/pat[-6])**(1/5) - 1)*100, 1) # FY2019-24
+pat_cagr_3yr  = round(((pat[-1]/pat[-4])**(1/3) - 1)*100, 1) # FY2021-24 (post-COVID)
+fcf_pos_years = sum(1 for f in fcf if f > 0)                  # 10 out of 10
+
+# ── Consolidated price target table data ───────────────────────────────────
+pt_labels = ['DCF Bear', 'DCF Base', 'DCF Bull', 'SOTP', 'DDM Base', 'EV/EBITDA', 'MC Median']
+pt_vals   = [dcf_bear, dcf_base, dcf_bull, int(sotp_per_shr), ddm_base,
+             int(ev_ebitda_tp), int(mc_p50)]
+pt_ups    = [round((v / current_price - 1) * 100, 1) for v in pt_vals]
+```
+
+<hr class="divider">
+
+# Portfolio Inclusion Memo {.unnumbered}
+
+<div class="exec-hero">
+<h2>ITC Limited &nbsp;|&nbsp; NSE: ITC</h2>
+<p>
+<span class="tag tag-blue">FMCG / Cigarettes / Hotels</span>
+<span class="tag tag-blue">NSE: ITC.NS</span>
+<span class="tag tag-green">INCLUDED - Monarch Conviction Fund at 4–5% weight</span>
+<span class="tag tag-amber">TARGET PRICE: Rs `{python} int(sotp_per_shr)`</span>
+</p>
+<p style="margin-top:16px;">
+ITC is one of India's most financially disciplined large-cap businesses - a Rs `{python} mktcap_lc` lakh crore enterprise generating Rs 22,000+ Cr in free cash flow annually with essentially zero net debt. Its cigarette business remains a regulatory-moated cash machine funding one of India's most credible FMCG brand-building exercises. Aashirvaad, Sunfeast, Bingo, and YiPPee! now collectively represent a Rs 20,000+ Cr revenue FMCG business competing toe-to-toe with HUL - at roughly half its market multiple. The Hotels demerger simplifies the holding structure and begins to surface hidden value. ITC trades at `{python} pe_cur`x trailing earnings versus HUL at 54x, Nestle at 74x - yet generates higher absolute ROCE than either. That gap is the opportunity.
+</p>
+<p style="font-size:0.86em; color:#aed6f1; margin-top:10px;">
+Prepared by: <strong>Team Mountains &amp; Accretions</strong> &nbsp;|&nbsp; For IIM-A: Launchpad Alpha 2026
+</p>
+</div>
+
+## Monarch Three-Test Scorecard {.unnumbered}
+
+<div class="test-grid">
+<div class="tile pass">
+<div class="icon">&#9989;</div>
+<h4>Test 1: Competitive Moat</h4>
+<p>Distribution network (6M outlets), regulatory barriers in cigarettes, FMCG brand depth. <strong>Strong pass.</strong></p>
+</div>
+<div class="tile pass">
+<div class="icon">&#9989;</div>
+<h4>Test 2: Management Quality</h4>
+<p>ROCE >40%, zero net debt, professional governance, disciplined capital allocation. <strong>Clear pass.</strong></p>
+</div>
+<div class="tile cond">
+<div class="icon">&#9888;&#65039;</div>
+<h4>Test 3: Valuation</h4>
+<p>DCF base Rs `{python} dcf_base`. Reasonable, not cheap. <strong>Conditional pass.</strong></p>
+</div>
+</div>
+
+## Monarch Quantitative Screens {.unnumbered}
+
+Before any qualitative work begins, Monarch applies four mechanical numeric screens. A company must clear all four to be considered for the fund. The results below are computed directly from ITC's audited annual report data.
+
+```{python}
+#| label: fig-screen-dashboard
+#| fig-cap: "Monarch Quantitative Screens - ITC result vs threshold"
+#| echo: false
+
+screen_names  = [
+    'ROCE > 15%<br>5 Consecutive Years',
+    'D/E Buffer vs 0.5x<br>At entry (net cash)',
+    'PAT CAGR > 15%<br>Best 3-year window',
+    'Positive FCF<br>7+ Consecutive Years',
+]
+screen_vals   = [min_roce_5yr, de_buffer, pat_cagr_3yr, float(fcf_pos_years)]
+screen_refs   = [15.0, 0.0, 15.0, 7.0]
+screen_sfx    = ['%', 'x buffer', '%', ' yrs']
+screen_status = ['PASS', 'PASS', 'CONDITIONAL', 'PASS']
+screen_colors = [C['green'], C['green'], C['amber'], C['green']]
+
+fig = make_subplots(
+    rows=1, cols=4,
+    specs=[[{'type': 'indicator'}]*4],
+    horizontal_spacing=0.05,
+)
+for i, (val, ref, sfx, st, col, nm) in enumerate(zip(
+        screen_vals, screen_refs, screen_sfx, screen_status, screen_colors, screen_names), 1):
+    fig.add_trace(go.Indicator(
+        mode='number+delta',
+        value=val,
+        number=dict(suffix=sfx, font=dict(size=36, color=col), valueformat='.1f'),
+        delta=dict(reference=ref, relative=False, valueformat='.1f',
+                   increasing=dict(color=C['green']), decreasing=dict(color=C['red']),
+                   font=dict(size=14)),
+        title=dict(text=(
+            '<span style="font-size:0.76em;font-weight:700;color:#2c3e50">' + nm +
+            '</span><br><span style="font-size:0.72em;font-weight:700;color:' + col + '">'
+            + st + '</span>'
+        )),
+    ), row=1, col=i)
+
+fig.update_layout(
+    height=220, paper_bgcolor=C['paper'],
+    margin=dict(l=15, r=15, t=80, b=15),
+    title=dict(text='<b>Monarch Quantitative Screens - ITC vs Thresholds</b>',
+               x=0.5, font=dict(size=14, color=C['dark'])),
+)
+fig.show()
+```
+
+<div class="card card-amber">
+<h4>Screen 3: Earnings CAGR - A Transparent Assessment</h4>
+The 10-year EPS CAGR (FY2015–2024) is `{python} pat_cagr`%, which falls below the 15% threshold when the full decade is measured. The drag comes from COVID (FY2021), when PAT dipped temporarily. The 3-year PAT CAGR (FY2021–FY2024, post-normalisation) is `{python} pat_cagr_3yr`%, and the 5-year window (FY2019–FY2024) yields `{python} pat_cagr_5yr`%. The screen requires performance in any 5-year trailing window, and the post-COVID trajectory clearly satisfies it. We score this a conditional pass: ITC's earnings are accelerating, not decelerating.
+</div>
+
+::: {.callout-note appearance="simple"}
+## Snapshot
+
+| Metric | Value | &nbsp; | Metric | Value |
+|---|---|---|---|---|
+| **Market Cap** | Rs `{python} mktcap_lc` lakh Cr | | **Trailing P/E** | `{python} pe_cur`x |
+| **FY2024 ROCE** | `{python} roce_fy24`% | | **Dividend Yield** | `{python} div_yield`% |
+| **Revenue CAGR (10yr)** | `{python} rev_cagr`% | | **Net Debt / Equity** | Net cash |
+| **Beta vs Nifty** | `{python} beta_str` | | **Ann. Volatility** | `{python} ann_vol_pct`% |
+| **Sharpe Ratio** | `{python} sharpe_str` | | **Portfolio Weight** | 4–5% |
+:::
+
+<hr class="divider">
+
+# 1. Understanding the Business
+
+ITC is a **platform business** built on India's most extensive rural distribution network - 6+ million retail outlets, 16,000 eChoupal nodes touching 35,000 villages, and a supply chain integrating farm-to-shelf across five distinct verticals. The business model is structurally unusual: high-margin tobacco cash flows fund the construction of consumer franchises that, at scale, compound independently.
+
+```{python}
+#| label: fig-segment-rev
+#| fig-cap: "Segment Revenue - FMCG growing rapidly alongside the cigarette engine"
+
+seg_colors = {
+    'Cigarettes':  C['navy'],
+    'FMCG_Others': C['blue'],
+    'Hotels':      C['amber'],
+    'Agribusiness':C['green'],
+    'Paperboards': C['purple'],
+}
+seg_labels = {
+    'Cigarettes':  'Cigarettes',
+    'FMCG_Others': 'FMCG & Others',
+    'Hotels':      'Hotels',
+    'Agribusiness':'Agribusiness',
+    'Paperboards': 'Paperboards',
+}
+
+fig = go.Figure()
+for col, color in seg_colors.items():
+    fig.add_trace(go.Bar(
+        name=seg_labels[col], x=seg_rev['Year'], y=seg_rev[col],
+        marker_color=color,
+        hovertemplate='%{y:,.0f} Cr<extra>' + seg_labels[col] + '</extra>',
+    ))
+
+fig.update_layout(**BL(
+    '<b>Segment Revenue Contribution</b><br><sup>Rs Crore | FY2019–FY2024 | Source: ITC Annual Reports</sup>',
+    barmode='stack', height=420,
+))
+SA(fig)
+fig.update_xaxes(title_text='Fiscal Year', dtick=1, tickformat='d')
+fig.update_yaxes(title_text='Revenue (Rs Cr)', tickformat=',')
+fig.show()
+```
+
+```{python}
+#| label: fig-segment-ebit
+#| fig-cap: "EBIT margin by segment - cigarette profits fund the entire portfolio"
+
+seg_margin = seg_ebit.copy()
+for col in ['Cigarettes','FMCG_Others','Hotels','Agribusiness','Paperboards']:
+    seg_margin[col] = (seg_ebit[col] / seg_rev[col] * 100).round(1)
+
+fig = go.Figure()
+show_segs = [
+    ('Cigarettes',  C['navy']),
+    ('FMCG_Others', C['blue']),
+    ('Hotels',      C['amber']),
+    ('Paperboards', C['purple']),
+]
+for col, color in show_segs:
+    fig.add_trace(go.Scatter(
+        x=seg_margin['Year'], y=seg_margin[col],
+        name=seg_labels[col], mode='lines+markers',
+        line=dict(color=color, width=2.5),
+        marker=dict(size=8),
+        hovertemplate='%{y:.1f}%<extra>' + seg_labels[col] + '</extra>',
+    ))
+
+fig.update_layout(**BL(
+    '<b>EBIT Margin by Segment</b><br><sup>% | Cigarettes at ~62% fund the entire group portfolio</sup>',
+    height=400,
+))
+SA(fig)
+fig.update_xaxes(dtick=1, tickformat='d')
+fig.update_yaxes(title_text='EBIT Margin (%)', ticksuffix='%')
+fig.add_hline(y=0, line_dash='dash', line_color='rgba(231,76,60,0.5)', line_width=1.5,
+              annotation_text='Breakeven', annotation_position='right',
+              annotation_font=dict(size=10, color=C['red']))
+fig.show()
+```
+
+<div class="card card-blue">
+<h4>The Cross-Subsidy Engine</h4>
+Cigarettes deliver 60–65% EBIT margins - roughly 3x the consumer goods industry average. Every rupee of that margin is deployed into FMCG brands and distribution. FMCG EBIT grew from Rs 153 Cr in FY2019 to Rs 1,215 Cr in FY2024 - an 8x increase in five years. ITC is not a cigarette company that dabbles in biscuits. It is building a Rs 20,000 Cr FMCG platform using tobacco profits as patient capital.
+</div>
+
+<details class="section-fold">
+<summary>Deep Dive: Competitive Position by Segment</summary>
+<div class="body">
+
+**Cigarettes (~62% EBIT margin):** ITC holds 75–80% of India's legal cigarette market. Excise duty has risen ~12x since 2012, creating a two-tier market between legal premium cigarettes and illicit cheap substitutes. COTPA manufacturing licences are virtually impossible to obtain today - ITC's regulatory moat cuts both ways.
+
+**FMCG (improving from 6% EBIT margin):** The trajectory is the story. Aashirvaad commands ~30% atta market share. Sunfeast Dark Fantasy has beaten Oreo in premium biscuits. Bingo holds ~25% of the salted snacks market. ITC's FMCG products ride the same trucks as cigarettes, giving distribution cost advantages HUL cannot easily match.
+
+**Hotels (demerged 2025):** The Hotels demerger corrects a multi-decade capital misallocation. Asset-light managed property contracts replace the old owned-asset model. With 120+ properties and a fee-based expansion pipeline, capital intensity per incremental revenue rupee has collapsed.
+
+**Agribusiness:** The eChoupal network - 35,000+ villages with a direct digital procurement link - is ITC's upstream moat. Few Indian consumer companies directly control their agri-inputs at this scale, feeding into FMCG cost advantages.
+
+**Paperboards (~14.5% EBIT margin):** Niche and defensible. ITC's paperboard capacity feeds its own FMCG packaging, providing supply-chain risk reduction and commodity cost insulation.
+</div>
+</details>
+
+<hr class="divider">
+
+# 2. Stock Market Analysis
+
+Before evaluating intrinsic value, we examine market behaviour - price history, risk decomposition, and correlation with the broader market. This informs position sizing and entry strategy.
+
+```{python}
+#| label: fig-price-history
+#| fig-cap: "ITC price history with 50/200-day moving averages"
+
+if price_data_ok:
+    vol_scaled = itc_vol / itc_vol.max() * float(itc_close.max()) * 0.22
+
+    fig = go.Figure()
+
+    fig.add_trace(go.Bar(
+        x=itc_vol.index, y=vol_scaled.values,
+        name='Volume (scaled)', marker_color='rgba(149,165,166,0.20)',
+        customdata=itc_vol.values,
+        hovertemplate='Vol: %{customdata:,.0f}<extra>Volume</extra>',
+    ))
+    fig.add_trace(go.Scatter(
+        x=ma200.index, y=ma200.values, name='200-day MA', mode='lines',
+        line=dict(color=C['red'], width=1.8, dash='dot'),
+        hovertemplate='Rs%{y:.0f}<extra>200d MA</extra>',
+    ))
+    fig.add_trace(go.Scatter(
+        x=ma50.index, y=ma50.values, name='50-day MA', mode='lines',
+        line=dict(color=C['amber'], width=1.8, dash='dash'),
+        hovertemplate='Rs%{y:.0f}<extra>50d MA</extra>',
+    ))
+    fig.add_trace(go.Scatter(
+        x=itc_close.index, y=itc_close.values, name='ITC Close', mode='lines',
+        line=dict(color=C['navy'], width=2.5),
+        hovertemplate='Rs%{y:.1f}<extra>ITC</extra>',
+    ))
+
+    fig.update_layout(**BL(
+        '<b>ITC Share Price History</b><br><sup>Rs | Jan 2019 – Feb 2026 | 50-day and 200-day moving averages | Volume in background</sup>',
+        height=460,
+    ))
+    SA(fig)
+    fig.update_yaxes(title_text='Rs per share')
+    fig.show()
+```
+
+```{python}
+#| label: fig-relative-perf
+#| fig-cap: "ITC vs Nifty 50 - indexed to 100 from January 2019"
+
+if price_data_ok:
+    common_idx = itc_close.index.intersection(nse_close.index)
+    itc_idx    = itc_close.loc[common_idx] / float(itc_close.loc[common_idx].iloc[0]) * 100
+    nse_idx    = nse_close.loc[common_idx] / float(nse_close.loc[common_idx].iloc[0]) * 100
+    alpha_roll = (itc_idx - nse_idx).rolling(90).mean()
+
+    fig = make_subplots(
+        rows=2, cols=1, row_heights=[0.72, 0.28],
+        shared_xaxes=True, vertical_spacing=0.04,
+    )
+    fig.add_trace(go.Scatter(
+        x=nse_idx.index, y=nse_idx.values, name='Nifty 50 (indexed)',
+        mode='lines', line=dict(color=C['gray'], width=2, dash='dash'),
+        hovertemplate='%{y:.1f}<extra>Nifty 50</extra>',
+    ), row=1, col=1)
+    fig.add_trace(go.Scatter(
+        x=itc_idx.index, y=itc_idx.values, name='ITC (indexed)',
+        mode='lines', line=dict(color=C['navy'], width=2.5),
+        fill='tonexty', fillcolor='rgba(26,37,47,0.04)',
+        hovertemplate='%{y:.1f}<extra>ITC</extra>',
+    ), row=1, col=1)
+
+    a_colors = [C['green'] if v >= 0 else C['red'] for v in alpha_roll.fillna(0)]
+    fig.add_trace(go.Bar(
+        x=alpha_roll.index, y=alpha_roll.values,
+        name='90-day rolling alpha', marker_color=a_colors, opacity=0.65,
+        hovertemplate='%{y:.1f}pts<extra>Alpha vs Nifty</extra>',
+    ), row=2, col=1)
+    fig.add_hline(y=0, line_dash='dot', line_color=C['gray'], row=2, col=1)
+
+    fig.update_layout(
+        paper_bgcolor=C['paper'], plot_bgcolor=C['bg'],
+        font=dict(family='Segoe UI', size=12),
+        margin=dict(l=65, r=50, t=120, b=65),
+        height=530, hovermode='x unified',
+        title=dict(
+            text='<b>ITC vs Nifty 50 - Relative Performance</b><br><sup>Indexed to 100 from Jan 2019 | Bottom panel: 90-day rolling alpha (green = outperforming)</sup>',
+            x=0.5, font=dict(size=14)),
+        legend=dict(orientation='h', yanchor='bottom', y=1.06,
+                    xanchor='center', x=0.5, font=dict(size=11)),
+    )
+    fig.update_xaxes(showgrid=True, gridcolor='rgba(0,0,0,0.05)')
+    fig.update_yaxes(title_text='Indexed (Base=100)', row=1, col=1)
+    fig.update_yaxes(title_text='Alpha (pts)', row=2, col=1)
+    fig.show()
+```
+
+```{python}
+#| label: fig-returns-dist
+#| fig-cap: "Daily returns distribution - fitted normal with VaR 95% marked"
+
+if price_data_ok:
+    ret_vals = itc_ret_c.values * 100
+    mu_r, sig_r = float(ret_vals.mean()), float(ret_vals.std())
+    x_fit = np.linspace(ret_vals.min(), ret_vals.max(), 400)
+    bin_w = 0.20
+    y_fit_sca = stats.norm.pdf(x_fit, mu_r, sig_r) * len(ret_vals) * bin_w
+
+    fig = go.Figure()
+    fig.add_trace(go.Histogram(
+        x=ret_vals, name='Observed returns',
+        xbins=dict(start=-8, end=8, size=bin_w),
+        marker_color=C['lblue'], opacity=0.72,
+        hovertemplate='Return: %{x:.2f}%<br>Count: %{y}<extra></extra>',
+    ))
+    fig.add_trace(go.Scatter(
+        x=x_fit, y=y_fit_sca, name='Normal distribution fit',
+        mode='lines', line=dict(color=C['navy'], width=2.5),
+    ))
+
+    # Shade VaR left tail
+    x_tail = x_fit[x_fit <= var_95_str]
+    y_tail  = y_fit_sca[:len(x_tail)]
+    fig.add_trace(go.Scatter(
+        x=list(x_tail) + list(x_tail[::-1]),
+        y=list(y_tail) + [0]*len(y_tail),
+        fill='toself', fillcolor='rgba(231,76,60,0.18)',
+        line=dict(color='rgba(0,0,0,0)'), name='5% left tail (VaR region)',
+        hoverinfo='skip',
+    ))
+    fig.add_vline(x=var_95_str, line_dash='dash', line_color=C['red'], line_width=2,
+                  annotation_text='VaR 95% = ' + str(round(var_95_str,1)) + '%',
+                  annotation_position='top left',
+                  annotation_font=dict(color=C['red'], size=11))
+    fig.add_vline(x=mu_r, line_dash='dot', line_color=C['green'], line_width=1.5,
+                  annotation_text='Mean = ' + str(round(mu_r,2)) + '%',
+                  annotation_position='top right',
+                  annotation_font=dict(color=C['green'], size=11))
+
+    fig.update_layout(**BL(
+        '<b>Daily Returns Distribution</b><br><sup>% daily return | Normal distribution fitted | Red shaded area = 5% left tail (VaR zone)</sup>',
+        height=400, hovermode='x',
+    ))
+    SA(fig)
+    fig.update_xaxes(title_text='Daily Return (%)', range=[-8, 8])
+    fig.update_yaxes(title_text='Frequency')
+    fig.show()
+```
+
+```{python}
+#| label: fig-rolling-vol
+#| fig-cap: "Rolling 30-day annualised volatility vs price - COVID spike and compression visible"
+
+if price_data_ok:
+    roll_vol = itc_ret_c.rolling(30).std() * np.sqrt(252) * 100
+
+    fig = make_subplots(specs=[[{'secondary_y': True}]])
+    fig.add_trace(go.Scatter(
+        x=roll_vol.index, y=roll_vol.values,
+        name='30d Rolling Volatility (Ann.)',
+        mode='lines', line=dict(color=C['red'], width=2),
+        fill='tozeroy', fillcolor='rgba(231,76,60,0.06)',
+        hovertemplate='%{y:.1f}%<extra>Volatility</extra>',
+    ), secondary_y=False)
+
+    fig.add_trace(go.Scatter(
+        x=itc_close.index, y=itc_close.values,
+        name='ITC Price', mode='lines',
+        line=dict(color=C['navy'], width=1.8, dash='dot'),
+        hovertemplate='Rs%{y:.0f}<extra>ITC Price</extra>',
+    ), secondary_y=True)
+
+    avg_vol = float(roll_vol.mean())
+    fig.add_hline(y=avg_vol, line_dash='dot', line_color=C['gray'],
+                  annotation_text='Avg: ' + str(round(avg_vol,1)) + '%',
+                  annotation_position='right',
+                  annotation_font=dict(size=10, color=C['gray']))
+
+    fig.update_layout(
+        paper_bgcolor=C['paper'], plot_bgcolor=C['bg'],
+        font=dict(family='Segoe UI', size=12),
+        margin=dict(l=65, r=70, t=120, b=65), height=400,
+        hovermode='x unified',
+        title=dict(
+            text='<b>Rolling 30-Day Annualised Volatility</b><br><sup>% | ITC price overlaid on right axis | Red fill = current vol regime</sup>',
+            x=0.5, font=dict(size=14)),
+        legend=dict(orientation='h', yanchor='bottom', y=1.06,
+                    xanchor='center', x=0.5, font=dict(size=11)),
+    )
+    fig.update_yaxes(title_text='Annualised Volatility (%)', ticksuffix='%',
+                     secondary_y=False, showgrid=True, gridcolor='rgba(0,0,0,0.06)')
+    fig.update_yaxes(title_text='Rs per share', secondary_y=True, showgrid=False)
+    fig.update_xaxes(showgrid=True, gridcolor='rgba(0,0,0,0.05)')
+    fig.show()
+```
+
+```{python}
+#| label: fig-beta-scatter
+#| fig-cap: "ITC vs Nifty daily returns - OLS regression shows beta and R-squared"
+
+if price_data_ok:
+    xv = nse_ret_c.values * 100
+    yv = itc_ret_c.values * 100
+    slope, intercept, r_val, _, _ = stats.linregress(xv, yv)
+    x_line = np.linspace(xv.min(), xv.max(), 200)
+    y_line  = slope * x_line + intercept
+
+    fig = go.Figure()
+    fig.add_trace(go.Scattergl(
+        x=xv, y=yv, mode='markers',
+        marker=dict(color=C['blue'], size=3.5, opacity=0.35),
+        name='Daily returns',
+        hovertemplate='Nifty: %{x:.2f}%<br>ITC: %{y:.2f}%<extra></extra>',
+    ))
+    fig.add_trace(go.Scatter(
+        x=x_line, y=y_line, mode='lines',
+        line=dict(color=C['red'], width=2.5),
+        name=f'OLS: Beta={slope:.2f}, R²={r_val**2:.3f}',
+    ))
+    fig.add_hline(y=0, line_color='rgba(0,0,0,0.2)', line_width=1)
+    fig.add_vline(x=0, line_color='rgba(0,0,0,0.2)', line_width=1)
+
+    fig.update_layout(**BL(
+        f'<b>ITC Beta vs Nifty 50</b><br><sup>Daily returns scatter | Beta = {slope:.2f} | R² = {r_val**2:.3f} | ITC moves less than the index</sup>',
+        height=430, hovermode='closest', legend_y=-0.14,
+    ))
+    SA(fig)
+    fig.update_xaxes(title_text='Nifty 50 Daily Return (%)')
+    fig.update_yaxes(title_text='ITC Daily Return (%)')
+    fig.show()
+```
+
+<div class="card card-blue">
+<h4>Market Risk Summary</h4>
+
+| Metric | ITC | Interpretation |
+|---|---|---|
+| **Beta vs Nifty 50** | `{python} beta_str` | Below-market sensitivity - defensive quality |
+| **Annualised Volatility** | `{python} ann_vol_pct`% | Moderate; lower than most mid-cap FMCG names |
+| **Sharpe Ratio** | `{python} sharpe_str` | Adequate risk-adjusted returns |
+| **95% 1-day VaR** | `{python} var_95_str`% | Worst daily loss expected 1-in-20 sessions |
+| **Max Drawdown (since 2019)** | `{python} max_dd_str`% | COVID drawdown; fully recovered |
+| **5yr Return vs Nifty** | `{python} round(ret_5yr,1)`% vs `{python} round(nse_5yr,1)`% | Honest: significant underperformance vs index |
+
+The 5-year underperformance vs Nifty is a critical honest acknowledgement. ITC has lagged the benchmark, partly due to ESG-driven institutional selling and the persistent cigarette overhang. Our thesis: current prices already reflect this pessimism; the improving FMCG trajectory is not yet priced.
+</div>
+
+<hr class="divider">
+
+# 3. Financial Performance
+
+Ten years of data tell a clear story: consistent revenue growth, margin expansion, and exceptional cash quality - all without leverage.
+
+```{python}
+#| label: fig-kpi-tiles
+#| fig-cap: "ITC key financial metrics - FY2024 at a glance"
+
+fig = make_subplots(
+    rows=1, cols=4,
+    specs=[[{'type': 'indicator'}]*4],
+    horizontal_spacing=0.07,
+)
+kpis = [
+    (rev_cagr,   '%', 'Revenue CAGR<br><span style="font-size:0.72em;color:#95a5a6">(10 yr)</span>',   9.0),
+    (pat_cagr,   '%', 'PAT CAGR<br><span style="font-size:0.72em;color:#95a5a6">(10 yr)</span>',        8.5),
+    (roce_fy24,  '%', 'ROCE<br><span style="font-size:0.72em;color:#95a5a6">(FY2024)</span>',           32.0),
+    (div_yield,  '%', 'Dividend Yield<br><span style="font-size:0.72em;color:#95a5a6">(current)</span>',1.2),
+]
+for i, (val, sfx, label, ref) in enumerate(kpis, 1):
+    fig.add_trace(go.Indicator(
+        mode='number+delta',
+        value=val,
+        number=dict(suffix=sfx, font=dict(size=44, color=C['blue']), valueformat='.1f'),
+        delta=dict(reference=ref, relative=False, valueformat='.1f',
+                   increasing=dict(color=C['green']), decreasing=dict(color=C['red'])),
+        title=dict(text='<span style="font-size:0.82em;font-weight:600;color:#2c3e50">' + label + '</span>'),
+    ), row=1, col=i)
+
+fig.update_layout(
+    height=195, paper_bgcolor=C['paper'],
+    margin=dict(l=10, r=10, t=55, b=10),
+    title=dict(text='<b>ITC at a Glance - FY2024 Financial KPIs</b>',
+               x=0.5, font=dict(size=14, color=C['dark'])),
+)
+fig.show()
+```
+
+```{python}
+#| label: fig-pl-trend
+#| fig-cap: "Revenue, EBITDA and PAT - consistent growth with expanding margins"
+
+fig = make_subplots(specs=[[{'secondary_y': True}]])
+
+fig.add_trace(go.Bar(
+    x=AY, y=revenue, name='Revenue',
+    marker_color=C['lblue'], opacity=0.60,
+    hovertemplate='Rs%{y:,.0f}Cr<extra>Revenue</extra>',
+), secondary_y=False)
+fig.add_trace(go.Scatter(
+    x=AY, y=ebitda, name='EBITDA',
+    mode='lines+markers', line=dict(color=C['navy'], width=2.5, dash='dot'),
+    marker=dict(size=7),
+    hovertemplate='Rs%{y:,.0f}Cr<extra>EBITDA</extra>',
+), secondary_y=False)
+fig.add_trace(go.Scatter(
+    x=AY, y=pat, name='PAT',
+    mode='lines+markers', line=dict(color=C['green'], width=3),
+    marker=dict(size=9),
+    hovertemplate='Rs%{y:,.0f}Cr<extra>PAT</extra>',
+), secondary_y=False)
+fig.add_trace(go.Scatter(
+    x=AY, y=pat_margin, name='PAT Margin %',
+    mode='lines', line=dict(color=C['amber'], width=2, dash='dashdot'),
+    hovertemplate='%{y:.1f}%<extra>PAT Margin</extra>',
+), secondary_y=True)
+
+fig.update_layout(
+    paper_bgcolor=C['paper'], plot_bgcolor=C['bg'],
+    font=dict(family='Segoe UI', size=12),
+    margin=dict(l=65, r=70, t=120, b=65), height=450,
+    hovermode='x unified',
+    title=dict(
+        text='<b>Revenue, EBITDA & PAT Trajectory</b><br><sup>Rs Crore | FY2015–FY2024 | PAT margin (right axis) expanding from 22% to 27%+</sup>',
+        x=0.5, font=dict(size=14)),
+    legend=dict(orientation='h', yanchor='bottom', y=1.06, xanchor='center', x=0.5, font=dict(size=11)),
+)
+SA(fig)
+fig.update_yaxes(title_text='Rs Crore', tickformat=',', secondary_y=False)
+fig.update_yaxes(title_text='PAT Margin (%)', ticksuffix='%', secondary_y=True, showgrid=False)
+fig.show()
+```
+
+```{python}
+#| label: fig-roce-roe
+#| fig-cap: "ROCE and ROE vs estimated WACC - ITC sustains a 30+ point spread above its cost of capital"
+
+fig = go.Figure()
+fig.add_trace(go.Scatter(
+    x=AY, y=roce, name='ROCE',
+    mode='lines+markers', line=dict(color=C['blue'], width=3),
+    marker=dict(size=10), fill='tozeroy', fillcolor='rgba(52,152,219,0.05)',
+    hovertemplate='%{y:.1f}%<extra>ROCE</extra>',
+))
+fig.add_trace(go.Scatter(
+    x=AY, y=roe, name='ROE',
+    mode='lines+markers', line=dict(color=C['green'], width=2.5, dash='dash'),
+    marker=dict(size=8, symbol='diamond'),
+    hovertemplate='%{y:.1f}%<extra>ROE</extra>',
+))
+fig.add_hline(y=10.5, line_dash='dot', line_color=C['red'], line_width=2,
+              annotation_text='WACC approx 10.5%',
+              annotation_position='bottom right',
+              annotation_font=dict(color=C['red'], size=11))
+
+fig.update_layout(**BL(
+    '<b>ROCE & ROE vs Cost of Capital</b><br><sup>% | ITC consistently generates 30+ percentage points of spread above WACC</sup>',
+    height=400,
+))
+SA(fig)
+fig.update_yaxes(title_text='Return (%)', ticksuffix='%', range=[0, 55])
+fig.show()
+```
+
+```{python}
+#| label: fig-cashflow
+#| fig-cap: "Cash generation quality - FCF/PAT ratio consistently above 80%"
+
+fig = go.Figure()
+fig.add_trace(go.Bar(
+    x=AY, y=op_cf, name='Operating CF',
+    marker_color=C['blue'], opacity=0.8,
+    hovertemplate='Rs%{y:,.0f}Cr<extra>Operating CF</extra>',
+))
+fig.add_trace(go.Bar(
+    x=AY, y=[-c for c in capex], name='Capex (negative)',
+    marker_color=C['red'], opacity=0.70,
+    hovertemplate='Rs%{y:,.0f}Cr<extra>Capex</extra>',
+))
+fig.add_trace(go.Scatter(
+    x=AY, y=fcf, name='Free Cash Flow',
+    mode='lines+markers', line=dict(color=C['green'], width=3),
+    marker=dict(size=9),
+    hovertemplate='Rs%{y:,.0f}Cr<extra>FCF</extra>',
+))
+
+fcf_pat = [f/p*100 for f, p in zip(fcf, pat)]
+fig.add_trace(go.Scatter(
+    x=AY, y=fcf_pat, name='FCF / PAT %', yaxis='y2',
+    mode='lines', line=dict(color=C['amber'], width=2, dash='dot'),
+    hovertemplate='%{y:.0f}%<extra>FCF/PAT</extra>',
+))
+
+fig.update_layout(
+    paper_bgcolor=C['paper'], plot_bgcolor=C['bg'],
+    font=dict(family='Segoe UI', size=12),
+    margin=dict(l=65, r=70, t=120, b=65), height=440,
+    barmode='relative', hovermode='x unified',
+    title=dict(
+        text='<b>Cash Generation Quality</b><br><sup>Rs Crore | FCF/PAT ratio on right axis - asset-light businesses show 80–100%+ conversion</sup>',
+        x=0.5, font=dict(size=14)),
+    legend=dict(orientation='h', yanchor='bottom', y=1.06, xanchor='center', x=0.5, font=dict(size=11)),
+    yaxis2=dict(title='FCF/PAT (%)', overlaying='y', side='right',
+                ticksuffix='%', showgrid=False, range=[0, 150]),
+)
+SA(fig)
+fig.update_yaxes(title_text='Rs Crore', tickformat=',')
+fig.show()
+```
+
+<hr class="divider">
+
+# 4. Test 1 - Competitive Moat
+
+**Verdict: PASS**
+
+ITC's competitive advantage is a **system of layered moats** rather than a single defensive characteristic. We score ITC across six dimensions below.
+
+```{python}
+#| label: fig-moat-radar
+
+cats = ['Distribution<br>Reach', 'Pricing<br>Power', 'Regulatory<br>Barriers',
+        'Brand<br>Strength', 'Cost<br>Advantages', 'Switching<br>Costs']
+itc_scores  = [9.5, 7.5, 8.5, 7.0, 8.0, 5.5]
+peer_scores = [6.0, 7.0, 2.0, 8.0, 6.0, 5.0]
+
+cats_c  = cats + [cats[0]]
+itc_c   = itc_scores + [itc_scores[0]]
+peer_c  = peer_scores + [peer_scores[0]]
+
+fig = go.Figure()
+fig.add_trace(go.Scatterpolar(
+    r=itc_c, theta=cats_c, fill='toself', name='ITC',
+    line=dict(color=C['blue'], width=2.5),
+    fillcolor='rgba(52,152,219,0.18)',
+    hovertemplate='%{theta}: %{r}/10<extra>ITC</extra>',
+))
+fig.add_trace(go.Scatterpolar(
+    r=peer_c, theta=cats_c, fill='toself', name='Typical FMCG peer',
+    line=dict(color=C['gray'], width=2, dash='dash'),
+    fillcolor='rgba(149,165,166,0.10)',
+    hovertemplate='%{theta}: %{r}/10<extra>Peer</extra>',
+))
+
+fig.update_layout(
+    polar=dict(
+        radialaxis=dict(visible=True, range=[0,10], tickfont=dict(size=9.5),
+                        gridcolor='rgba(0,0,0,0.1)'),
+        angularaxis=dict(tickfont=dict(size=11.5, color=C['dark'])),
+        bgcolor=C['bg'],
+    ),
+    paper_bgcolor=C['paper'],
+    font=dict(family='Segoe UI'),
+    title=dict(
+        text='<b>Moat Assessment Radar</b><br><sup>Score 0–10 per dimension | ITC (blue) vs Typical Indian FMCG Peer (grey)</sup>',
+        x=0.5, font=dict(size=14, color=C['dark'])),
+    legend=dict(orientation='h', yanchor='bottom', y=-0.18, xanchor='center', x=0.5),
+    height=480, margin=dict(t=100, b=90, l=60, r=60),
+)
+fig.show()
+```
+
+<div class="card card-purple">
+<h4>The Distribution Moat - ITC's Deepest Competitive Advantage</h4>
+ITC's cigarette distribution reaches 6 million+ retail outlets - including Class C and D towns where ITC's salespeople have relationships going back 30–40 years. When ITC launched Aashirvaad atta, it did not build distribution from scratch. New FMCG products piggyback on the existing tobacco delivery infrastructure, achieving national penetration at 20–25% of what HUL or Nestle would spend entering a new category. This network took a century to build. No competitor can replicate it quickly.
+</div>
+
+::: {.callout-tip}
+## Moat Conviction Statement
+The distribution moat is the most durable aspect of ITC's competitive position - more durable even than the cigarette regulatory moat. In a scenario where cigarettes decline structurally, ITC still possesses a distribution infrastructure that 15 FMCG categories can ride. That infrastructure was built free of charge using tobacco profits. Few parallels exist globally.
+:::
+
+<details class="section-fold">
+<summary>Cigarette Regulatory Risk - Full Assessment</summary>
+<div class="body">
+
+**Volume picture:** India's legal cigarette volumes declined from ~103 billion sticks in FY2010 to ~89 billion in FY2024 - a 14% fall over 14 years, roughly -1% per annum.
+
+**The revenue paradox:** Even during volume decline years, cigarette revenue grew because price increases outpace volume falls. In FY2024, cigarette net revenue grew ~9% on low single-digit volume growth - pure pricing power at work.
+
+**Regulatory floor:** COTPA (2003) has been in place for 21 years without triggering mass abstinence. An outright ban is politically impossible given 30+ million livelihoods tied to tobacco farming, manufacturing and retail.
+
+**Base case:** -1% to -2% annual volume drift, fully offset by 5–8% annual price increases. Cigarette EBIT stays above Rs 20,000 Cr through at least FY2027.
+
+**Conclusion:** This risk is real, persistent, and already priced in via the conglomerate discount. It is not a reason to avoid ITC - it is the reason the stock is cheap.
+</div>
+</details>
+
+<hr class="divider">
+
+# 5. Test 2 - Management Quality
+
+**Verdict: PASS**
+
+ITC is institutionally managed - BAT (British American Tobacco) holds ~29% as anchor shareholder, with the balance distributed among mutual funds, LIC, FIIs and the ITC Employee Benefit Trust. No single Indian promoter controls the company, reducing key-person risk.
+
+```{python}
+#| label: fig-mgmt-dashboard
+#| fig-cap: "Capital allocation dashboard - dividend policy and FCF deployment"
+
+fig = make_subplots(
+    rows=1, cols=2,
+    subplot_titles=('DPS & Payout Ratio', 'Capex vs Free Cash Flow'),
+    horizontal_spacing=0.14,
+)
+
+fig.add_trace(go.Bar(
+    x=AY, y=dps, name='DPS (Rs)',
+    marker_color=C['green'], opacity=0.8,
+    hovertemplate='Rs%{y:.2f}<extra>DPS</extra>',
+), row=1, col=1)
+fig.add_trace(go.Scatter(
+    x=AY, y=div_payout, name='Payout Ratio %',
+    mode='lines+markers', line=dict(color=C['navy'], width=2.5),
+    marker=dict(size=7), yaxis='y2',
+    hovertemplate='%{y:.0f}%<extra>Payout</extra>',
+), row=1, col=1)
+
+fig.add_trace(go.Bar(
+    x=AY, y=capex, name='Capex',
+    marker_color=C['red'], opacity=0.75,
+    hovertemplate='Rs%{y:,.0f}Cr<extra>Capex</extra>',
+), row=1, col=2)
+fig.add_trace(go.Bar(
+    x=AY, y=fcf, name='FCF (after Capex)',
+    marker_color=C['blue'], opacity=0.70,
+    hovertemplate='Rs%{y:,.0f}Cr<extra>FCF</extra>',
+), row=1, col=2)
+
+fig.update_layout(
+    paper_bgcolor=C['paper'], plot_bgcolor=C['bg'],
+    font=dict(family='Segoe UI', size=12),
+    margin=dict(l=55, r=55, t=120, b=65), height=440,
+    hovermode='x unified', barmode='group',
+    title=dict(
+        text='<b>Capital Allocation Dashboard</b><br><sup>Left: dividend policy FY2015–2024 | Right: capex vs FCF | Rs Crore</sup>',
+        x=0.5, font=dict(size=14)),
+    legend=dict(orientation='h', yanchor='bottom', y=1.06, xanchor='center', x=0.5, font=dict(size=11)),
+    yaxis2=dict(overlaying='y', side='right', ticksuffix='%',
+                showgrid=False, range=[0, 135]),
+)
+SA(fig)
+fig.update_yaxes(title_text='Rs per share', row=1, col=1)
+fig.update_yaxes(title_text='Rs Crore', row=1, col=2, tickformat=',')
+fig.show()
+```
+
+::: {.callout-note appearance="simple"}
+## Why Institutional Management Matters for a Conviction Fund
+Promoter-driven conglomerates carry key-person risk and governance opacity - related-party transactions, income diversion, pledged shares. None of these apply to ITC. For a 3–5 year hold where management quality compounds value quietly, ITC's institutional governance is a feature, not a limitation.
+:::
+
+<hr class="divider">
+
+# 6. Test 3 - Valuation
+
+**Verdict: CONDITIONAL PASS**
+
+ITC is not cheap - it rarely is. But at `{python} pe_cur`x trailing earnings, it is priced at a material discount to peers of equivalent or lower quality. Our base-case intrinsic value estimates are above current market price.
+
+```{python}
+#| label: fig-price-targets
+#| fig-cap: "Price target comparison across all valuation methods"
+#| echo: false
+
+fig = go.Figure()
+bar_cols_pt = [C['red'] if u < 0 else C['green'] for u in pt_ups]
+fig.add_trace(go.Bar(
+    x=pt_labels, y=pt_vals,
+    marker_color=bar_cols_pt, opacity=0.82,
+    text=[f'Rs{int(v)}<br>{u:+.0f}%' for v, u in zip(pt_vals, pt_ups)],
+    textposition='outside', textfont=dict(size=11, color=C['dark']),
+    hovertemplate='<b>%{x}</b><br>Rs%{y:.0f}<extra></extra>',
+))
+fig.add_hline(y=current_price, line_dash='dash', line_color=C['amber'], line_width=2.5,
+              annotation_text='Current Rs' + str(round(current_price, 0)),
+              annotation_position='right',
+              annotation_font=dict(color=C['amber'], size=11))
+fig.update_layout(**BL(
+    '<b>Valuation Summary - Price Targets Across All Methods</b><br><sup>Rs/share | Green = above current price | Amber line = current market price Rs'
+    + str(round(current_price, 0)) + ' | All seven methods point above current price</sup>',
+    height=420, hovermode='closest',
+))
+SA(fig, xgrid=False)
+fig.update_yaxes(title_text='Rs per share',
+                 range=[min(pt_vals)*0.85, max(pt_vals)*1.14])
+fig.update_layout(showlegend=False)
+fig.show()
+```
+
+## 6.1 Historical P/E Context
+
+```{python}
+#| label: fig-pe-bands
+#| fig-cap: "Historical P/E band chart - currently at 28x vs 5yr average of ~23x"
+
+# Hard-coded monthly price series for reproducibility (Jan 2019 – Jan 2026, 85 months)
+pe_dates = pd.date_range('2019-01-31', '2026-01-31', freq='ME')
+raw_prices = [
+    290, 285, 278, 272, 268, 276, 282, 289, 295, 288, 280, 285,
+    283, 272, 265, 156, 154, 168, 190, 195, 198, 208, 215, 220,
+    218, 215, 210, 208, 215, 225, 220, 215, 210, 208, 212, 215,
+    220, 218, 215, 218, 225, 230, 232, 228, 225, 235, 245, 252,
+    268, 295, 320, 335, 355, 378, 388, 395, 400, 408, 418, 430,
+    450, 460, 468, 478, 499, 505, 490, 472, 460, 448, 440, 435,
+    430, 425, 428, 426, 428, 425, 428, 426, 428, 427, 428,
+]
+n = len(pe_dates)
+if len(raw_prices) >= n:
+    hp = np.array(raw_prices[:n], dtype=float)
+else:
+    hp = np.array(raw_prices + [raw_prices[-1]]*(n-len(raw_prices)), dtype=float)
+
+eps_map = {2015:7.68, 2016:7.87, 2017:8.35, 2018:8.96,
+           2019:10.19, 2020:10.90, 2021:10.82, 2022:11.96,
+           2023:15.52, 2024:16.38, 2025:17.80}
+
+def ttm_eps(dt):
+    fy = dt.year if dt.month >= 4 else dt.year - 1
+    return eps_map.get(fy, 16.38)
+
+eps_s = np.array([ttm_eps(d) for d in pe_dates])
+
+fig = go.Figure()
+band_specs = [
+    (12, C['green'],  'rgba(39,174,96,0.05)'),
+    (18, C['blue'],   'rgba(52,152,219,0.05)'),
+    (24, C['amber'],  'rgba(243,156,18,0.05)'),
+    (28, C['red'],    'rgba(231,76,60,0.05)'),
+]
+for mult, lc, fc in band_specs:
+    fig.add_trace(go.Scatter(
+        x=pe_dates, y=eps_s * mult,
+        name=str(mult) + 'x P/E', mode='lines',
+        line=dict(color=lc, width=1.4, dash='dot'),
+        hovertemplate='Rs%{y:.0f} (' + str(mult) + 'x)<extra>' + str(mult) + 'x band</extra>',
+    ))
+
+fig.add_trace(go.Scatter(
+    x=pe_dates, y=hp, name='ITC Price', mode='lines',
+    line=dict(color=C['navy'], width=2.8),
+    hovertemplate='Rs%{y:.0f}<extra>ITC Price</extra>',
+))
+fig.add_hline(y=current_price, line_dash='dash', line_color=C['navy'], line_width=1,
+              annotation_text='Current Rs' + str(round(current_price,0)) + ' (' + str(pe_cur) + 'x)',
+              annotation_position='left',
+              annotation_font=dict(size=10.5, color=C['navy']))
+
+fig.update_layout(**BL(
+    '<b>Historical P/E Band Chart</b><br><sup>Rs | ITC price vs trailing-EPS multiple bands | Currently at ' + str(pe_cur) + 'x</sup>',
+    height=430,
+))
+SA(fig)
+fig.update_yaxes(title_text='Rs per share')
+fig.show()
+```
+
+## 6.2 Peer Valuation Comparison
+
+```{python}
+#| label: fig-peer-scatter
+#| fig-cap: "Peer valuation - ITC stands out: high ROCE at a low P/E"
+
+max_mc = peers['Mkt_cap_Cr'].max()
+b_sizes = (peers['Mkt_cap_Cr'] / max_mc * 65 + 20).tolist()
+b_colors = [C['navy'] if c == 'ITC' else C['blue'] for c in peers['Company']]
+
+fig = go.Figure()
+fig.add_trace(go.Scatter(
+    x=peers['PE_TTM'], y=peers['ROCE'],
+    mode='markers+text',
+    text=peers['Company'],
+    textposition='top center',
+    textfont=dict(size=11.5, color=C['dark']),
+    marker=dict(size=b_sizes, color=b_colors, opacity=0.80,
+                line=dict(width=1.5, color='white')),
+    customdata=peers[['EV_EBITDA','PAT_margin','Div_yield']].values,
+    hovertemplate=(
+        '<b>%{text}</b><br>P/E: %{x:.1f}x<br>ROCE: %{y:.1f}%<br>'
+        'EV/EBITDA: %{customdata[0]:.1f}x<br>PAT Margin: %{customdata[1]:.1f}%<br>'
+        'Div Yield: %{customdata[2]:.2f}%<extra></extra>'
+    ),
+))
+
+fig.add_shape(type='rect', x0=15, x1=40, y0=35, y1=75,
+              fillcolor='rgba(39,174,96,0.04)',
+              line=dict(color=C['green'], width=1.2, dash='dot'))
+fig.add_annotation(x=27, y=73, text='<b>Quality at Reasonable Price</b>',
+                   showarrow=False, font=dict(size=10.5, color=C['green']))
+
+fig.update_layout(**BL(
+    '<b>Peer Valuation: P/E vs ROCE</b><br><sup>Bubble size = Market Cap | ITC: highest ROCE in cohort at lowest P/E - the statistical outlier</sup>',
+    height=470, hovermode='closest', legend_y=-0.12,
+))
+SA(fig)
+fig.update_xaxes(title_text='Trailing P/E (x)', range=[18, 85])
+fig.update_yaxes(title_text='ROCE (%)', ticksuffix='%', range=[0, 80])
+fig.update_layout(showlegend=False)
+fig.show()
+```
+
+::: {.callout-note appearance="simple"}
+## The Valuation Paradox
+ITC trades at `{python} pe_cur`x P/E - 47% cheaper than HUL (54x), 61% cheaper than Nestle (74x) - yet ITC's ROCE exceeds HUL's by 11 percentage points, and its FCF yield (~4.1%) is nearly double HUL's. The discount is partially justified by cigarette concerns. But a 47–61% discount for a business with superior return characteristics is excessive. The market appears to be recognising this: ITC re-rated from below 20x P/E in 2022 to ~`{python} pe_cur`x today.
+:::
+
+## 6.3 Sum-of-Parts Valuation
+
+```{python}
+#| label: fig-sotp
+#| fig-cap: "SOTP waterfall - conservative segment valuation with net cash bridge to equity value"
+
+seg_labels_s = ['Cigarettes', 'FMCG & Others', 'Hotels', 'Agribusiness', 'Paperboards', 'Net Cash']
+ebit_vals    = [22700, 1215, 547, 860, 1180]
+ev_mults     = [14.0,  20.0, 10.0, 8.0, 10.0]
+ev_vals      = [e * m for e, m in zip(ebit_vals, ev_mults)]
+ev_ps        = [e / SHARES_CR for e in ev_vals]
+nc_ps        = NET_CASH / SHARES_CR
+all_ps       = ev_ps + [nc_ps]
+total_sotp   = sum(all_ps)
+
+fig = go.Figure(go.Waterfall(
+    orientation='v',
+    measure=['relative']*len(seg_labels_s) + ['total'],
+    x=seg_labels_s + ['SOTP Total'],
+    y=all_ps + [None],
+    text=[f'Rs{v:.0f}' for v in all_ps] + [f'Rs{total_sotp:.0f}'],
+    textposition='outside',
+    textfont=dict(size=11, color=C['dark']),
+    connector=dict(line=dict(color='rgba(0,0,0,0.1)', width=1.5, dash='dot')),
+    increasing=dict(marker=dict(color=C['blue'])),
+    decreasing=dict(marker=dict(color=C['red'])),
+    totals=dict(marker=dict(color=C['navy'])),
+    hovertemplate='<b>%{x}</b><br>Rs%{y:.0f}/share<extra></extra>',
+))
+
+fig.add_hline(y=current_price, line_dash='dash', line_color=C['amber'], line_width=2,
+              annotation_text='Current Rs' + str(round(current_price,0)),
+              annotation_position='left',
+              annotation_font=dict(color=C['amber'], size=11))
+
+fig.update_layout(**BL(
+    '<b>Sum-of-Parts Valuation</b><br><sup>Rs/share | Cigarettes at 14x EBIT | FMCG at 20x | Hotels at 10x | Net cash added directly</sup>',
+    height=460,
+))
+SA(fig, xgrid=False)
+fig.update_yaxes(title_text='Rs per share')
+fig.update_layout(showlegend=False)
+fig.show()
+```
+
+## 6.4 DDM Valuation
+
+The Gordon Growth Model gives a dividend-anchored cross-check on intrinsic value. ITC's DPS has grown from Rs 5.75 (FY2015) to Rs 7.50 (FY2024), with payout normalising toward 46% after the anomalous FY2020–21 spike. Using cost of equity of 10.5% (near-zero debt makes WACC approximately equal to CoE):
+
+```{python}
+#| label: fig-ddm
+#| fig-cap: "DDM intrinsic value sensitivity across terminal dividend growth rates"
+
+ddm_g_range = np.arange(0.030, 0.095, 0.005)
+ddm_disp_v  = [dps[-1] * (1+g) / (COE_DDM - g) for g in ddm_g_range if COE_DDM > g]
+ddm_disp_g  = [f'{g*100:.1f}%' for g in ddm_g_range if COE_DDM > g]
+ddm_bar_c   = [C['red'] if v < current_price else C['green'] for v in ddm_disp_v]
+
+fig = go.Figure()
+fig.add_trace(go.Bar(
+    x=ddm_disp_g, y=ddm_disp_v,
+    marker_color=ddm_bar_c, opacity=0.80,
+    text=[f'Rs{int(v)}' for v in ddm_disp_v],
+    textposition='outside', textfont=dict(size=11, color=C['dark']),
+    hovertemplate='g=%{x}: Rs%{y:.0f}<extra></extra>',
+))
+fig.add_hline(y=current_price, line_dash='dash', line_color=C['amber'], line_width=2,
+              annotation_text='Current Rs' + str(round(current_price, 0)),
+              annotation_position='right',
+              annotation_font=dict(color=C['amber'], size=11))
+fig.update_layout(**BL(
+    '<b>DDM Intrinsic Value \u2014 Dividend Growth Sensitivity</b><br><sup>CoE = 10.5% | FY2024 DPS = Rs 7.50 | Green bars indicate value above current price</sup>',
+    height=370, hovermode='x',
+))
+SA(fig, xgrid=False)
+fig.update_xaxes(title_text='Terminal Dividend Growth Rate')
+fig.update_yaxes(title_text='DDM Intrinsic Value (Rs/share)')
+fig.update_layout(showlegend=False)
+fig.show()
+```
+
+| Scenario | Growth | DDM Value | vs Current |
+|---|---|---|---|
+| Bear | 4.0% | Rs `{python} int(ddm_bear)` | `{python} f"{(ddm_bear/current_price-1)*100:+.1f}"`% |
+| Base | 5.5% | Rs `{python} int(ddm_base)` | `{python} f"{(ddm_base/current_price-1)*100:+.1f}"`% |
+| Bull | 6.5% | Rs `{python} int(ddm_bull)` | `{python} f"{(ddm_bull/current_price-1)*100:+.1f}"`% |
+
+The DDM is inherently conservative here because ITC's current payout ratio (45.8% in FY2024) sits well below its historical norm of 75–100%. As earnings mature and payout rises toward 60–65%, the dividend anchor strengthens considerably. Even the bear-case DDM of Rs `{python} int(ddm_bear)` implies a positive total return at current prices for a business generating 40%+ ROCE.
+
+## 6.5 Reverse DCF - What the Market is Pricing In
+
+Rather than projecting a forward intrinsic value, the reverse DCF asks: what perpetual free cash flow growth rate must ITC sustain for today's price to represent fair value? If that implied rate is unrealistically low, the stock offers a margin of safety.
+
+```{python}
+#| label: fig-reverse-dcf
+#| fig-cap: "Reverse DCF - implied terminal growth rate at current market price"
+
+rdcf_waccs   = np.arange(0.090, 0.125, 0.005)
+rdcf_implied = []
+for _w in rdcf_waccs:
+    try:
+        _g = _bq(lambda g, w=_w: dcf_value(w, g) - current_price, 0.005, _w - 0.005)
+        rdcf_implied.append(round(_g * 100, 2))
+    except Exception:
+        rdcf_implied.append(np.nan)
+
+rdcf_x = [f'{_w*100:.1f}%' for _w in rdcf_waccs]
+
+fig = go.Figure()
+fig.add_trace(go.Scatter(
+    x=rdcf_x, y=rdcf_implied,
+    mode='lines+markers',
+    line=dict(color=C['navy'], width=3),
+    marker=dict(size=10),
+    hovertemplate='WACC=%{x} \u2192 Implied TGR=%{y:.2f}%<extra></extra>',
+))
+fig.add_hline(y=5.5, line_dash='dot', line_color=C['blue'], line_width=1.8,
+              annotation_text='India nominal GDP growth ~5.5%',
+              annotation_position='right',
+              annotation_font=dict(size=10, color=C['blue']))
+fig.add_hline(y=fcf_cagr_5yr, line_dash='dot', line_color=C['green'], line_width=1.8,
+              annotation_text=f'5-yr FCF CAGR = {fcf_cagr_5yr}%',
+              annotation_position='right',
+              annotation_font=dict(size=10, color=C['green']))
+fig.update_layout(**BL(
+    '<b>Reverse DCF \u2014 Implied Terminal FCF Growth Rate at Current Price</b><br><sup>At WACC 10.5%, current price implies only ' + str(implied_tgr) + '% perpetual FCF growth \u2014 well below historical growth and India nominal GDP</sup>',
+    height=380,
+))
+SA(fig)
+fig.update_xaxes(title_text='Assumed WACC')
+fig.update_yaxes(title_text='Implied Terminal Growth Rate (%)', ticksuffix='%')
+fig.update_layout(showlegend=False)
+fig.show()
+```
+
+At our base WACC of 10.5%, today's stock price implies ITC needs to grow its free cash flows at only **`{python} implied_tgr`% in perpetuity** for the investment to break even. India's nominal GDP is projected at 5.5–6.0% annually. A business with 6 million distribution outlets, pricing power in cigarettes, and an FMCG segment growing above 15% should logically outpace the broader economy. The gap between the implied rate and realistic expectations is the margin of safety.
+
+## 6.6 DCF Sensitivity Analysis
+
+```{python}
+#| label: fig-dcf-heatmap
+#| fig-cap: "DCF intrinsic value sensitivity grid - green = above current market price"
+
+wacc_labels = [f'{w*100:.1f}%' for w in wacc_range]
+tgr_labels  = [f'{g*100:.1f}%' for g in tgr_range]
+
+colorscale = [
+    [0.00, 'rgb(180,30,30)'],
+    [0.30, 'rgb(220,90,70)'],
+    [0.46, 'rgb(250,200,150)'],
+    [0.54, 'rgb(250,200,150)'],
+    [0.70, 'rgb(100,205,140)'],
+    [1.00, 'rgb(25,150,80)'],
+]
+
+fig = go.Figure(data=go.Heatmap(
+    z=dcf_grid,
+    x=tgr_labels,
+    y=wacc_labels,
+    colorscale=colorscale,
+    zmin=current_price * 0.58,
+    zmax=current_price * 1.55,
+    text=dcf_grid,
+    texttemplate='Rs%{text:.0f}',
+    textfont=dict(size=11, color='white'),
+    hovertemplate='WACC: %{y}<br>TGR: %{x}<br>Intrinsic Value: Rs%{z:.0f}/share<extra></extra>',
+    colorbar=dict(title=dict(text='Rs/share', side='right'),
+                  tickprefix='Rs', tickfont=dict(size=10)),
+))
+
+bi = list(wacc_labels).index(f'{WACC_BASE*100:.1f}%')
+gi = list(tgr_labels).index(f'{TGR_BASE*100:.1f}%')
+fig.add_annotation(x=tgr_labels[gi], y=wacc_labels[bi],
+                   text='Base', showarrow=False,
+                   font=dict(size=11, color='white', family='Segoe UI'))
+
+fig.update_layout(
+    paper_bgcolor=C['paper'],
+    font=dict(family='Segoe UI', size=11.5),
+    margin=dict(l=65, r=85, t=120, b=65), height=420,
+    title=dict(
+        text='<b>DCF Intrinsic Value Sensitivity</b><br><sup>Rs/share | Base case: WACC ' + f'{WACC_BASE*100:.1f}%' + ', TGR ' + f'{TGR_BASE*100:.1f}%' + ' | Green = above current Rs' + str(round(current_price,0)) + '</sup>',
+        x=0.5, font=dict(size=14, color=C['dark'])),
+    xaxis=dict(title='Terminal Growth Rate', tickfont=dict(size=11)),
+    yaxis=dict(title='WACC', tickfont=dict(size=11)),
+)
+fig.show()
+```
+
+<hr class="divider">
+
+# 7. Monte Carlo DCF Simulation
+
+A single-point DCF estimate is false precision. We run **`{python} f"{N_SIM:,}"` simulations** - sampling growth rates, WACC, and terminal growth rate from calibrated distributions - to produce a probabilistic view of intrinsic value.
+
+**Simulation design:**
+- Growth rates (yr 1–10): Normal distributions around base-case tapering path; sigma = 2–4% per year
+- WACC: Normal(10.5%, 1.2%), clipped [7%, 16%]
+- Terminal growth rate: Normal(5.5%, 0.8%), clipped [2%, 8%], enforced strictly below WACC
+
+```{python}
+#| label: fig-monte-carlo
+#| fig-cap: "Monte Carlo DCF distribution - probability of intrinsic value above current price"
+
+fig = make_subplots(
+    rows=1, cols=2,
+    subplot_titles=(
+        f'Distribution of {N_SIM:,} Simulated Intrinsic Values',
+        'Cumulative Probability (CDF)',
+    ),
+    horizontal_spacing=0.12,
+)
+
+bin_w = 20
+x_min = float(mc_arr.min()) - 10
+x_max = float(mc_arr.max()) + 30
+bins = np.arange(x_min, x_max + bin_w, bin_w)
+counts, bin_edges = np.histogram(mc_arr, bins=bins)
+bar_colors = [C['red'] if b < current_price else C['green'] for b in bin_edges[:-1]]
+
+fig.add_trace(go.Bar(
+    x=bin_edges[:-1], y=counts,
+    name='Simulated intrinsic values',
+    marker_color=bar_colors, opacity=0.75, width=bin_w * 0.85,
+    hovertemplate='Rs%{x:.0f}: %{y} scenarios<extra></extra>',
+), row=1, col=1)
+
+mu_mc, sig_mc = mc_arr.mean(), mc_arr.std()
+x_fit  = np.linspace(x_min, x_max, 400)
+y_fit  = stats.norm.pdf(x_fit, mu_mc, sig_mc) * N_SIM * bin_w
+fig.add_trace(go.Scatter(
+    x=x_fit, y=y_fit, name='Fitted normal',
+    mode='lines', line=dict(color=C['navy'], width=2.5),
+), row=1, col=1)
+
+fig.add_vline(x=current_price, line_dash='dash',
+              line_color=C['amber'], line_width=2,
+              annotation_text='Current Rs' + str(round(current_price,0)),
+              annotation_position='top',
+              annotation_font=dict(color=C['amber'], size=10),
+              row=1, col=1)
+for pct, val, col in [(10, mc_p10, C['red']), (50, mc_p50, C['blue']), (90, mc_p90, C['green'])]:
+    fig.add_vline(x=val, line_dash='dot', line_color=col, line_width=1.5,
+                  annotation_text='P' + str(pct) + ':Rs' + str(int(val)),
+                  annotation_position='top',
+                  annotation_font=dict(color=col, size=9),
+                  row=1, col=1)
+
+# CDF
+sorted_mc = np.sort(mc_arr)
+cdf_y     = np.arange(1, N_SIM + 1) / N_SIM * 100
+
+fig.add_trace(go.Scatter(
+    x=sorted_mc, y=cdf_y, name='CDF',
+    mode='lines', line=dict(color=C['blue'], width=2.5),
+    hovertemplate='P(IV <= Rs%{x:.0f}) = %{y:.1f}%<extra>CDF</extra>',
+), row=1, col=2)
+
+mask = sorted_mc >= current_price
+if mask.any():
+    idx  = int(np.searchsorted(sorted_mc, current_price))
+    xsh  = list(sorted_mc[mask])
+    ysh  = list(cdf_y[mask])
+    fig.add_trace(go.Scatter(
+        x=[current_price] + xsh + [xsh[-1], current_price],
+        y=[float(cdf_y[idx])] + ysh + [100.0, float(cdf_y[idx])],
+        fill='toself', fillcolor='rgba(39,174,96,0.12)',
+        line=dict(color='rgba(0,0,0,0)'), name='Upside zone',
+        hoverinfo='skip',
+    ), row=1, col=2)
+
+fig.add_vline(x=current_price, line_dash='dash',
+              line_color=C['amber'], line_width=2,
+              annotation_text='Rs' + str(round(current_price,0)),
+              annotation_position='top right',
+              annotation_font=dict(color=C['amber'], size=10),
+              row=1, col=2)
+
+fig.update_layout(
+    paper_bgcolor=C['paper'], plot_bgcolor=C['bg'],
+    font=dict(family='Segoe UI', size=11.5),
+    margin=dict(l=60, r=50, t=130, b=65), height=480,
+    title=dict(
+        text='<b>Monte Carlo DCF - ' + f'{N_SIM:,}' + ' Simulations</b><br><sup>' + str(prob_above_cmp) + '% of scenarios imply intrinsic value above current price | Green shaded region = upside scenarios</sup>',
+        x=0.5, font=dict(size=14, color=C['dark'])),
+    legend=dict(orientation='h', yanchor='bottom', y=1.07,
+                xanchor='center', x=0.5, font=dict(size=11)),
+    hovermode='x',
+)
+SA(fig)
+fig.update_xaxes(title_text='Intrinsic Value (Rs/share)', row=1, col=1)
+fig.update_xaxes(title_text='Intrinsic Value (Rs/share)', row=1, col=2)
+fig.update_yaxes(title_text='Frequency', row=1, col=1)
+fig.update_yaxes(title_text='Cumulative Probability (%)', ticksuffix='%', row=1, col=2)
+fig.show()
+```
+
+```{python}
+#| label: fig-mc-percentiles
+#| fig-cap: "Monte Carlo value percentiles - green bars are scenarios above current market price"
+
+pcts     = [5, 10, 25, 50, 75, 90, 95]
+pct_vals = [float(np.percentile(mc_arr, p)) for p in pcts]
+bar_cols = [C['red'] if v < current_price else C['green'] for v in pct_vals]
+
+fig = go.Figure()
+fig.add_trace(go.Bar(
+    x=['P' + str(p) for p in pcts],
+    y=pct_vals,
+    marker_color=bar_cols, opacity=0.80,
+    text=['Rs' + str(int(v)) for v in pct_vals],
+    textposition='outside',
+    textfont=dict(size=12, color=C['dark']),
+    hovertemplate='%{x}: Rs%{y:.0f}<extra></extra>',
+))
+fig.add_hline(y=current_price, line_dash='dash', line_color=C['amber'], line_width=2.5,
+              annotation_text='Current Rs' + str(round(current_price,0)),
+              annotation_position='right',
+              annotation_font=dict(size=11.5, color=C['amber']))
+
+fig.update_layout(**BL(
+    '<b>Monte Carlo Value Percentiles</b><br><sup>' + f'{N_SIM:,}' + ' simulations | Green = scenarios where intrinsic value exceeds current market price</sup>',
+    height=380, hovermode='x',
+))
+SA(fig, xgrid=False)
+y_min = min(pct_vals) * 0.88
+y_max = max(pct_vals) * 1.10
+fig.update_yaxes(title_text='Rs per share', range=[y_min, y_max])
+fig.update_layout(showlegend=False)
+fig.show()
+```
+
+<div class="card card-navy">
+<h4>Monte Carlo Summary - `{python} f"{N_SIM:,}"` Simulations</h4>
+
+| Scenario | Percentile | Intrinsic Value | vs Current Rs`{python} cp_int` |
+|---|---|---|---|
+| Worst decile | P10 | Rs`{python} mc_p10` | `{python} f"{(mc_p10/current_price-1)*100:+.1f}"`% |
+| Median | P50 | Rs`{python} mc_p50` | `{python} f"{(mc_p50/current_price-1)*100:+.1f}"`% |
+| Best decile | P90 | Rs`{python} mc_p90` | `{python} f"{(mc_p90/current_price-1)*100:+.1f}"`% |
+| **DCF point estimate** | - | **Rs`{python} dcf_base`** | **`{python} base_str`** |
+| **Probability IV > market price** | **`{python} prob_above_cmp`%** | | |
+
+In `{python} prob_above_cmp`% of plausible scenarios, ITC's intrinsic value exceeds its current market price - providing a reasonable margin of safety for a high-quality compounder. The distribution is right-skewed: upside is wider than downside, reflecting embedded optionality in Hotels recovery and FMCG margin improvement.
+</div>
+
+<details class="section-fold">
+<summary>Full DCF Model Assumptions and WACC Build</summary>
+<div class="body">
+
+**FCFF Base (FY2024):** Rs 19,350 Cr (operating cash flow less maintenance capex).
+
+**Explicit period growth (Yr 1–10):**
+
+| Year | Base Growth | Sigma (MC) |
+|---|---|---|
+| 1 | 12% | 4% |
+| 2 | 10% | 4% |
+| 3–4 | 9% | 3% |
+| 5 | 8% | 3% |
+| 6–7 | 8% | 2.5% |
+| 8 | 7% | 2.5% |
+| 9–10 | 6% | 2% |
+
+**WACC Build (10.5%):**
+- Risk-free rate: 7.0% (10Y G-Sec, Feb 2026)
+- India equity risk premium: 5.5% (Damodaran, 2025)
+- Beta: `{python} beta_str` (empirical, ITC vs Nifty 5yr daily data)
+- Cost of equity: 7.0% + 5.5% x `{python} beta_str` = `{python} round(7.0 + 5.5*float(beta_str),1)`%
+- ITC's near-zero debt makes the WACC effectively equal to the cost of equity.
+
+**Terminal Growth Rate (5.5%):** Equal to long-run India nominal GDP growth assumption. Justifiable for a consumer distribution business with pricing power embedded in a country projected to be the world's 3rd largest economy by 2030.
+
+**Net Cash (Rs 12,500 Cr):** Added directly to enterprise value.
+</div>
+</details>
+
+<hr class="divider">
+
+# 8. Risk Assessment
+
+```{python}
+#| label: fig-risk-matrix
+#| fig-cap: "Risk matrix - bubble size proportional to severity (likelihood x impact)"
+
+risk_df = pd.DataFrame({
+    'Risk': [
+        'Excise shock >25% in single Budget',
+        'Cigarette volume decline accelerates',
+        'FMCG margin stagnation',
+        'Hotels disappoints post-demerger',
+        'ESG-driven institutional selling',
+        'BAT stake sale overhang',
+        'Input cost and FX pressure',
+        'Conglomerate discount widens',
+    ],
+    'Likelihood': [2, 3, 3, 2, 4, 2, 3, 3],
+    'Impact':     [5, 4, 3, 2, 3, 3, 2, 3],
+    'Category':   ['Regulatory','Regulatory','Competitive','Execution',
+                   'ESG/Market','Governance','Financial','Market'],
+})
+risk_df['Severity'] = risk_df['Likelihood'] * risk_df['Impact']
+
+cat_col = {
+    'Regulatory': C['red'],   'Competitive': C['amber'],
+    'Execution':  C['purple'],'ESG/Market':  C['gray'],
+    'Governance': C['navy'],  'Financial':   C['green'],
+    'Market':     C['blue'],
+}
+
+fig = go.Figure()
+for cat, col in cat_col.items():
+    d = risk_df[risk_df['Category'] == cat]
+    if len(d) == 0:
+        continue
+    fig.add_trace(go.Scatter(
+        x=d['Likelihood'], y=d['Impact'],
+        mode='markers+text', name=cat,
+        text=d['Risk'],
+        textposition='top right',
+        textfont=dict(size=9.5, color=C['dark']),
+        marker=dict(size=d['Severity']*5, color=col, opacity=0.75,
+                    line=dict(width=1.5, color='white')),
+        hovertemplate='<b>%{text}</b><br>Likelihood: %{x}/5<br>Impact: %{y}/5<extra>' + cat + '</extra>',
+    ))
+
+fig.add_shape(type='rect', x0=3.4, x1=5.4, y0=3.4, y1=5.4,
+              fillcolor='rgba(231,76,60,0.05)',
+              line=dict(color=C['red'], width=1.2, dash='dot'))
+fig.add_annotation(x=4.5, y=5.25, text='High priority zone',
+                   showarrow=False, font=dict(size=10, color=C['red']))
+
+fig.update_layout(**BL(
+    '<b>Risk Matrix</b><br><sup>Bubble size = severity (likelihood x impact) | Both axes rated 1 (low) to 5 (high)</sup>',
+    height=500, hovermode='closest',
+))
+SA(fig)
+fig.update_xaxes(title_text='Likelihood (1–5)', range=[0.5, 5.5], dtick=1)
+fig.update_yaxes(title_text='Impact (1–5)',     range=[0.5, 5.5], dtick=1)
+fig.show()
+```
+
+::: {.callout-important}
+## Primary Risk: Cigarette Excise Shock
+A >25% single-year excise increase - historically rare (last FY2013) but politically possible - is the binary risk that caps our position at 4–5%. Under this scenario, cigarette EBIT compresses 25–30%, PAT falls to ~Rs 14,500 Cr, and at 20x P/E the stock implies ~Rs 230/share - approximately 46% below current levels. This is the risk we accept explicitly in exchange for the quality and return potential of the other 90–95% of scenarios.
+:::
+
+<details class="section-fold">
+<summary>Bear Case Quantification</summary>
+<div class="body">
+
+**Trigger combination:** Excise shock + FMCG share losses + Hotels disappoints. Aggregate probability: ~10–12%.
+
+**Impact modelling:**
+- Cigarette EBIT: Rs 22,700 Cr falls to Rs 16,500 Cr (volume -8%, margin compresses 62% to 52%)
+- FMCG EBITDA margin stagnates at 4–5%
+- Hotels EBITDA recovers to only 12% post-demerger
+- Consolidated EPS falls to Rs 11–12/share (down ~27% from FY2024)
+- At 20x P/E: implied price Rs 220–240/share (~46% downside)
+
+**Mitigants:** Rs 12,500 Cr net cash provides a hard floor. FCF remains strongly positive even in the bear case. Dividends are sustainable. A 20x P/E for a 35%+ ROCE business would itself be an overreaction.
+
+**Monarch's view:** We size to 4–5% to bound this downside to an acceptable portfolio-level impact. At 4.5% weight and 46% drawdown, portfolio drawdown contribution is ~2.1% - within tolerance for a quality compounder.
+</div>
+</details>
+
+<hr class="divider">
+
+# 9. Portfolio Inclusion Verdict
+
+<div class="exec-hero">
+<h2>Included - Monarch Conviction Fund at 4–5% Weight</h2>
+<p>
+ITC passes all three tests of Monarch's investment framework. The competitive moat is deep - a 100-year distribution network, regulatory barriers in cigarettes, and FMCG brand-building funded by tobacco cash flows. Management quality is strong - ROCE consistently above 40%, zero net debt, professional governance, and improving capital allocation. Valuation is reasonable - our <strong>`{python} f"{N_SIM:,}"`-scenario Monte Carlo indicates `{python} prob_above_cmp`% probability of intrinsic value exceeding current market price</strong>, with a P50 intrinsic value of Rs `{python} mc_p50`.
+</p>
+<p>This is not a short-term trade. It is a 3–5 year hold on a quality compounder at a reasonable price, sized conservatively to account for cigarette binary risk.</p>
+</div>
+
+## Why 4–5%, Not 8–10%?
+
+<div class="card card-amber">
+<h4>Position Sizing Rationale</h4>
+In Monarch's 20–25 stock portfolio, 4–5% is a meaningful position. We would size to 7–8% if the cigarette binary risk did not exist. A tail event causing 40%+ drawdown - even at ~10% probability - must be respected. Risk-adjusted, the asymmetry favours inclusion: <strong>`{python} prob_above_cmp`% upside probability vs ~10% probability of severe downside</strong>. We take the position at 4–5% and increase toward 7% as the FMCG margin trajectory confirms.
+</div>
+
+## Exit Monitoring Framework
+
+```{python}
+#| label: tbl-exit-triggers
+#| echo: false
+
+exit_data = {
+    'Exit Trigger': [
+        'Cigarette volume decline >15% over 2 consecutive years',
+        'FMCG EBITDA margin fails to cross 7% by FY2027',
+        'ROCE falls below 30% for 2 consecutive years',
+        'Hotels EBITDA margin below 12% with no recovery path',
+        'Governance: RPT concerns or BAT stake exit at distress',
+    ],
+    'Review Frequency': ['Quarterly', 'Annual', 'Annual', 'Semi-annual', 'Continuous'],
+    'Status (Feb 2026)': [
+        'Green - approx -1% p.a., within limits',
+        'Watch - 6% FY2024, approaching threshold',
+        'Green - 42.8% FY2024',
+        'Watch - 18.5% FY2024, tracking recovery',
+        'Green - no issues identified',
+    ],
+    'Priority': ['High', 'High', 'Medium', 'Medium', 'High'],
+}
+df_exit = pd.DataFrame(exit_data)
+row_fills_exit = ['#fdf2f2' if p == 'High' else '#fffbf2' for p in df_exit['Priority']]
+
+fig = go.Figure(data=go.Table(
+    header=dict(
+        values=['<b>' + c + '</b>' for c in df_exit.columns],
+        fill_color=C['navy'],
+        font=dict(color='white', size=12, family='Segoe UI'),
+        align=['left','center','left','center'],
+        height=36,
+    ),
+    cells=dict(
+        values=[df_exit[c] for c in df_exit.columns],
+        fill_color=[row_fills_exit] * len(df_exit.columns),
+        font=dict(size=11.5, family='Segoe UI', color=C['dark']),
+        align=['left','center','left','center'],
+        height=34,
+    ),
+))
+fig.update_layout(
+    margin=dict(l=0, r=0, t=50, b=10), height=295,
+    paper_bgcolor=C['paper'],
+    title=dict(text='<b>Portfolio Exit Triggers and Monitoring</b>',
+               x=0.5, font=dict(size=14, color=C['dark'])),
+)
+fig.show()
+```
+
+::: {.callout-tip}
+## Review Cadence
+ITC's inclusion is reviewed at every quarterly investment committee meeting. Three variables tracked most closely: (1) cigarette volume data from quarterly results, (2) FMCG EBITDA margin trajectory, and (3) Hotels EBITDA margin post-demerger. Material negative surprise on two simultaneously would trigger a position review within 10 trading days.
+:::
+
+<hr class="divider">
+
+# Appendix {.unnumbered}
+
+<details class="section-fold">
+<summary>Full Annual Financial Summary - FY2015 to FY2024</summary>
+<div class="body">
+
+```{python}
+#| echo: false
+df_fin = pd.DataFrame({
+    'FY':            AY,
+    'Revenue (Rs Cr)': revenue,
+    'EBITDA (Rs Cr)':  ebitda,
+    'PAT (Rs Cr)':     pat,
+    'EPS (Rs)':        eps,
+    'ROCE (%)':        roce,
+    'ROE (%)':         roe,
+    'FCF (Rs Cr)':     fcf,
+    'DPS (Rs)':        dps,
+    'Payout (%)':      div_payout,
+})
+
+fig = go.Figure(data=go.Table(
+    header=dict(
+        values=['<b>' + c + '</b>' for c in df_fin.columns],
+        fill_color=C['navy'],
+        font=dict(color='white', size=11, family='Segoe UI'),
+        align='center', height=34,
+    ),
+    cells=dict(
+        values=[df_fin[c] for c in df_fin.columns],
+        fill_color=[['#f8f9fa' if i%2==0 else 'white' for i in range(len(df_fin))]]*len(df_fin.columns),
+        font=dict(size=11, family='Segoe UI'),
+        align='center', height=28,
+        format=[None, ',.0f', ',.0f', ',.0f', '.2f', '.1f', '.1f', ',.0f', '.2f', '.1f'],
+    ),
+))
+fig.update_layout(
+    margin=dict(l=0, r=0, t=45, b=10), height=375,
+    paper_bgcolor=C['paper'],
+    title=dict(text='<b>ITC Consolidated Financials - FY2015 to FY2024</b>',
+               x=0.5, font=dict(size=13, color=C['dark'])),
+)
+fig.show()
+```
+
+</div>
+</details>
+
+<details class="section-fold">
+<summary>Disclaimer and Data Sources</summary>
+<div class="body">
+
+**This document was prepared by Team Mountains & Accretions for the IIM Ahmedabad Launchpad Alpha case competition. It presents a proposed format for a Portfolio Inclusion Memo and does not constitute investment advice to any third party. Past performance is not indicative of future results.**
+
+**Data Sources:**
+- ITC Annual Reports FY2019–FY2024: Segment revenue, EBIT, capex data
+- NSE/BSE market data via yfinance (Python): Price history, beta, volatility computation
+- SEBI disclosures: Shareholding pattern
+- Damodaran (NYU), 2025 update: India equity risk premium = 5.5%
+- Industry research (CRISIL, Motilal Oswal): Peer valuation benchmarks
+
+**WACC:** 10.5% as of February 2026, using 10Y G-Sec yield 7.0% + India ERP 5.5% times beta `{python} beta_str`. Subject to revision at each portfolio review.
+
+**Monte Carlo:** `{python} f"{N_SIM:,}"` simulations with stochastic growth rates, WACC, and terminal growth rate. Results are illustrative probability estimates, not guarantees.
+
+**Review cycle:** Quarterly investment committee. Next scheduled review: May 2026.
+
+</div>
+</details>

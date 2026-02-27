@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+
+oldies/
+outputs/
+
+# Quarto internals
+.quarto/
+
+# Matplotlib outputs (regenerated from Python script)
+outputs/*.png
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Keep docs/ tracked for GitHub Pages
+!docs/
+
+/.quarto/
+**/*.quarto_ipynb

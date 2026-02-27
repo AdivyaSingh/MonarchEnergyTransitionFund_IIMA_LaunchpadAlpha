@@ -1,0 +1,5 @@
+project:
+  type: default
+  output-dir: docs
+  render:
+    - monarch_fund_report.qmd

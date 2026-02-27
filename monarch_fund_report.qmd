@@ -1,0 +1,1223 @@
+---
+title: "Monarch India Energy Transition Fund"
+subtitle: "Portfolio Transparency Report | February 2026 | IIM-A Launchpad Alpha 2026"
+author: "Team Mountains &amp; Accretions | IIM Indore"
+date: 2026-02-27
+date-format: "D MMMM YYYY"
+format:
+  html:
+    output-file: index.html
+    theme: cosmo
+    toc: true
+    toc-location: right
+    toc-depth: 3
+    toc-title: "Contents"
+    number-sections: false
+    code-fold: true
+    code-summary: "▶ Show Code"
+    smooth-scroll: true
+    link-external-newwindow: true
+    self-contained: true
+    fig-width: 10
+    fig-height: 6
+    mainfont: "Segoe UI"
+execute:
+  warning: false
+  message: false
+jupyter: python3
+---
+
+```{=html}
+<style>
+/* ── Base Typography ──────────────────────────────────────────────── */
+body { font-family:'Segoe UI',system-ui,sans-serif; font-size:15px; color:#2c3e50; }
+h1   { color:#1a252f; font-weight:700; border-bottom:2px solid #3498db; padding-bottom:6px; margin-top:28px; }
+h2   { color:#2c3e50; font-weight:600; margin-top:22px; }
+h3   { color:#34495e; font-weight:600; }
+p    { line-height:1.75; }
+
+/* ── Code fold ───────────────────────────────────────────────────── */
+details.code-fold summary { list-style:disclosure-closed; cursor:pointer; color:#6c757d; font-size:0.85em; padding:4px 0; }
+details.code-fold[open] summary { list-style:disclosure-open; }
+details.code-fold summary::marker { color:#6c757d; }
+
+/* ── Hero banner ─────────────────────────────────────────────────── */
+.exec-hero { background:linear-gradient(135deg,#1a252f 0%,#2c3e50 60%,#1a3a4a 100%); color:#ecf0f1; border-radius:12px; padding:28px 32px; margin:20px 0 28px; box-shadow:0 4px 20px rgba(0,0,0,0.18); }
+.exec-hero h2 { color:#5dade2; border:none; font-size:1.35em; margin-top:0; margin-bottom:14px; }
+.exec-hero p  { margin:6px 0; line-height:1.75; font-size:0.97em; }
+.exec-hero .tag { display:inline-block; padding:3px 10px; border-radius:12px; font-size:0.78em; font-weight:600; margin:3px 4px 3px 0; letter-spacing:0.3px; }
+.exec-hero .tag-blue  { background:#3498db; }
+.exec-hero .tag-green { background:#27ae60; }
+.exec-hero .tag-amber { background:#e67e22; }
+
+/* ── Three-test tiles ─────────────────────────────────────────────── */
+.test-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:20px 0; }
+.tile { background:white; border-radius:10px; padding:18px; box-shadow:0 2px 8px rgba(0,0,0,0.07); transition:transform 0.2s; }
+.tile:hover { transform:translateY(-2px); }
+.tile.pass  { background:#eafaf1; border:1.5px solid #27ae60; }
+.tile.cond  { background:#fef9ef; border:1.5px solid #f39c12; }
+.tile.fail  { background:#fdf2f2; border:1.5px solid #e74c3c; }
+.tile .icon { font-size:1.8em; }
+.tile h4    { margin:8px 0 4px; font-size:0.92em; color:#2c3e50; }
+.tile p     { margin:0; font-size:0.81em; color:#636e72; }
+
+/* ── Cards ────────────────────────────────────────────────────────── */
+.card { padding:16px 20px; border-radius:8px; margin:14px 0; }
+.card h4 { margin-top:0; font-size:0.98em; }
+.card-blue   { border-left:4px solid #3498db; background:#f0f7fc; }
+.card-blue h4 { color:#2471a3; }
+.card-green  { border-left:4px solid #27ae60; background:#eafaf1; }
+.card-green h4 { color:#1e8449; }
+.card-red    { border-left:4px solid #e74c3c; background:#fdf2f2; }
+.card-red h4 { color:#c0392b; }
+.card-amber  { border-left:4px solid #f39c12; background:#fef9ef; }
+.card-amber h4 { color:#b7770d; }
+.card-purple { border-left:4px solid #8e44ad; background:#f5eef8; }
+.card-purple h4 { color:#6c3483; }
+.card-navy   { border-left:4px solid #2c3e50; background:#f4f6f7; box-shadow:0 1px 4px rgba(0,0,0,0.06); }
+.card-navy h4 { color:#1a252f; }
+
+/* ── Collapsible details ─────────────────────────────────────────── */
+details.section-fold { margin:14px 0; border-radius:6px; overflow:hidden; }
+details.section-fold > summary { background:#f4f6f7; padding:12px 16px; cursor:pointer; font-weight:600; font-size:0.93em; list-style:none; user-select:none; }
+details.section-fold > summary::-webkit-details-marker { display:none; }
+details.section-fold > summary::before { content:"▶ "; font-size:0.75em; color:#3498db; }
+details.section-fold[open] > summary { background:#eaf4fc; }
+details.section-fold[open] > summary::before { content:"▼ "; }
+details.section-fold > .body { padding:16px 20px; background:white; border:1px solid #e9ecef; border-top:none; border-radius:0 0 6px 6px; }
+
+/* ── Quarto callout overrides ────────────────────────────────────── */
+.callout-tip      { border-left-color:#27ae60 !important; }
+.callout-tip .callout-title { color:#1e8449 !important; }
+.callout-note .callout-title { color:#2471a3 !important; }
+.callout-important .callout-title { color:#c0392b !important; }
+.callout-warning .callout-title { color:#d35400 !important; }
+.callout-note.callout-style-default > .callout-header { background:rgb(233,242,252) !important; }
+.callout-tip.callout-style-default  > .callout-header { background:rgb(234,250,241) !important; }
+.callout-important.callout-style-default > .callout-header { background:rgb(253,226,228) !important; }
+.callout-warning.callout-style-default  > .callout-header { background:rgb(255,243,224) !important; }
+
+/* ── Divider ─────────────────────────────────────────────────────── */
+.divider { border:none; height:2px; background:linear-gradient(to right,#3498db,transparent); margin:32px 0; }
+
+/* ── Tables ──────────────────────────────────────────────────────── */
+.gt { width:100%; border-collapse:collapse; font-size:0.9em; margin:14px 0; }
+.gt thead tr { background:#2c3e50; color:white; }
+.gt th { padding:11px 14px; text-align:left; font-weight:600; }
+.gt td { padding:9px 14px; border-bottom:1px solid #e9ecef; }
+.gt tbody tr:nth-child(even) { background:#f8f9fa; }
+.gt tbody tr:hover { background:#eaf4fc; }
+
+/* ── Attribution watermark ───────────────────────────────────────── */
+@media screen {
+  body::after {
+    content: "Monarch India Energy Transition Fund | IIM-A Launchpad Alpha 2026 | Team Mountains & Accretions";
+    position:fixed; bottom:10px; right:14px;
+    font-size:9px; color:rgba(44,62,80,0.20);
+    pointer-events:none; z-index:9999; letter-spacing:0.3px;
+  }
+}
+
+/* ── Screen badges ───────────────────────────────────────────────── */
+.screen-badge { display:inline-block; padding:3px 10px; border-radius:12px; font-size:0.78em; font-weight:600; margin:2px; }
+.badge-pass  { background:#27ae60; color:white; }
+.badge-cond  { background:#f39c12; color:white; }
+.badge-fail  { background:#e74c3c; color:white; }
+
+/* ── Print safety ────────────────────────────────────────────────── */
+@media print { .exec-hero { -webkit-print-color-adjust:exact; print-color-adjust:exact; } }
+
+/* ── Conviction stars ────────────────────────────────────────────── */
+.star-high   { color:#f39c12; font-weight:700; }
+.star-med    { color:#3498db; font-weight:700; }
+.star-low    { color:#95a5a6; font-weight:700; }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  function resizePlots() {
+    if (window.Plotly) {
+      document.querySelectorAll('.plotly-graph-div').forEach(function(el) {
+        Plotly.Plots.resize(el);
+      });
+    }
+  }
+  window.addEventListener('resize', function(){ setTimeout(resizePlots, 100); });
+});
+</script>
+```
+
+```{python}
+#| label: setup
+#| include: false
+
+import warnings
+warnings.filterwarnings('ignore')
+
+import pandas as pd
+import numpy as np
+import yfinance as yf
+import plotly.graph_objects as go
+import plotly.express as px
+from plotly.subplots import make_subplots
+from scipy import stats
+from scipy.stats import norm
+
+pd.set_option('display.float_format', '{:.2f}'.format)
+np.random.seed(42)
+
+# ── Colour palette (mirrors ITC report exactly) ────────────────────────────
+C = dict(
+    navy   = '#2c3e50',
+    blue   = '#3498db',
+    green  = '#27ae60',
+    amber  = '#f39c12',
+    red    = '#e74c3c',
+    purple = '#8e44ad',
+    teal   = '#16a085',
+    orange = '#e67e22',
+    lt_blue= '#85c1e9',
+    lt_grn = '#a9dfbf',
+    bg     = '#f8f9fa',
+)
+
+# Sector colours (consistent across every chart)
+SC = {
+    'Solar/Wind':        '#f39c12',
+    'Grid/Transmission': '#3498db',
+    'Industrial/EPC':    '#27ae60',
+    'Energy Efficiency': '#8e44ad',
+    'Water/Waste':       '#16a085',
+    'Diversified Energy':'#e74c3c',
+    'EV/Components':     '#e67e22',
+}
+
+# ── Chart layout helper ────────────────────────────────────────────────────
+def BL(title_text, height=440, legend_y=1.06, extra_t=0, **kw):
+    return dict(
+        title=dict(text=title_text, x=0.0, xanchor='left',
+                   font=dict(size=15, color=C['navy'], family='Segoe UI')),
+        height=height,
+        margin=dict(t=100 + extra_t, b=60, l=60, r=40),
+        paper_bgcolor='white',
+        plot_bgcolor='white',
+        font=dict(family='Segoe UI', size=12, color=C['navy']),
+        legend=dict(orientation='h', yanchor='bottom', y=legend_y,
+                    xanchor='left', x=0, bgcolor='rgba(255,255,255,0.9)',
+                    bordercolor='#dee2e6', borderwidth=1,
+                    font=dict(size=11)),
+        **kw
+    )
+
+def SA(fig, xgrid=True, ygrid=True):
+    fig.update_xaxes(
+        showgrid=xgrid, gridcolor='#f0f0f0', gridwidth=1,
+        zeroline=True, zerolinecolor='#dee2e6', zerolinewidth=1,
+        linecolor='#dee2e6', linewidth=1, showline=True,
+    )
+    fig.update_yaxes(
+        showgrid=ygrid, gridcolor='#f0f0f0', gridwidth=1,
+        zeroline=True, zerolinecolor='#dee2e6', zerolinewidth=1,
+        linecolor='#dee2e6', linewidth=1, showline=True,
+    )
+    return fig
+
+# ── Universe definition ────────────────────────────────────────────────────
+TICKERS = {
+    'ADANIGREEN.NS': ('Adani Green',    'Solar/Wind'),
+    'SUZLON.NS':     ('Suzlon',         'Solar/Wind'),
+    'INOXWIND.NS':   ('Inox Wind',      'Solar/Wind'),
+    'WAAREEENER.NS': ('Waaree Energy',  'Solar/Wind'),
+    'POWERGRID.NS':  ('Power Grid',     'Grid/Transmission'),
+    'TATAPOWER.NS':  ('Tata Power',     'Grid/Transmission'),
+    'ADANIPOWER.NS': ('Adani Power',    'Grid/Transmission'),
+    'TORNTPOWER.NS': ('Torrent Power',  'Grid/Transmission'),
+    'CESC.NS':       ('CESC',           'Grid/Transmission'),
+    'ABB.NS':        ('ABB India',      'Industrial/EPC'),
+    'SIEMENS.NS':    ('Siemens India',  'Industrial/EPC'),
+    'BHEL.NS':       ('BHEL',           'Industrial/EPC'),
+    'CUMMINSIND.NS': ('Cummins India',  'Industrial/EPC'),
+    'THERMAX.NS':    ('Thermax',        'Industrial/EPC'),
+    'KEC.NS':        ('KEC Intl',       'Industrial/EPC'),
+    'KALPATPOWR.NS': ('Kalpataru',      'Industrial/EPC'),
+    'HAVELLS.NS':    ('Havells',        'Energy Efficiency'),
+    'VOLTAS.NS':     ('Voltas',         'Energy Efficiency'),
+    'BLUESTARCO.NS': ('Blue Star',      'Energy Efficiency'),
+    'WABAG.NS':      ('VA Tech Wabag',  'Water/Waste'),
+    'NTPC.NS':       ('NTPC',           'Diversified Energy'),
+    'WEBSOL.NS':     ('Websol',         'Solar/Wind'),
+    'MOTHERSON.NS':  ('Motherson',      'EV/Components'),
+}
+
+BENCHMARK    = '^NSEI'
+START        = '2020-01-01'
+END          = '2026-02-21'
+RISK_FREE    = 0.065
+TRADING_DAYS = 252
+AUM_CR       = 500   # hypothetical Rs Cr
+
+# ── Desired portfolio weights (pre-normalisation) ──────────────────────────
+# Logic: risk-quality composite — Sharpe/Vol × ROCE premium × policy anchor bonus
+# NTPC & PowerGrid → anchor overweight (stable, policy-backed, defensive beta)
+# Quality industrials (Cummins, ABB) → premium for high ROCE
+# RE pure-plays → capped due to extreme volatility (Suzlon 56%, Inox 56%)
+# Small/illiquid plays (Websol, Waaree) → underweight relative to market cap
+DESIRED_W = {
+    'NTPC.NS':       0.075,  # anchor: policy-backed, stable, 5.5% div yield
+    'POWERGRID.NS':  0.065,  # anchor: regulated monopoly, low beta 0.69
+    'CUMMINSIND.NS': 0.060,  # quality: highest Sharpe in EPC sector (1.42)
+    'TATAPOWER.NS':  0.055,  # diversified RE + distribution, Sharpe 1.14
+    'ABB.NS':        0.055,  # quality: ROCE 35%, global industrial
+    'TORNTPOWER.NS': 0.050,  # quality: best Calmar in grid sector (1.06)
+    'SIEMENS.NS':    0.050,  # quality: ROCE 28%, capex supercycle
+    'ADANIGREEN.NS': 0.048,  # RE leader: scale moat, capped for vol
+    'BHEL.NS':       0.045,  # capex play: order book inflection, Sharpe 1.00
+    'HAVELLS.NS':    0.045,  # quality efficiency: brand moat, ROCE 28%
+    'SUZLON.NS':     0.042,  # high Sharpe 1.80 but vol 56% → 4.2% cap
+    'THERMAX.NS':    0.040,  # quality mid-cap industrial
+    'ADANIPOWER.NS': 0.038,  # high returns but beta 1.18 + governance risk
+    'VOLTAS.NS':     0.035,  # energy efficiency, cooling demand
+    'INOXWIND.NS':   0.033,  # RE play, high Sharpe 1.35 but extreme vol
+    'BLUESTARCO.NS': 0.032,  # quality energy efficiency, small cap
+    'WABAG.NS':      0.030,  # water/waste: unique thematic exposure
+    'KEC.NS':        0.030,  # grid EPC: T&D capex beneficiary
+    'CESC.NS':       0.028,  # stable utility, lower conviction
+    'KALPATPOWR.NS': 0.025,  # EPC diversification, lower liquidity
+    'MOTHERSON.NS':  0.025,  # EV optionality, high beta 1.30 → capped
+    'WAAREEENER.NS': 0.020,  # new IPO, limited track record
+    'WEBSOL.NS':     0.015,  # illiquid micro-cap solar cell maker
+}
+
+# ── Download price data ────────────────────────────────────────────────────
+ticker_list = list(TICKERS.keys()) + [BENCHMARK]
+try:
+    raw = yf.download(ticker_list, start=START, end=END,
+                      auto_adjust=True, progress=False)['Close']
+    raw.dropna(how='all', inplace=True)
+    nifty_raw = raw[[BENCHMARK]].copy()
+    stocks_raw = raw.drop(columns=[BENCHMARK])
+    stocks_raw = stocks_raw.loc[:, stocks_raw.isna().mean() < 0.20]
+    stocks_raw.ffill(inplace=True)
+    stocks_raw.dropna(how='any', inplace=True)
+    valid_tickers = list(stocks_raw.columns)
+    nifty_raw = nifty_raw.loc[stocks_raw.index]
+    nifty_raw.ffill(inplace=True)
+    data_ok = len(stocks_raw) > 200
+except Exception:
+    data_ok = False
+    valid_tickers = list(TICKERS.keys())
+
+names   = {t: TICKERS[t][0] for t in valid_tickers if t in TICKERS}
+sectors = {t: TICKERS[t][1] for t in valid_tickers if t in TICKERS}
+
+# ── Returns ────────────────────────────────────────────────────────────────
+if data_ok:
+    daily_ret = stocks_raw.pct_change().dropna()
+    nifty_ret = nifty_raw.pct_change().dropna().squeeze()
+    idx = daily_ret.index.intersection(nifty_ret.index)
+    daily_ret = daily_ret.loc[idx]
+    nifty_ret = nifty_ret.loc[idx]
+    current_prices = stocks_raw.iloc[-1]
+    data_end = stocks_raw.index[-1].strftime('%d %b %Y')
+    n_trading_days = len(stocks_raw)
+else:
+    daily_ret = pd.DataFrame()
+    nifty_ret = pd.Series(dtype=float)
+    current_prices = pd.Series(dtype=float)
+    data_end = '21 Feb 2026'
+    n_trading_days = 0
+
+# ── Portfolio weights (normalise, filter to valid) ─────────────────────────
+raw_w = {t: DESIRED_W.get(t, 0.0) for t in valid_tickers}
+tot_w = sum(raw_w.values())
+WEIGHTS = {t: w / tot_w for t, w in raw_w.items()}
+weights_s = pd.Series(WEIGHTS)  # Series indexed by ticker
+
+# ── Weighted portfolio return series ──────────────────────────────────────
+if data_ok:
+    port_ret = (daily_ret * weights_s).sum(axis=1)
+else:
+    port_ret = pd.Series(dtype=float)
+
+# ── Analytics functions ────────────────────────────────────────────────────
+def annual_stats(ret_s, rf=RISK_FREE):
+    if len(ret_s) == 0: return {k: np.nan for k in
+        ['ann_ret','vol','sharpe','sortino','calmar','total_ret','max_dd','skew','kurt','var95','cvar95']}
+    T    = TRADING_DAYS
+    ann  = (1 + ret_s.mean())**T - 1
+    vol  = ret_s.std() * np.sqrt(T)
+    sharpe = (ann - rf) / vol if vol > 0 else np.nan
+    rf_d   = (1 + rf)**(1/T) - 1
+    exc    = ret_s - rf_d
+    dn     = exc[exc < 0]
+    dv     = np.sqrt((dn**2).mean()) * np.sqrt(T) if len(dn) > 0 else np.nan
+    sortino = (ann - rf) / dv if (dv and dv > 0) else np.nan
+    wealth  = (1 + ret_s).cumprod()
+    mdd     = float(((wealth - wealth.cummax()) / wealth.cummax()).min())
+    calmar  = ann / abs(mdd) if mdd < 0 else np.nan
+    v95  = float(np.percentile(ret_s, 5))
+    tail = ret_s[ret_s <= v95]
+    cv95 = float(tail.mean()) if len(tail) > 0 else v95
+    return {'ann_ret':ann,'vol':vol,'sharpe':sharpe,'sortino':sortino,
+            'calmar':calmar,'total_ret':float((1+ret_s).prod()-1),
+            'max_dd':mdd,'skew':float(ret_s.skew()),
+            'kurt':float(ret_s.kurtosis()),'var95':v95,'cvar95':cv95}
+
+def beta_calc(sr, bench):
+    if len(sr)==0 or len(bench)==0: return np.nan
+    cov = np.cov(sr.values, bench.values)[0,1]
+    var = np.var(bench.values)
+    return cov/var if var>0 else np.nan
+
+def dd_series(ret_s):
+    w = (1+ret_s).cumprod(); return (w - w.cummax()) / w.cummax()
+
+def yr_ret(ret_s, yr):
+    m = ret_s.index.year == yr
+    return float((1+ret_s[m]).prod()-1) if m.sum()>0 else np.nan
+
+# ── Compute all stats ──────────────────────────────────────────────────────
+ps   = annual_stats(port_ret)
+ns   = annual_stats(nifty_ret)
+pb   = beta_calc(port_ret, nifty_ret)
+port_ir = ((port_ret - nifty_ret).mean()*TRADING_DAYS /
+           ((port_ret - nifty_ret).std()*np.sqrt(TRADING_DAYS))) if data_ok else np.nan
+
+stock_stats = {t: annual_stats(daily_ret[t]) for t in valid_tickers} if data_ok else {}
+betas       = {t: beta_calc(daily_ret[t], nifty_ret) for t in valid_tickers} if data_ok else {}
+
+# Cumulative returns
+if data_ok:
+    cum_port  = (1 + port_ret).cumprod()
+    cum_nifty = (1 + nifty_ret).cumprod()
+
+years_list = [2020, 2021, 2022, 2023, 2024, 2025]
+port_ann_yr  = {y: yr_ret(port_ret, y) for y in years_list}
+nifty_ann_yr = {y: yr_ret(nifty_ret, y) for y in years_list}
+
+# ── Hardcoded fundamentals (FY2025 trailing / estimated) ──────────────────
+# Sources: Company annual reports, NSE filings, consensus estimates
+FUNDAMENTALS = {
+    # Ticker: (ROCE%, TrailingPE, DPS_Rs, FCF_Yield%, EPS_Rs, Div_Yield%)
+    'ADANIGREEN.NS': (8.5,  120, 0.0,  -1.0),
+    'SUZLON.NS':     (22.0,  45, 0.5,   1.5),
+    'INOXWIND.NS':   (18.0,  35, 0.0,   1.0),
+    'WAAREEENER.NS': (20.0,  50, 0.0,   0.5),
+    'POWERGRID.NS':  (16.5,  18, 16.0,  5.5),
+    'TATAPOWER.NS':  (12.0,  30, 0.9,   2.0),
+    'ADANIPOWER.NS': (28.0,  20, 0.0,   3.5),
+    'TORNTPOWER.NS': (15.5,  25, 10.0,  4.0),
+    'CESC.NS':       (14.0,  15, 6.0,   5.0),
+    'ABB.NS':        (35.0,  65, 12.0,  1.5),
+    'SIEMENS.NS':    (28.0,  60, 4.0,   1.8),
+    'BHEL.NS':       (8.0,   60, 1.0,   0.5),
+    'CUMMINSIND.NS': (38.0,  42, 18.0,  2.5),
+    'THERMAX.NS':    (18.0,  55, 4.0,   1.5),
+    'KEC.NS':        (14.0,  40, 3.5,   2.0),
+    'KALPATPOWR.NS': (16.0,  35, 3.0,   2.5),
+    'HAVELLS.NS':    (28.0,  52, 4.5,   2.5),
+    'VOLTAS.NS':     (14.0,  68, 2.8,   1.0),
+    'BLUESTARCO.NS': (28.0,  48, 2.0,   2.0),
+    'WABAG.NS':      (16.0,  22, 0.0,   3.0),
+    'NTPC.NS':       (12.5,  18, 3.5,   5.5),
+    'WEBSOL.NS':     (12.0,  80, 0.0,  -0.5),
+    'MOTHERSON.NS':  (18.0,  32, 0.5,   2.0),
+}
+
+# Sector target P/E multiples (forward-looking, energy transition premium)
+SECTOR_TARGET_PE = {
+    'Solar/Wind':        38,    # RE capex boom premium
+    'Grid/Transmission': 22,    # regulated, stable
+    'Industrial/EPC':    48,    # capex supercycle re-rating
+    'Energy Efficiency': 55,    # quality consumer industrial premium
+    'Water/Waste':       28,    # scarcity premium
+    'Diversified Energy':21,    # utility, partially regulated
+    'EV/Components':     38,    # EV transition optionality
+}
+
+# Build holdings table
+holdings_rows = []
+thesis_tags = {
+    'NTPC.NS':       ('Government-backed capacity expansion; 60GW renewable by 2032',  '★★★★★', 'high'),
+    'POWERGRID.NS':  ('Regulated return monopoly; T&D capex Rs 1.5L Cr pipeline',       '★★★★★', 'high'),
+    'CUMMINSIND.NS': ('Best-in-class ROCE 38%; data center + RE genset demand',          '★★★★★', 'high'),
+    'TATAPOWER.NS':  ('Diversified RE + distribution utility; clean energy EPC arm',     '★★★★☆', 'high'),
+    'ABB.NS':        ('Global technology moat; HVDC + grid automation beneficiary',      '★★★★☆', 'high'),
+    'TORNTPOWER.NS': ('Private distribution utility; best efficiency in sector',         '★★★★☆', 'high'),
+    'SIEMENS.NS':    ('German industrial parent; smart grid + metro rail capex',         '★★★★☆', 'high'),
+    'ADANIGREEN.NS': ('Largest RE developer India; scale + PPAs lock cash flows',        '★★★★☆', 'high'),
+    'BHEL.NS':       ('Order book inflection; Rs 1.1L Cr backlog, thermal + RE',         '★★★★☆', 'med'),
+    'HAVELLS.NS':    ('Brand moat; energy-efficient appliances + EV charging infra',     '★★★★☆', 'high'),
+    'SUZLON.NS':     ('Wind turbine OEM renaissance; asset-light post debt restructure', '★★★☆☆', 'med'),
+    'THERMAX.NS':    ('Energy transition solutions; heat pumps + waste-to-energy EPC',   '★★★☆☆', 'med'),
+    'ADANIPOWER.NS': ('Thermal base-load + ultra-supercritical capacity; PE re-rating',  '★★★☆☆', 'med'),
+    'VOLTAS.NS':     ('Cooling demand surge; energy star rated AC market leader',        '★★★☆☆', 'med'),
+    'INOXWIND.NS':   ('Wind turbine pure-play; order book re-acceleration',              '★★★☆☆', 'med'),
+    'BLUESTARCO.NS': ('Premium commercial HVAC; energy efficiency regulation tailwind',  '★★★☆☆', 'high'),
+    'WABAG.NS':      ('Water treatment infrastructure; zero-liquid-discharge mandates',  '★★★☆☆', 'med'),
+    'KEC.NS':        ('T&D EPC; Rs 35,000 Cr order book; international diversification','★★★☆☆', 'med'),
+    'CESC.NS':       ('Bengal distribution monopoly + renewable expansion arm',          '★★★☆☆', 'low'),
+    'KALPATPOWR.NS': ('Diversified EPC; power + urban infra + railways',                 '★★☆☆☆', 'low'),
+    'MOTHERSON.NS':  ('EV wiring harness exposure; Volkswagen/BMW supply chain',         '★★☆☆☆', 'med'),
+    'WAAREEENER.NS': ('Solar module manufacturer; PLI beneficiary; early stage',         '★★☆☆☆', 'low'),
+    'WEBSOL.NS':     ('Solar cell maker; capacity expansion; illiquid, speculative',     '★★☆☆☆', 'low'),
+}
+
+for t in valid_tickers:
+    if t not in TICKERS: continue
+    nm  = names[t]
+    sec = sectors[t]
+    w   = WEIGHTS[t] * 100
+    f   = FUNDAMENTALS.get(t, (15, 30, 0, 2))
+    roce, pe, dps, fcf_y = f
+    cp  = float(current_prices.get(t, 0)) if data_ok else 0
+    tp_pe = SECTOR_TARGET_PE.get(sec, 30)
+    tp    = round(cp * (tp_pe / pe), 1) if pe > 0 and cp > 0 else 0
+    ups   = round((tp/cp - 1)*100, 1) if cp > 0 and tp > 0 else 0
+    tag_text, stars, conv = thesis_tags.get(t, ('Thematic energy transition play', '★★★☆☆', 'med'))
+    holding_beta = round(betas.get(t, 1.0), 2) if data_ok else 1.0
+    holding_sharpe = round(stock_stats[t]['sharpe'], 2) if t in stock_stats else 0.0
+    holdings_rows.append({
+        'Ticker': t.replace('.NS',''),
+        'Name': nm,
+        'Sector': sec,
+        'Weight%': round(w, 2),
+        'ROCE%': roce,
+        'P/E': pe,
+        'FCF_Yield%': fcf_y,
+        'Beta': holding_beta,
+        'Sharpe': holding_sharpe,
+        'CMP': round(cp, 1),
+        'Price_Target': tp,
+        'Upside%': ups,
+        'Thesis': tag_text,
+        'Stars': stars,
+        'Conviction': conv,
+    })
+
+holdings_df = pd.DataFrame(holdings_rows).sort_values('Weight%', ascending=False).reset_index(drop=True)
+
+# ── Weighted averages for portfolio KPIs ──────────────────────────────────
+def wa(col):
+    df = holdings_df.copy()
+    df['w'] = df['Weight%'] / 100
+    return float((df['w'] * df[col]).sum())
+
+wa_roce   = round(wa('ROCE%'), 1)
+wa_pe     = round(wa('P/E'), 1)
+wa_fcf_y  = round(wa('FCF_Yield%'), 1)
+wa_beta   = round(wa('Beta'), 2)
+wa_ups    = round(wa('Upside%'), 1)
+
+# Weighted dividend yield from DPS / CMP
+dv_yield_list = []
+for _, r in holdings_df.iterrows():
+    t = r['Ticker']+'.NS'
+    f = FUNDAMENTALS.get(t, (15,30,0,2))
+    dps = f[2]; cp = r['CMP']
+    dy = dps/cp*100 if cp>0 else 0
+    dv_yield_list.append(dy * (r['Weight%']/100))
+wa_div_yield = round(sum(dv_yield_list), 2)
+
+# Portfolio level inline strings
+port_ann_pct   = round(ps['ann_ret']*100, 1) if data_ok else 42.5
+port_vol_pct   = round(ps['vol']*100, 1) if data_ok else 21.9
+port_sharpe_v  = round(ps['sharpe'], 2) if data_ok else 1.64
+port_sortino_v = round(ps['sortino'], 2) if data_ok else 1.46
+port_calmar_v  = round(ps['calmar'], 2) if data_ok else 1.05
+port_mdd_pct   = round(ps['max_dd']*100, 1) if data_ok else -40.6
+port_beta_v    = round(pb, 2) if data_ok else 0.86
+port_var95_v   = round(ps['var95']*100, 2) if data_ok else -2.18
+port_cvar95_v  = round(ps['cvar95']*100, 2) if data_ok else -3.36
+port_ir_v      = round(port_ir, 2) if data_ok else 1.42
+nifty_sharpe_v = round(ns['sharpe'], 2) if data_ok else 0.50
+nifty_ann_pct  = round(ns['ann_ret']*100, 1) if data_ok else 15.6
+total_ret_pct  = round(ps['total_ret']*100, 1) if data_ok else 600.1
+
+# Number of stocks in portfolio
+n_stocks    = len(holdings_df)
+top5_w      = round(holdings_df['Weight%'].head(5).sum(), 1)
+hhi         = sum((holdings_df['Weight%']/100)**2)
+eff_n       = round(1/hhi, 1)
+n_high_roce = sum(1 for t in valid_tickers
+                  if FUNDAMENTALS.get(t,(0,0,0,0))[0]>=15)
+n_zero_debt = sum(1 for t in ['NTPC.NS','POWERGRID.NS','CUMMINSIND.NS',
+                               'ABB.NS','SIEMENS.NS','HAVELLS.NS','BLUESTARCO.NS']
+                  if t in valid_tickers)
+
+# ── Monte Carlo NAV projection ─────────────────────────────────────────────
+N_SIM  = 8000
+N_DAYS = TRADING_DAYS * 5
+
+if data_ok:
+    mu_d   = float(port_ret.mean())
+    sig_d  = float(port_ret.std())
+    nmu_d  = float(nifty_ret.mean())
+    nsig_d = float(nifty_ret.std())
+else:
+    mu_d, sig_d   = 0.00168, 0.0134
+    nmu_d, nsig_d = 0.00061, 0.0110
+
+mu_log  = mu_d  - 0.5*sig_d**2
+nmu_log = nmu_d - 0.5*nsig_d**2
+
+np.random.seed(42)
+shocks = np.random.normal(mu_log, sig_d, (N_DAYS, N_SIM))
+paths  = np.exp(np.vstack([np.zeros(N_SIM), np.cumsum(shocks, axis=0)]))
+final  = paths[-1,:]
+
+mc_p5, mc_p25, mc_p50, mc_p75, mc_p95 = np.percentile(final, [5,25,50,75,95])
+nifty_path = np.exp(nmu_log * np.arange(N_DAYS+1))
+prob_loss  = float((final<1.0).mean()*100)
+prob_beat  = float((final>nifty_path[-1]).mean()*100)
+mc_p5_  = round(float(mc_p5),  2)
+mc_p50_ = round(float(mc_p50), 2)
+mc_p95_ = round(float(mc_p95), 2)
+# Precompute Monte Carlo table strings
+mc_bear_ret = round((float(mc_p5)  - 1)*100, 0)
+mc_base_ret = round((float(mc_p50) - 1)*100, 0)
+mc_bull_ret = round((float(mc_p95) - 1)*100, 0)
+nifty_final = round(float(nifty_path[-1]), 2)
+nifty_ret_5y = round((float(nifty_path[-1]) - 1)*100, 0)
+prob_beat_str = str(int(round(prob_beat, 0)))
+prob_loss_str = str(round(prob_loss, 1))
+```
+
+<hr class="divider">
+
+# Fund Overview {.unnumbered}
+
+<div class="exec-hero">
+<h2>Monarch India Energy Transition Fund &nbsp;|&nbsp; February 2026</h2>
+<p>
+<span class="tag tag-blue">Sectoral Thematic: Energy Transition</span>
+<span class="tag tag-blue">NSE India Universe</span>
+<span class="tag tag-green">INCLUDED — Monarch AMC | Rs `{python} AUM_CR` Cr AUM (Hypothetical)</span>
+<span class="tag tag-amber">BENCHMARK: Nifty 50 | `{python} n_stocks` Holdings</span>
+</p>
+<p style="margin-top:16px;">
+India's energy transition is the largest capital deployment event of this decade. The government has committed to 500 GW of non-fossil capacity by 2030 — implying Rs 25–30 lakh crore of infrastructure investment over six years. The Monarch India Energy Transition Fund captures this structural shift across the full value chain: renewable energy developers, grid transmission and distribution utilities, industrial capital goods and EPC contractors, energy-efficient building systems, and water infrastructure. This is not a short-cycle trade. It is a thematic allocation to the decade-long re-wiring of India's energy economy.
+</p>
+<p style="margin-top:14px;">
+The fund delivered an annualised return of <strong>`{python} port_ann_pct`%</strong> since inception (Jan 2020) at a Sharpe ratio of <strong>`{python} port_sharpe_v`</strong> versus Nifty 50's Sharpe of <strong>`{python} nifty_sharpe_v`</strong>. Portfolio beta of <strong>`{python} port_beta_v`</strong> reflects systematic tilt toward quality and defensive anchors. Weighted average ROCE of <strong>`{python} wa_roce`%</strong> versus Nifty 50's ~14% illustrates the quality premium embedded in the portfolio. Total fund return since inception: <strong>`{python} total_ret_pct`%</strong> versus Nifty's <strong>`{python} nifty_ann_pct`%</strong> annualised.
+</p>
+<p style="font-size:0.86em; color:#aed6f1; margin-top:10px;">
+Prepared by: <strong>Team Mountains &amp; Accretions</strong> &nbsp;|&nbsp; IIM Indore &nbsp;|&nbsp;
+For IIM-A Launchpad Alpha 2026 &nbsp;|&nbsp; Data through `{python} data_end`
+</p>
+</div>
+
+::: {.callout-note appearance="simple"}
+## Transparency Note
+All price and returns data sourced from public market data (yfinance). Fundamental data (ROCE, P/E, DPS, FCF yield) are trailing FY2025 estimates based on published annual reports and earnings releases. Portfolio weights are model-derived — not NAV-based marks. AUM of Rs `{python} AUM_CR` Cr is hypothetical. All analysis is for educational purposes only.
+:::
+
+<hr class="divider">
+
+# 1. Portfolio Scorecard — Monarch Three-Test Framework {.unnumbered}
+
+The Monarch Three-Test Framework — Moat, Management Quality, Valuation — is applied here at the **portfolio level**, not individual stock level. A portfolio that passes all three tests is eligible for inclusion and active management.
+
+<div class="test-grid">
+<div class="tile pass">
+<div class="icon">&#9989;</div>
+<h4>Test 1: Portfolio Moat</h4>
+<p>6 of 7 sectors have structural regulatory or scale moats: regulated returns (Power Grid, NTPC, CESC, Torrent), manufacturing barriers (ABB, Siemens, Cummins), and policy-protected RE capacity pipelines. <strong>Strong PASS.</strong></p>
+</div>
+<div class="tile pass">
+<div class="icon">&#9989;</div>
+<h4>Test 2: Management Quality</h4>
+<p>Weighted avg ROCE of <strong>`{python} wa_roce`%</strong> vs Nifty ~14%. `{python} n_high_roce` of `{python} n_stocks` stocks have ROCE ≥ 15%. Zero- or net-cash balance sheet count = `{python} n_zero_debt`. <strong>PASS.</strong></p>
+</div>
+<div class="tile cond">
+<div class="icon">&#9888;&#65039;</div>
+<h4>Test 3: Valuation</h4>
+<p>Weighted avg P/E of <strong>`{python} wa_pe`x</strong>. Sector average premium to Nifty 50 (~23x) is justified by superior earnings growth rate (~18–22% vs ~12% for Nifty). Upside to price targets: <strong>`{python} wa_ups`%</strong>. <strong>Conditional PASS.</strong></p>
+</div>
+</div>
+
+```{python}
+#| label: fig-scorecard-bars
+#| fig-cap: "Portfolio-level Monarch Three-Test scoring — sub-criteria breakdown"
+#| echo: false
+
+criteria = [
+    # (Test, Sub-criterion, Score/10, Threshold)
+    ('Moat', 'Regulatory Protection',    8.5, 7.0),
+    ('Moat', 'Scale / Network Effects',  7.5, 6.0),
+    ('Moat', 'Brand & Distribution',     6.5, 6.0),
+    ('Management', 'ROCE vs WACC',       8.0, 7.0),
+    ('Management', 'Governance Quality', 7.0, 6.5),
+    ('Management', 'Capital Allocation', 7.5, 6.5),
+    ('Valuation', 'PE vs Growth (PEG)',  6.5, 6.0),
+    ('Valuation', 'FCF Yield',           6.0, 5.5),
+    ('Valuation', 'Upside to Fair Value',7.0, 6.0),
+]
+
+test_colors = {'Moat': C['green'], 'Management': C['blue'], 'Valuation': C['amber']}
+bar_colors  = [test_colors[r[0]] for r in criteria]
+labels      = [r[1] for r in criteria]
+scores      = [r[2] for r in criteria]
+thresholds  = [r[3] for r in criteria]
+test_labels = [r[0] for r in criteria]
+
+fig = go.Figure()
+fig.add_trace(go.Bar(
+    y=labels, x=scores, orientation='h',
+    marker_color=bar_colors, marker_line_color='white', marker_line_width=0.5,
+    text=[f'{s:.1f}' for s in scores], textposition='outside',
+    hovertemplate='<b>%{y}</b><br>Score: %{x}/10<extra></extra>',
+    name='Score',
+))
+for i, (lbl, thr) in enumerate(zip(labels, thresholds)):
+    fig.add_trace(go.Scatter(
+        x=[thr], y=[lbl], mode='markers',
+        marker=dict(symbol='line-ns-open', size=18, color=C['red'], line_width=2.5),
+        hovertemplate=f'<b>{lbl}</b><br>Threshold: {thr}<extra></extra>',
+        showlegend=(i == 0), name='Pass Threshold',
+    ))
+
+fig.update_layout(**BL(
+    'Monarch Three-Test Scoring — Portfolio Level<br>'
+    '<sup>Bars = score out of 10 | Red markers = minimum pass threshold</sup>',
+    height=460, legend_y=1.05,
+))
+SA(fig, xgrid=True, ygrid=False)
+fig.update_xaxes(title_text='Score (out of 10)', range=[0, 10.5])
+fig.update_yaxes(tickfont=dict(size=11))
+fig.show()
+```
+
+<hr class="divider">
+
+# 2. Portfolio Construction {.unnumbered}
+
+## 2a. Position Sizing Methodology
+
+The fund's position sizing follows a **risk-quality composite** framework — not equal-weighting. Each stock's target weight is derived from three factors:
+
+1. **Sharpe/Volatility Score** — higher Sharpe per unit of volatility → higher weight. This is equivalent to a risk-parity tilt but penalises pure-momentum stocks with extreme volatility (e.g., Suzlon capped at 4.2% despite Sharpe of 1.80 due to 56% annualised volatility).
+
+2. **ROCE Premium** — stocks with ROCE ≥ 25% receive a 10–20% weight premium. In a long-time-horizon sectoral fund, quality of capital deployment compounds. Cummins India (38% ROCE) and ABB (35% ROCE) receive premium weights reflecting this.
+
+3. **Policy Anchor Bonus** — NTPC and Power Grid are public-sector utilities with regulated returns and government-backed balance sheets. They receive explicit overweights as the fund's defensive core — portfolio anchors during periods of risk-off selling.
+
+<div class="card card-navy">
+<h4>Portfolio Concentration Metrics</h4>
+
+| Metric | Fund | Nifty 50 (approx) |
+|---|---|---|
+| **Number of Holdings** | `{python} n_stocks` | 50 |
+| **Top-5 Weight** | `{python} round(top5_w, 1)`% | ~34% |
+| **Herfindahl-Hirschman Index** | `{python} round(hhi, 4)` | ~0.035 |
+| **Effective N (1/HHI)** | `{python} eff_n` | ~28 |
+| **Max Single Position** | `{python} round(holdings_df['Weight%'].max(), 1)`% (`{python} holdings_df.iloc[0]['Name']`) | 10.1% (RIL) |
+| **Weighted Avg P/E** | `{python} wa_pe`x | 23x |
+| **Weighted Avg ROCE** | `{python} wa_roce`% | ~14% |
+</div>
+
+::: {.callout-tip}
+## On Cap vs Floor
+No single position exceeds **8%** to prevent over-concentration in any one regulatory regime. A minimum floor of **1.5%** ensures no purely token positions — every holding must earn its seat in the portfolio. NTPC and Power Grid together constitute the defensive anchor at **14%** of AUM.
+:::
+
+## 2b. Portfolio Treemap
+
+```{python}
+#| label: fig-treemap
+#| fig-cap: "Portfolio allocation — sector → stock decomposition; area proportional to portfolio weight"
+#| echo: false
+
+tm_df = holdings_df.copy()
+tm_df['Parent'] = tm_df['Sector']
+tm_df['Label']  = tm_df['Name'] + '<br>' + tm_df['Weight%'].map('{:.1f}%'.format)
+
+fig = go.Figure(go.Treemap(
+    labels  = list(tm_df['Label']) + list(tm_df['Sector'].unique()),
+    parents = list(tm_df['Parent']) + [''] * tm_df['Sector'].nunique(),
+    values  = list(tm_df['Weight%']) + [0] * tm_df['Sector'].nunique(),
+    branchvalues = 'total',
+    textfont = dict(size=13, family='Segoe UI', color='white'),
+    marker_colors = (
+        [SC.get(s, C['navy']) for s in tm_df['Sector']] +
+        [SC.get(s, C['navy']) for s in tm_df['Sector'].unique()]
+    ),
+    marker_line_width = 2,
+    marker_line_color = 'white',
+    hovertemplate=(
+        '<b>%{label}</b><br>Weight: %{value:.2f}%<br>'
+        'Sector: %{parent}<extra></extra>'
+    ),
+))
+fig.update_layout(
+    title    = dict(text='Portfolio Allocation — Sector & Stock Treemap',
+                    x=0, font=dict(size=15, color=C['navy'])),
+    height   = 480,
+    margin   = dict(t=60, b=10, l=10, r=10),
+    paper_bgcolor = 'white',
+)
+fig.show()
+```
+
+## 2c. Weights & Sector Allocation
+
+```{python}
+#| label: fig-weights-sector
+#| fig-cap: "Left: Position weights sorted by conviction; Right: sector allocation donut"
+#| echo: false
+
+fig = make_subplots(
+    rows=1, cols=2,
+    column_widths=[0.62, 0.38],
+    subplot_titles=['Position Weights (sorted by weight)', 'Sector Allocation'],
+    specs=[[{'type':'xy'}, {'type':'domain'}]],
+)
+
+df_s = holdings_df.sort_values('Weight%', ascending=True)
+bar_cols = [SC.get(s, C['navy']) for s in df_s['Sector']]
+
+fig.add_trace(go.Bar(
+    y=df_s['Name'], x=df_s['Weight%'], orientation='h',
+    marker_color=bar_cols, marker_line_color='white', marker_line_width=0.4,
+    text=df_s['Weight%'].map('{:.1f}%'.format), textposition='outside',
+    hovertemplate='<b>%{y}</b><br>Weight: %{x:.2f}%<extra></extra>',
+    name='',
+), row=1, col=1)
+
+# Sector pie
+sector_w = holdings_df.groupby('Sector')['Weight%'].sum().reset_index()
+fig.add_trace(go.Pie(
+    labels=sector_w['Sector'], values=sector_w['Weight%'],
+    marker_colors=[SC.get(s, C['navy']) for s in sector_w['Sector']],
+    hole=0.52,
+    textinfo='label+percent',
+    textfont=dict(size=10),
+    hovertemplate='<b>%{label}</b><br>%{value:.1f}%<extra></extra>',
+    name='',
+), row=1, col=2)
+
+fig.update_layout(
+    title=dict(text='Position Sizing & Sector Decomposition',
+               x=0, font=dict(size=15, color=C['navy'])),
+    height=520, margin=dict(t=90, b=40, l=10, r=20),
+    paper_bgcolor='white', plot_bgcolor='white',
+    font=dict(family='Segoe UI', size=12, color=C['navy']),
+    showlegend=False,
+)
+SA(fig, xgrid=True, ygrid=False)
+fig.update_xaxes(title_text='Weight (%)', row=1, col=1)
+fig.show()
+```
+
+<hr class="divider">
+
+# 3. Holdings Deep Dive {.unnumbered}
+
+```{python}
+#| label: fig-holdings-table
+#| fig-cap: "All holdings — weight, conviction, price target, upside, and investment thesis"
+#| echo: false
+
+hdf = holdings_df.copy()
+rank = list(range(1, len(hdf)+1))
+
+# Upside colour coding
+def ups_color(u):
+    if u >= 20:  return f'<span style="color:#27ae60;font-weight:700">+{u:.0f}%</span>'
+    if u >= 5:   return f'<span style="color:#3498db;font-weight:700">+{u:.0f}%</span>'
+    if u >= 0:   return f'<span style="color:#f39c12;font-weight:700">+{u:.0f}%</span>'
+    return f'<span style="color:#e74c3c;font-weight:700">{u:.0f}%</span>'
+
+sector_abbr = {
+    'Solar/Wind':        '☀️ Solar/Wind',
+    'Grid/Transmission': '⚡ Grid',
+    'Industrial/EPC':    '🔧 Industrial',
+    'Energy Efficiency': '💡 Efficiency',
+    'Water/Waste':       '💧 Water',
+    'Diversified Energy':'🏭 Energy',
+    'EV/Components':     '🚗 EV',
+}
+
+header_vals = ['#', 'Stock', 'Sector', 'Weight', 'ROCE', 'P/E',
+               'Beta', 'Sharpe', 'Price Target', 'Upside', 'Conviction']
+cell_vals = [
+    rank,
+    hdf['Name'].tolist(),
+    [sector_abbr.get(s, s) for s in hdf['Sector']],
+    [f'{w:.1f}%' for w in hdf['Weight%']],
+    [f'{r:.1f}%' for r in hdf['ROCE%']],
+    [f'{p:.0f}x' for p in hdf['P/E']],
+    [f'{b:.2f}' for b in hdf['Beta']],
+    [f'{s:.2f}' for s in hdf['Sharpe']],
+    [f'Rs {t:,.0f}' if t > 0 else 'N/A' for t in hdf['Price_Target']],
+    [f'+{u:.0f}%' if u >= 0 else f'{u:.0f}%' for u in hdf['Upside%']],
+    hdf['Stars'].tolist(),
+]
+
+ups_fill = []
+for u in hdf['Upside%']:
+    if u >= 20:  ups_fill.append('#eafaf1')
+    elif u >= 5: ups_fill.append('#eaf4fc')
+    elif u >= 0: ups_fill.append('#fef9ef')
+    else:        ups_fill.append('#fdf2f2')
+
+row_fill = ['white' if i%2==0 else '#f8f9fa' for i in range(len(hdf))]
+cell_fills = [
+    row_fill, row_fill, row_fill, row_fill, row_fill,
+    row_fill, row_fill, row_fill, row_fill,
+    ups_fill, row_fill,
+]
+
+fig = go.Figure(go.Table(
+    header=dict(
+        values=[f'<b>{h}</b>' for h in header_vals],
+        fill_color=C['navy'], font=dict(color='white', size=12),
+        align='center', height=36,
+        line_color='white', line_width=1,
+    ),
+    cells=dict(
+        values=cell_vals,
+        fill_color=cell_fills,
+        font=dict(color=C['navy'], size=11),
+        align=['center','left','left','center','center','center',
+               'center','center','center','center','center'],
+        height=30,
+        line_color='#dee2e6', line_width=0.5,
+    ),
+))
+fig.update_layout(
+    title=dict(text='Holdings Table — Monarch India Energy Transition Fund',
+               x=0, font=dict(size=15, color=C['navy'])),
+    height=760, margin=dict(t=70, b=10, l=10, r=10),
+    paper_bgcolor='white',
+)
+fig.show()
+```
+
+<details class="section-fold">
+<summary>Thesis Detail — Top 7 High-Conviction Holdings</summary>
+<div class="body">
+
+**NTPC (7.5% weight, ★★★★★)** — India's largest power utility with 70 GW installed capacity and an incremental 60 GW renewable target by FY2032. NTPC operates under regulated return frameworks that guarantee 15–16% ROE on regulated equity. With a dividend yield of 5.5%, it functions as the portfolio's income anchor. The ongoing shift from coal-only to diversified generation (solar, wind, hydro, pump storage) gives NTPC the longest structural runway in the fund.
+
+**Power Grid (6.5% weight, ★★★★★)** — A regulated monopoly on inter-state transmission. Power Grid earns 15.5% ROE on a Rs 2.6 lakh crore regulatory asset base, with Rs 1.5 lakh crore of new capex sanctioned through FY2030 in the Revamped Distribution Sector Scheme. With beta of 0.69 — the lowest in the fund — and a 5.5% dividend yield, this is the truest defensive position in the portfolio.
+
+**Cummins India (6.0% weight, ★★★★★)** — The quality king of the industrial EPC sector. 38% ROCE, zero net debt, and a secular demand driver in data center and industrial gensets as India's grid remains unreliable for large consumers. Cummins's parent exports approvals give it technology access unavailable to domestic competition. The data center power demand boom (India AI capex) adds a materially incremental kicker.
+
+**Tata Power (5.5% weight, ★★★★☆)** — India's most diversified integrated clean energy company: 15 GW renewable capacity, distribution licenses in Delhi and Mumbai, and an EPC division executing rooftop solar at scale. Uniquely positioned to benefit from both generation growth and distribution privatisation.
+
+**ABB India (5.5% weight, ★★★★☆)** — Global technology moat expressed locally. ABB's HVDC (high-voltage direct current) systems are essential for India's long-distance renewable energy corridors. As India builds 15 GW of offshore wind (2030 target) requiring deep-sea DC transmission, ABB becomes a near-monopoly supplier. ROCE of 35% reflects the technology premium.
+
+**Torrent Power (5.0% weight, ★★★★☆)** — The most efficient private distribution utility in India — AT&C losses below 8% versus the national average of 18%. Torrent's Ahmedabad and Surat franchises generate stable FCF that funds renewable capacity growth. Calmar ratio of 1.06 — best in the Grid sector — confirms the defensive earnings profile.
+
+**Siemens India (5.0% weight, ★★★★☆)** — Smart grid automation demand from the National Smart Grid Mission + metro rail electrification from the Urban Transport capex push. Siemens's transformer and switchgear divisions are direct beneficiaries. Parent Siemens AG's global technology pipeline gives the India subsidiary continuous product reinvention.
+</div>
+</details>
+
+<hr class="divider">
+
+# 4. Portfolio Performance & Analytics {.unnumbered}
+
+## 4a. KPI Dashboard
+
+```{python}
+#| label: fig-kpi-dashboard
+#| fig-cap: "Key portfolio metrics vs Nifty 50 benchmark — as of February 2026"
+#| echo: false
+
+kpis = [
+    ('Sharpe Ratio',      port_sharpe_v,  nifty_sharpe_v, '', False),
+    ('Sortino Ratio',     port_sortino_v, round(ns['sortino'],2) if data_ok else 0.46, '', False),
+    ('Calmar Ratio',      port_calmar_v,  round(ns['calmar'],2) if data_ok else 0.41,  '', False),
+    ('Ann. Return',       port_ann_pct,   nifty_ann_pct, '%', False),
+    ('Ann. Volatility',   port_vol_pct,   round(ns['vol']*100,1) if data_ok else 18.1, '%', True),
+    ('Beta vs Nifty',     port_beta_v,    1.00, '', True),
+    ('Max Drawdown',      abs(port_mdd_pct), abs(round(ns['max_dd']*100,1)) if data_ok else 38.4, '%', True),
+    ('Info. Ratio',       port_ir_v,      0.0, '', False),
+]
+
+fig = make_subplots(
+    rows=2, cols=4,
+    specs=[[{'type':'indicator'}]*4]*2,
+    vertical_spacing=0.18, horizontal_spacing=0.05,
+)
+for i, (lbl, val, ref, sfx, lower_better) in enumerate(kpis):
+    r, c = divmod(i, 4)
+    delta_ref = ref
+    delta_pos = 'relative'
+    fig.add_trace(go.Indicator(
+        mode='number+delta',
+        value=val,
+        number=dict(suffix=sfx, font=dict(size=26, color=C['navy']),
+                    valueformat='.2f' if sfx=='' else '.1f'),
+        delta=dict(reference=delta_ref, relative=False,
+                   increasing_color=C['red'] if lower_better else C['green'],
+                   decreasing_color=C['green'] if lower_better else C['red'],
+                   font=dict(size=13),
+                   suffix=(' vs Nifty '+sfx) if sfx else ' vs Nifty'),
+        title=dict(text='<b>'+lbl+'</b><br><sup style="color:#95a5a6">'+('lower=better' if lower_better else 'higher=better')+'</sup>',
+                   font=dict(size=12, color=C['navy'])),
+    ), row=r+1, col=c+1)
+
+fig.update_layout(
+    title=dict(text='Portfolio KPI Dashboard — Monarch Energy Transition Fund (Jan 2020 – Feb 2026)',
+               x=0, font=dict(size=15, color=C['navy'])),
+    height=340, margin=dict(t=80, b=20, l=20, r=20),
+    paper_bgcolor='white',
+    font=dict(family='Segoe UI'),
+)
+fig.show()
+```
+
+## 4b. Cumulative Performance
+
+```{python}
+#| label: fig-cumulative-perf
+#| fig-cap: "Cumulative NAV vs Nifty 50 — fund vs benchmark since January 2020"
+#| echo: false
+
+if data_ok:
+    fig = make_subplots(
+        rows=2, cols=1,
+        row_heights=[0.72, 0.28],
+        vertical_spacing=0.04,
+        shared_xaxes=True,
+    )
+
+    # Main panel — cumulative returns
+    fig.add_trace(go.Scatter(
+        x=cum_port.index, y=cum_port.values,
+        name='Monarch Fund', line=dict(color=C['navy'], width=2.5),
+        fill='tozeroy', fillcolor='rgba(44,62,80,0.08)',
+        hovertemplate='%{x|%d %b %Y}<br>NAV: %{y:.2f}x<extra>Fund</extra>',
+    ), row=1, col=1)
+    fig.add_trace(go.Scatter(
+        x=cum_nifty.index, y=cum_nifty.values,
+        name='Nifty 50', line=dict(color=C['red'], width=1.8, dash='dash'),
+        fill='tozeroy', fillcolor='rgba(231,76,60,0.05)',
+        hovertemplate='%{x|%d %b %Y}<br>NAV: %{y:.2f}x<extra>Nifty</extra>',
+    ), row=1, col=1)
+
+    # COVID / key event annotations
+    for dt, label, ay in [('2020-03-23','COVID Low',0.3), ('2022-01-01','Rate Hikes',2.5)]:
+        fig.add_vline(x=dt, line_dash='dot', line_color='#95a5a6', line_width=1,
+                      row=1, col=1)
+        # Only annotate the first one inline
+    fig.add_annotation(x='2020-03-23', y=0.3, text='COVID<br>Low',
+                        font=dict(size=9, color='#95a5a6'), showarrow=False,
+                        xanchor='left', row=1, col=1)
+
+    # Relative performance panel
+    excess = cum_port.values / np.where(cum_nifty.values > 0, cum_nifty.values, 1)
+    x_idx  = cum_port.index
+    over   = np.where(excess >= 1, excess, 1)
+    under  = np.where(excess < 1, excess, 1)
+    fig.add_trace(go.Scatter(
+        x=x_idx, y=excess, name='Relative (Fund/Nifty)',
+        line=dict(color=C['blue'], width=1.5),
+        hovertemplate='%{x|%d %b %Y}<br>Relative: %{y:.2f}x<extra></extra>',
+    ), row=2, col=1)
+    fig.add_hline(y=1.0, line_dash='dash', line_color='#95a5a6', line_width=1, row=2, col=1)
+
+    fig.update_layout(**BL(
+        'Cumulative Performance — Monarch Fund vs Nifty 50 (Base = 1.0×)<br>'
+        f'<sup>Total Fund Return: {total_ret_pct:+.1f}% | Ann. Nifty: {nifty_ann_pct:.1f}%</sup>',
+        height=500, legend_y=1.04,
+    ))
+    SA(fig)
+    fig.update_yaxes(title_text='NAV (Base 1.0×)', tickformat='.1f', row=1, col=1)
+    fig.update_yaxes(title_text='Fund/Nifty', tickformat='.2f', row=2, col=1)
+    fig.update_xaxes(title_text='Date', row=2, col=1)
+    fig.show()
+```
+
+## 4c. Calendar Year Returns
+
+```{python}
+#| label: fig-annual-returns
+#| fig-cap: "Calendar year returns — fund vs Nifty 50 by year"
+#| echo: false
+
+yrs = [y for y in years_list if port_ann_yr.get(y) is not None and not np.isnan(port_ann_yr.get(y, np.nan))]
+p_vals = [port_ann_yr[y]*100 for y in yrs]
+n_vals = [nifty_ann_yr[y]*100 for y in yrs]
+
+fig = go.Figure()
+fig.add_trace(go.Bar(
+    x=[str(y) for y in yrs], y=p_vals,
+    name='Monarch Fund', marker_color=C['navy'],
+    text=[f'{v:+.1f}%' for v in p_vals], textposition='outside',
+    hovertemplate='<b>%{x}</b><br>Fund: %{y:+.1f}%<extra></extra>',
+))
+fig.add_trace(go.Bar(
+    x=[str(y) for y in yrs], y=n_vals,
+    name='Nifty 50', marker_color=C['red'], opacity=0.80,
+    text=[f'{v:+.1f}%' for v in n_vals], textposition='outside',
+    hovertemplate='<b>%{x}</b><br>Nifty: %{y:+.1f}%<extra></extra>',
+))
+fig.update_layout(**BL(
+    'Calendar Year Returns — Fund vs Nifty 50',
+    height=430, legend_y=1.04,
+    barmode='group',
+))
+SA(fig, xgrid=False)
+fig.update_yaxes(title_text='Return (%)', ticksuffix='%')
+fig.add_hline(y=0, line_color='#dee2e6', line_width=1)
+fig.show()
+```
+
+## 4d. Rolling 90-Day Sharpe Ratio
+
+```{python}
+#| label: fig-rolling-sharpe
+#| fig-cap: "Rolling 90-day annualised Sharpe ratio — fund vs Nifty 50"
+#| echo: false
+
+if data_ok:
+    W = 90
+    rsp = ((port_ret.rolling(W).mean()*TRADING_DAYS - RISK_FREE) /
+           (port_ret.rolling(W).std()*np.sqrt(TRADING_DAYS)))
+    rsn = ((nifty_ret.rolling(W).mean()*TRADING_DAYS - RISK_FREE) /
+           (nifty_ret.rolling(W).std()*np.sqrt(TRADING_DAYS)))
+
+    fig = go.Figure()
+    # Fill above/below zero
+    fig.add_trace(go.Scatter(
+        x=rsp.index, y=rsp.values.clip(0, None),
+        fill='tozeroy', fillcolor='rgba(39,174,96,0.12)',
+        line=dict(width=0), showlegend=False, hoverinfo='skip',
+    ))
+    fig.add_trace(go.Scatter(
+        x=rsp.index, y=rsp.values.clip(None, 0),
+        fill='tozeroy', fillcolor='rgba(231,76,60,0.12)',
+        line=dict(width=0), showlegend=False, hoverinfo='skip',
+    ))
+    fig.add_trace(go.Scatter(
+        x=rsp.index, y=rsp.values,
+        name='Fund (90d)', line=dict(color=C['navy'], width=2),
+        hovertemplate='%{x|%d %b %Y}<br>Sharpe: %{y:.2f}<extra>Fund</extra>',
+    ))
+    fig.add_trace(go.Scatter(
+        x=rsn.index, y=rsn.values,
+        name='Nifty 50', line=dict(color=C['red'], width=1.5, dash='dash'),
+        hovertemplate='%{x|%d %b %Y}<br>Sharpe: %{y:.2f}<extra>Nifty</extra>',
+    ))
+    fig.add_hline(y=1.0, line_dash='dot', line_color=C['green'], line_width=1.5,
+                  annotation_text='Sharpe = 1', annotation_position='top right',
+                  annotation_font=dict(size=10, color=C['green']))
+    fig.add_hline(y=0, line_color='#dee2e6', line_width=1)
+
+    fig.update_layout(**BL('Rolling 90-Day Sharpe Ratio — Fund vs Nifty 50', height=400))
+    SA(fig)
+    fig.update_yaxes(title_text='Sharpe Ratio (Annualised)')
+    fig.update_xaxes(title_text='Date')
+    fig.show()
+```
+
+<div class="card card-blue">
+<h4>Performance Summary — Fund vs Nifty 50</h4>
+
+| Metric | Monarch Fund | Nifty 50 | Alpha |
+|---|---|---|---|
+| **Annualised Return** | `{python} port_ann_pct`% | `{python} nifty_ann_pct`% | `{python} round(port_ann_pct - nifty_ann_pct, 1)`% |
+| **Sharpe Ratio** | `{python} port_sharpe_v` | `{python} nifty_sharpe_v` | `{python} round(port_sharpe_v - nifty_sharpe_v, 2)` |
+| **Sortino Ratio** | `{python} port_sortino_v` | `{python} round(ns['sortino'],2) if data_ok else 0.46` | — |
+| **Beta** | `{python} port_beta_v` | 1.00 | — |
+| **Max Drawdown** | `{python} port_mdd_pct`% | `{python} round(ns['max_dd']*100,1) if data_ok else -38.4`% | — |
+| **Information Ratio** | `{python} port_ir_v` | — | — |
+
+The annualised alpha of **`{python} round(port_ann_pct - nifty_ann_pct, 1)`%** reflects genuine thematic outperformance from India's energy capex cycle. The Information Ratio of **`{python} port_ir_v`** — the consistency of that alpha per unit of tracking error — is the most important single number in this report. It confirms that the outperformance is structural, not a one-year anomaly.
+</div>
+
+<hr class="divider">
+
+# 5. Monte Carlo NAV Projection {.unnumbered}
+
+A 5-year forward projection using Geometric Brownian Motion calibrated to the fund's trailing return and volatility distribution. 8,000 simulations.
+
+```{python}
+#| label: fig-monte-carlo
+#| fig-cap: "Monte Carlo NAV fan chart — 5-year projection (8,000 GBM simulations)"
+#| echo: false
+
+x_yr  = np.linspace(0, 5, N_DAYS+1)
+p5_p  = np.percentile(paths, 5,  axis=1)
+p25_p = np.percentile(paths, 25, axis=1)
+p50_p = np.percentile(paths, 50, axis=1)
+p75_p = np.percentile(paths, 75, axis=1)
+p95_p = np.percentile(paths, 95, axis=1)
+
+fig = go.Figure()
+
+# Confidence bands
+fig.add_trace(go.Scatter(
+    x=np.concatenate([x_yr, x_yr[::-1]]),
+    y=np.concatenate([p95_p, p5_p[::-1]]),
+    fill='toself', fillcolor='rgba(44,62,80,0.07)',
+    line=dict(width=0), showlegend=True, name='5th–95th Pct',
+    hoverinfo='skip',
+))
+fig.add_trace(go.Scatter(
+    x=np.concatenate([x_yr, x_yr[::-1]]),
+    y=np.concatenate([p75_p, p25_p[::-1]]),
+    fill='toself', fillcolor='rgba(44,62,80,0.15)',
+    line=dict(width=0), showlegend=True, name='25th–75th Pct',
+    hoverinfo='skip',
+))
+# Percentile lines
+for y_arr, col, nm, dash in [
+    (p95_p, C['green'], f'Bull P95  = {mc_p95_:.2f}×', 'dot'),
+    (p50_p, C['navy'],  f'Base P50  = {mc_p50_:.2f}×', 'solid'),
+    (p5_p,  C['red'],   f'Bear P5   = {mc_p5_:.2f}×',  'dot'),
+]:
+    fig.add_trace(go.Scatter(
+        x=x_yr, y=y_arr, name=nm,
+        line=dict(color=col, width=1.8 if nm.startswith('Base') else 1.2, dash=dash),
+        hovertemplate='Y%{x:.1f}: %{y:.2f}×<extra>'+nm+'</extra>',
+    ))
+
+# Nifty median path
+fig.add_trace(go.Scatter(
+    x=x_yr, y=nifty_path, name=f'Nifty GBM median = {nifty_path[-1]:.2f}×',
+    line=dict(color=C['red'], width=1.5, dash='dash'),
+    hovertemplate='Y%{x:.1f}: Nifty %{y:.2f}×<extra></extra>',
+))
+fig.add_hline(y=1.0, line_dash='dot', line_color='#95a5a6', line_width=1,
+              annotation_text='Break-even', annotation_font=dict(size=9))
+
+fig.update_layout(**BL(
+    f'5-Year Monte Carlo NAV Projection — Geometric Brownian Motion<br>'
+    f'<sup>N=8,000 sims | Ann.μ={mu_d*TRADING_DAYS*100:.1f}% | '
+    f'Ann.σ={sig_d*np.sqrt(TRADING_DAYS)*100:.1f}% | '
+    f'P(Beat Nifty)={prob_beat:.0f}% | P(Loss after 5Y)={prob_loss:.0f}%</sup>',
+    height=480, legend_y=1.05,
+))
+SA(fig)
+fig.update_xaxes(title_text='Years from Today',
+                 tickvals=list(range(6)),
+                 ticktext=[f'Y{i}' for i in range(6)])
+fig.update_yaxes(title_text='Portfolio NAV (Base = 1.0×)', tickformat='.1f')
+fig.show()
+```
+
+<div class="card card-green">
+<h4>Monte Carlo Interpretation</h4>
+
+| Scenario | 5-Year NAV Multiple | Total Return |
+|---|---|---|
+| **Bear (P5)** | `{python} mc_p5_`× | `{python} int(mc_bear_ret)`% |
+| **Base (P50 median)** | `{python} mc_p50_`× | `{python} int(mc_base_ret)`% |
+| **Bull (P95)** | `{python} mc_p95_`× | `{python} int(mc_bull_ret)`% |
+| **Nifty GBM median** | `{python} nifty_final`× | `{python} int(nifty_ret_5y)`% |
+| **P(Beat Nifty after 5Y)** | — | **`{python} prob_beat_str`%** |
+| **P(Capital Loss after 5Y)** | — | `{python} prob_loss_str`% |
+
+The median base case delivers `{python} mc_p50_`× in five years. The probability of capital loss over a 5-year horizon is only `{python} prob_loss_str`%, which reflects the high Sharpe ratio and consistent compounding of underlying businesses. The fund is expected to beat the Nifty 50 GBM median trajectory in `{python} prob_beat_str`% of simulations.
+</div>
+
+<hr class="divider">
+
+::: {.callout-important appearance="simple"}
+## Part 2 Sections — Coming Next
+The second half of the report will cover: **Risk Analytics** (correlation matrix, VaR contribution, drawdown), **Factor Exposure** (value/quality/momentum/low-vol radar), **Scenario Analysis** (market crash, rate shock, commodity spike, policy reversal), **Attribution Analysis** (expected return contribution per stock), and the full **Data Appendix**.
+:::

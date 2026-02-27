@@ -1,0 +1,41 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "QMP Homework 1"
+  navbar:
+    background: "#2C3E50"
+    foreground: "#FFFFFF"
+    left:
+      - text: "Home"
+        href: hw1_index.html
+  page-footer:
+    background: "#2C3E50"
+    left: "QMP | Homework 1"
+    right: "Adivya Singh | 2023IPM014"
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 4
+    toc-location: right
+    toc-title: "Navigation"
+    number-sections: true
+    number-depth: 2
+    code-fold: true
+    code-tools:
+      source: false
+      toggle: true
+    code-summary: "Show Code"
+    smooth-scroll: true
+    link-external-newwindow: true
+    mainfont: "Segoe UI"
+    self-contained: false
+    fig-width: 10
+    fig-height: 6
+
+execute:
+  warning: false
+  message: false

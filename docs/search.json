@@ -1,0 +1,51 @@
+[
+  {
+    "objectID": "index.html#a.-position-sizing-methodology",
+    "href": "index.html#a.-position-sizing-methodology",
+    "title": "Monarch India Energy Transition Fund",
+    "section": "2a. Position Sizing Methodology",
+    "text": "2a. Position Sizing Methodology\nThe fund’s position sizing follows a risk-quality composite framework — not equal-weighting. Each stock’s target weight is derived from three factors:\n\nSharpe/Volatility Score — higher Sharpe per unit of volatility → higher weight. This is equivalent to a risk-parity tilt but penalises pure-momentum stocks with extreme volatility (e.g., Suzlon capped at 4.2% despite Sharpe of 1.80 due to 56% annualised volatility).\nROCE Premium — stocks with ROCE ≥ 25% receive a 10–20% weight premium. In a long-time-horizon sectoral fund, quality of capital deployment compounds. Cummins India (38% ROCE) and ABB (35% ROCE) receive premium weights reflecting this.\nPolicy Anchor Bonus — NTPC and Power Grid are public-sector utilities with regulated returns and government-backed balance sheets. They receive explicit overweights as the fund’s defensive core — portfolio anchors during periods of risk-off selling.\n\n\n\nPortfolio Concentration Metrics\n\n\n\n\nMetric\nFund\nNifty 50 (approx)\n\n\n\n\nNumber of Holdings\n20\n50\n\n\nTop-5 Weight\nnp.float64(35.2)%\n~34%\n\n\nHerfindahl-Hirschman Index\n0.0544\n~0.035\n\n\nEffective N (1/HHI)\n18.4\n~28\n\n\nMax Single Position\nnp.float64(8.5)% (NTPC)\n10.1% (RIL)\n\n\nWeighted Avg P/E\n43.5x\n23x\n\n\nWeighted Avg ROCE\n19.9%\n~14%\n\n\n\n\n\n\n\n\n\n\nTipOn Cap vs Floor\n\n\n\nNo single position exceeds 8% to prevent over-concentration in any one regulatory regime. A minimum floor of 1.5% ensures no purely token positions — every holding must earn its seat in the portfolio. NTPC and Power Grid together constitute the defensive anchor at 14% of AUM."
+  },
+  {
+    "objectID": "index.html#b.-portfolio-treemap",
+    "href": "index.html#b.-portfolio-treemap",
+    "title": "Monarch India Energy Transition Fund",
+    "section": "2b. Portfolio Treemap",
+    "text": "2b. Portfolio Treemap\n\n\n\n\n                                                \n\n\nFigure 2: Portfolio allocation — sector → stock decomposition; area proportional to portfolio weight"
+  },
+  {
+    "objectID": "index.html#c.-weights-sector-allocation",
+    "href": "index.html#c.-weights-sector-allocation",
+    "title": "Monarch India Energy Transition Fund",
+    "section": "2c. Weights & Sector Allocation",
+    "text": "2c. Weights & Sector Allocation\n\n\n\n\n                                                \n\n\nFigure 3: Left: Position weights sorted by conviction; Right: sector allocation donut"
+  },
+  {
+    "objectID": "index.html#a.-kpi-dashboard",
+    "href": "index.html#a.-kpi-dashboard",
+    "title": "Monarch India Energy Transition Fund",
+    "section": "4a. KPI Dashboard",
+    "text": "4a. KPI Dashboard\n\n\n\n\n                                                \n\n\nFigure 5: Key portfolio metrics vs Nifty 50 benchmark — as of February 2026"
+  },
+  {
+    "objectID": "index.html#b.-cumulative-performance",
+    "href": "index.html#b.-cumulative-performance",
+    "title": "Monarch India Energy Transition Fund",
+    "section": "4b. Cumulative Performance",
+    "text": "4b. Cumulative Performance\n\n\n\n\n                                                \n\n\nFigure 6: Cumulative NAV vs Nifty 50 — fund vs benchmark since January 2020"
+  },
+  {
+    "objectID": "index.html#c.-calendar-year-returns",
+    "href": "index.html#c.-calendar-year-returns",
+    "title": "Monarch India Energy Transition Fund",
+    "section": "4c. Calendar Year Returns",
+    "text": "4c. Calendar Year Returns\n\n\n\n\n                                                \n\n\nFigure 7: Calendar year returns — fund vs Nifty 50 by year"
+  },
+  {
+    "objectID": "index.html#d.-rolling-90-day-sharpe-ratio",
+    "href": "index.html#d.-rolling-90-day-sharpe-ratio",
+    "title": "Monarch India Energy Transition Fund",
+    "section": "4d. Rolling 90-Day Sharpe Ratio",
+    "text": "4d. Rolling 90-Day Sharpe Ratio\n\n\n\n\n                                                \n\n\nFigure 8: Rolling 90-day annualised Sharpe ratio — fund vs Nifty 50\n\n\n\n\n\n\nPerformance Summary — Fund vs Nifty 50\n\n\n\n\n\n\n\n\n\n\nMetric\nMonarch Fund\nNifty 50\nAlpha\n\n\n\n\nAnnualised Return\nnp.float64(41.8)%\nnp.float64(14.9)%\nnp.float64(26.9)%\n\n\nSharpe Ratio\nnp.float64(1.64)\nnp.float64(0.47)\nnp.float64(1.17)\n\n\nSortino Ratio\nnp.float64(1.46)\nnp.float64(0.43)\n—\n\n\nBeta\nnp.float64(0.85)\n1.00\n—\n\n\nMax Drawdown\n-38.1%\n-38.4%\n—\n\n\nInformation Ratio\nnp.float64(1.36)\n—\n—\n\n\n\nThe annualised alpha of np.float64(26.9)% reflects genuine thematic outperformance from India’s energy capex cycle. The Information Ratio of np.float64(1.36) — the consistency of that alpha per unit of tracking error — is the most important single number in this report. It confirms that the outperformance is structural, not a one-year anomaly."
+  }
+]
