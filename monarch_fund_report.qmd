@@ -7,7 +7,7 @@ date-format: "D MMMM YYYY"
 format:
   html:
     output-file: index.html
-    theme: flatly
+    theme: cosmo
     toc: true
     toc-location: right
     toc-depth: 3
@@ -29,134 +29,142 @@ jupyter: python3
 
 ```{=html}
 <style>
-/* ═══════════════════════════════════════════════════════════════════
+/* ============================================================
    Monarch India Energy Transition Fund — Design System
-   Palette: Forest Green #0a3d28 · Emerald #00b48a · Solar Gold #f9a825
-   Distinct from ITC report (navy/blue) — uses green-energy identity
-   ═══════════════════════════════════════════════════════════════════ */
+   Palette mirrors hw1_index: #3498DB primary blue, #2C3E50 dark,
+   white/light-grey backgrounds, clean Segoe UI typography.
+   ============================================================ */
 
-/* ── Base Typography ─────────────────────────────────────────────── */
-body { font-family:'Segoe UI',system-ui,sans-serif; font-size:15px; color:#0d2b1f; line-height:1.8; }
-h1   { color:#0a3d28; font-weight:800; border-bottom:3px solid #00b48a; padding-bottom:9px; margin-top:34px; letter-spacing:-0.3px; }
-h2   { color:#145a38; font-weight:700; margin-top:26px; border-left:3px solid #f9a825; padding-left:12px; }
-h3   { color:#1a6641; font-weight:600; border-left:2px solid rgba(0,180,138,0.4); padding-left:9px; }
-p    { line-height:1.82; }
+/* ── Page layout ─────────────────────────────────────────────────────────── */
+.quarto-container { max-width:1200px !important; margin-left:auto; margin-right:auto; }
+.page-columns .content { padding-left:1rem !important; padding-right:1rem !important; }
 
-/* ── Code fold ───────────────────────────────────────────────────── */
-details.code-fold summary { list-style:disclosure-closed; cursor:pointer; color:#1e8449; font-size:0.83em; padding:4px 0; }
+/* ── Base Typography ─────────────────────────────────────────────────── */
+body { font-family:'Segoe UI',system-ui,sans-serif; font-size:15px; color:#2c3e50; line-height:1.78; }
+h1   { color:#2c3e50; font-weight:700; margin-top:2rem; }
+h2   { color:#34495e; font-weight:600; margin-top:1.6rem; }
+h3   { color:#2c3e50; font-weight:600; }
+h4   { font-weight:600; }
+p    { line-height:1.78; }
+
+/* ── Code fold ─────────────────────────────────────────────────────── */
+details.code-fold summary { cursor:pointer; list-style:disclosure-closed; color:#6c757d; font-size:0.85em; padding:4px 0; }
 details.code-fold[open] summary { list-style:disclosure-open; }
-details.code-fold summary::marker { color:#1e8449; }
+details.code-fold summary::marker { color:#6c757d; }
 
-/* ── Hero banner — deep forest green ─────────────────────────────── */
+/* ── Hero banner — light grey gradient + blue left border (like hw1 exec-summary-hero) */
 .exec-hero {
-  background: linear-gradient(135deg, #062d1e 0%, #0a3d28 40%, #0d5235 75%, #145a38 100%);
-  color:#e8f5e9; padding:32px 40px; border-radius:16px;
-  margin:22px 0 34px; box-shadow:0 8px 40px rgba(6,45,30,0.42);
-  border:1px solid rgba(0,180,138,0.22); position:relative; overflow:hidden;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ebf5fb 60%, #e8f4f8 100%);
+  border-left: 5px solid #3498db;
+  color: #2c3e50;
+  padding: 28px 36px;
+  border-radius: 0 12px 12px 0;
+  margin: 20px 0 30px;
+  box-shadow: 0 3px 16px rgba(52,152,219,0.12);
 }
-.exec-hero::before {
-  content:""; position:absolute; top:-70px; right:-70px;
-  width:220px; height:220px; border-radius:50%;
-  background:radial-gradient(circle, rgba(249,168,37,0.13) 0%, transparent 68%);
-  pointer-events:none;
-}
-.exec-hero h2  { color:#f9a825; border:none; font-size:1.44em; margin-top:0; margin-bottom:14px; letter-spacing:-0.4px; font-weight:800; padding-left:0; }
-.exec-hero h2::before { content:"⚡ "; }
-.exec-hero p   { margin:7px 0; line-height:1.75; font-size:0.97em; color:rgba(232,245,233,0.92); }
-.exec-hero .tag { display:inline-block; padding:4px 13px; border-radius:4px; font-weight:700; font-size:0.79em; letter-spacing:0.6px; margin:3px 4px 3px 0; }
-.exec-hero .tag-blue  { background:rgba(0,180,138,0.80); color:#062d1e; }
-.exec-hero .tag-green { background:#f9a825;               color:#062d1e; }
-.exec-hero .tag-amber { background:rgba(255,255,255,0.10); color:#f9ca68; border:1px solid rgba(249,168,37,0.45); }
+.exec-hero h2  { color:#2c3e50; border:none; font-size:1.36em; margin-top:0; margin-bottom:14px; font-weight:700; padding-left:0; }
+.exec-hero h2::before { content: none; }
+.exec-hero p   { margin:7px 0; line-height:1.75; font-size:0.97em; color:#34495e; }
+.exec-hero .tag { display:inline-block; padding:3px 12px; border-radius:4px; font-weight:600; font-size:0.79em; letter-spacing:0.4px; margin:3px 4px 3px 0; }
+.exec-hero .tag-blue  { background:#3498db; color:white; }
+.exec-hero .tag-green { background:#27ae60; color:white; }
+.exec-hero .tag-amber { background:#e67e22; color:white; }
 
-/* ── Metric row (KPI pills inside hero) ──────────────────────────── */
-.metric-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(115px,1fr)); gap:10px; margin:20px 0 4px; }
-.metric-pill { background:rgba(255,255,255,0.07); border:1px solid rgba(0,180,138,0.28); border-radius:10px; padding:10px 12px; text-align:center; }
-.metric-pill .mp-val { font-size:1.54em; font-weight:800; color:#f9a825; line-height:1.05; }
-.metric-pill .mp-lbl { font-size:0.68em; color:rgba(232,245,233,0.72); margin-top:5px; text-transform:uppercase; letter-spacing:0.7px; }
+/* ── KPI metric pills inside hero ──────────────────────────────────────── */
+.metric-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(110px,1fr)); gap:10px; margin:18px 0 4px; }
+.metric-pill { background:white; border:1px solid #d6eaf8; border-radius:8px; padding:10px 12px; text-align:center; box-shadow:0 1px 4px rgba(52,152,219,0.08); }
+.metric-pill .mp-val { font-size:1.48em; font-weight:700; color:#3498db; line-height:1.1; }
+.metric-pill .mp-lbl { font-size:0.67em; color:#7f8c8d; margin-top:5px; text-transform:uppercase; letter-spacing:0.6px; }
 
-/* ── Three-test tiles ─────────────────────────────────────────────── */
-.test-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:22px 0; }
-.tile { text-align:center; padding:22px 16px; border-radius:12px; box-shadow:0 3px 14px rgba(0,0,0,0.08); transition:transform 0.2s,box-shadow 0.2s; }
-.tile:hover { transform:translateY(-3px); box-shadow:0 7px 22px rgba(0,0,0,0.12); }
-.tile.pass { background:linear-gradient(135deg,#eafaf1,#d5f5e3); border:2px solid #1e8449; }
-.tile.cond { background:linear-gradient(135deg,#fef9ef,#fdebd0); border:2px solid #f39c12; }
-.tile.fail { background:linear-gradient(135deg,#fdf2f2,#fadbd8); border:2px solid #e74c3c; }
-.tile .icon { font-size:2em; margin-bottom:8px; }
-.tile h4    { margin:8px 0 6px; font-size:0.93em; color:#0a3d28; font-weight:700; }
-.tile p     { margin:0; font-size:0.82em; color:#4a5568; }
+/* ── Three-test tiles (hw1 card style) ───────────────────────────────── */
+.test-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:20px 0; }
+.tile { text-align:center; padding:20px 16px; border-radius:0 8px 8px 0; box-shadow:0 2px 8px rgba(0,0,0,0.06); transition:transform 0.18s; }
+.tile:hover { transform:translateY(-2px); }
+.tile.pass { background:#f0f9f4; border-left:5px solid #27ae60; }
+.tile.cond { background:#fefcf3; border-left:5px solid #f39c12; }
+.tile.fail { background:#fdf2f2; border-left:5px solid #e74c3c; }
+.tile .icon { font-size:1.9em; margin-bottom:8px; }
+.tile h4    { margin:8px 0 6px; font-size:0.93em; color:#2c3e50; font-weight:700; }
+.tile p     { margin:0; font-size:0.82em; color:#636e72; line-height:1.55; }
 
-/* ── Cards ────────────────────────────────────────────────────────── */
-.card { padding:16px 22px; border-radius:0 10px 10px 0; margin:16px 0; line-height:1.78; }
-.card h4 { margin-top:0; font-size:1em; font-weight:700; }
-.card-blue   { border-left:5px solid #2471a3; background:#eaf3fb; }
-.card-blue h4 { color:#1a5276; }
-.card-green  { border-left:5px solid #1e8449; background:#eafaf1; }
-.card-green h4 { color:#145a32; }
-.card-red    { border-left:5px solid #c0392b; background:#fdedec; }
-.card-red h4 { color:#922b21; }
-.card-amber  { border-left:5px solid #d68910; background:#fef5e4; }
-.card-amber h4 { color:#9a6a00; }
-.card-purple { border-left:5px solid #7d3c98; background:#f5eef8; }
-.card-purple h4 { color:#5b2c6f; }
-.card-navy   { border-left:5px solid #00b48a; background:linear-gradient(120deg,#f0faf5,#e4f5ef); box-shadow:0 2px 12px rgba(0,180,138,0.10); }
-.card-navy h4 { color:#0a3d28; }
+/* ── Cards (mirrors hw1 .info-card / .answer-card / .warning-card) ───────── */
+.card { padding:1rem 1.5rem; border-radius:0 6px 6px 0; margin:1.2rem 0; line-height:1.75; }
+.card h4 { margin-top:0; margin-bottom:0.5rem; font-weight:600; font-size:1.05rem; }
+/* blue card = hw1 .info-card */
+.card-blue   { border-left:5px solid #3498db; background-color:#f0f7fc; }
+.card-blue h4 { color:#3498db; }
+/* green card = hw1 .answer-card */
+.card-green  { border-left:5px solid #27ae60; background-color:#f0f9f4; }
+.card-green h4 { color:#27ae60; }
+/* red card = hw1 .critical-card */
+.card-red    { border-left:5px solid #e74c3c; background-color:#fdf2f2; }
+.card-red h4 { color:#e74c3c; }
+/* amber card = hw1 .warning-card */
+.card-amber  { border-left:5px solid #f39c12; background-color:#fefcf3; }
+.card-amber h4 { color:#e67e22; }
+.card-purple { border-left:5px solid #9b59b6; background-color:#f5eef8; }
+.card-purple h4 { color:#9b59b6; }
+/* navy card = hw1-ish: light blue bg */
+.card-navy   { border-left:5px solid #2980b9; background-color:#eaf4fc; box-shadow:0 1px 6px rgba(52,152,219,0.08); }
+.card-navy h4 { color:#2c3e50; }
 
-/* ── Collapsible details ─────────────────────────────────────────── */
-details.section-fold { margin:16px 0; border-radius:8px; overflow:hidden; border:1px solid #cde8d8; }
-details.section-fold > summary { cursor:pointer; list-style:none; padding:12px 18px; background:linear-gradient(to right,#f0faf5,#f8fffb); border-left:4px solid #f9a825; font-weight:700; font-size:0.92em; color:#0a3d28; user-select:none; }
+/* ── Collapsible details ──────────────────────────────────────────────── */
+details.section-fold { margin:14px 0; border-radius:6px; overflow:hidden; border:1px solid #d6eaf8; }
+details.section-fold > summary { cursor:pointer; list-style:none; padding:11px 18px; background:#f0f7fc; border-left:4px solid #3498db; font-weight:600; font-size:0.93em; color:#2c3e50; user-select:none; }
 details.section-fold > summary::-webkit-details-marker { display:none; }
-details.section-fold > summary::before { content:"▶  "; font-size:0.72em; color:#f9a825; }
-details.section-fold[open] > summary { background:linear-gradient(to right,#fef5dc,#fffdf5); }
-details.section-fold[open] > summary::before { content:"▼  "; }
-details.section-fold > .body { padding:18px 24px; background:white; font-size:0.93em; line-height:1.78; }
+details.section-fold > summary::before { content:"\25B6  "; font-size:0.75em; color:#3498db; }
+details.section-fold[open] > summary { background:#d6eaf8; }
+details.section-fold[open] > summary::before { content:"\25BC  "; }
+details.section-fold > .body { padding:16px 22px; background:white; font-size:0.93em; line-height:1.75; border-top:1px solid #d6eaf8; }
 
-/* ── Callout overrides ───────────────────────────────────────────── */
-.callout-tip      { border-left-color:#1e8449 !important; }
-.callout-tip .callout-title { color:#145a32 !important; }
-.callout-note .callout-title { color:#1a5276 !important; }
-.callout-important .callout-title { color:#922b21 !important; }
-.callout-warning .callout-title { color:#b7770d !important; }
-.callout-note.callout-style-default     > .callout-header { background:#eaf3fb !important; }
-.callout-tip.callout-style-default      > .callout-header { background:#eafaf1 !important; }
-.callout-important.callout-style-default > .callout-header { background:#fdedec !important; }
-.callout-warning.callout-style-default  > .callout-header { background:#fef5e4 !important; }
+/* ── Callout overrides (same as hw1) ───────────────────────────────── */
+.callout-tip      { background-color:transparent !important; border-left-color:#3498db !important; }
+.callout-tip .callout-title { color:#2780e3 !important; }
+.callout-note     { background-color:transparent !important; }
+.callout-note .callout-title { color:#2780e3 !important; }
+.callout-warning  { background-color:transparent !important; }
+.callout-warning .callout-title { color:#e67e22 !important; }
+.callout-important .callout-title { color:#e74c3c !important; }
+.callout-note.callout-style-default     > .callout-header { background-color:rgb(233,242,252) !important; }
+.callout-tip.callout-style-default      > .callout-header { background-color:rgb(233,242,252) !important; }
+.callout-warning.callout-style-default  > .callout-header { background-color:rgb(255,243,224) !important; }
+.callout-important.callout-style-default > .callout-header { background-color:rgb(253,229,229) !important; }
 
-/* ── Divider — gold → emerald → transparent ──────────────────────── */
-.divider { border:none; height:2px; background:linear-gradient(to right,#f9a825 0%,#00b48a 45%,transparent 100%); margin:36px 0; }
+/* ── Section divider — grey fade (exactly hw1's .section-divider) ─────── */
+.divider { border:none; height:2px; background:linear-gradient(90deg,transparent,#bdc3c7,transparent); margin:2.5rem 0; }
 
-/* ── Tables ──────────────────────────────────────────────────────── */
-.gt { width:100%; border-collapse:collapse; font-size:0.9em; margin:16px 0; }
-.gt thead tr { background:linear-gradient(to right,#0a3d28,#145a38); color:white; }
-.gt th { padding:12px 14px; text-align:left; font-weight:700; letter-spacing:0.3px; }
-.gt td { padding:9px 14px; border-bottom:1px solid #e0f0e8; }
-.gt tbody tr:nth-child(even) { background:#f0faf5; }
-.gt tbody tr:hover { background:#d5f5e3; }
+/* ── Tables (hw1 .styled-table) ────────────────────────────────────────── */
+.gt { width:100%; border-collapse:collapse; font-size:0.92em; margin:1rem 0; }
+.gt thead tr { background:#2c3e50; color:white; }
+.gt th { padding:10px 14px; text-align:left; font-weight:600; }
+.gt td { padding:8px 12px; border-bottom:1px solid #ddd; }
+.gt tbody tr:nth-child(even) { background:#f8f9fa; }
+.gt tbody tr:hover { background:#e8f4f8; }
 
-/* ── Screen badges ───────────────────────────────────────────────── */
-.screen-badge { display:inline-block; padding:3px 10px; border-radius:4px; font-size:0.79em; font-weight:700; margin:2px; }
-.badge-pass  { background:#1e8449; color:white; }
-.badge-cond  { background:#d68910; color:white; }
-.badge-fail  { background:#c0392b; color:white; }
-
-/* ── Stars ───────────────────────────────────────────────────────── */
-.star-high { color:#d68910; font-weight:800; }
-.star-med  { color:#1e8449; font-weight:700; }
-.star-low  { color:#7f8c8d; font-weight:600; }
+/* ── Badges ─────────────────────────────────────────────────────────── */
+.screen-badge { display:inline-block; padding:3px 10px; border-radius:4px; font-size:0.79em; font-weight:600; margin:2px; }
+.badge-pass  { background:#27ae60; color:white; }
+.badge-cond  { background:#f39c12; color:white; }
+.badge-fail  { background:#e74c3c; color:white; }
+.star-high { color:#f39c12; font-weight:700; }
+.star-med  { color:#3498db; font-weight:700; }
+.star-low  { color:#95a5a6; font-weight:600; }
 
 /* ── Watermark ───────────────────────────────────────────────────── */
 @media screen {
   body::after {
     content:"Monarch India Energy Transition Fund\AIIM-A Launchpad Alpha 2026";
-    position:fixed; bottom:14px; right:18px;
-    font-size:9px; color:rgba(10,61,40,0.16);
-    pointer-events:none; white-space:pre; text-align:right;
-    font-family:'Segoe UI',sans-serif; z-index:-1;
+    position:fixed; bottom:5px; right:10px;
+    font-size:11px; color:rgba(100,100,100,0.35);
+    font-family:'Segoe UI',Arial,sans-serif; pointer-events:none;
+    white-space:pre; text-align:right; z-index:1000;
   }
 }
+
 /* ── Print ───────────────────────────────────────────────────────── */
 @media print {
-  .exec-hero { -webkit-print-color-adjust:exact; print-color-adjust:exact; background:#0a3d28 !important; }
-  .tile,.card { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .exec-hero { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .tile, .card { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
   body::after { display:none; }
 }
 </style>
@@ -194,23 +202,22 @@ from scipy.stats import norm
 pd.set_option('display.float_format', '{:.2f}'.format)
 np.random.seed(42)
 
-# ── Colour palette — forest-green energy identity ────────────────────────
+# ── Colour palette — mirrors hw1_index.qmd (pastel blue, clean) ────────────
 C = dict(
-    navy   = '#2c3e50',   # kept for chart line/text compatibility
-    blue   = '#3498db',
-    green  = '#27ae60',
-    amber  = '#f39c12',
-    red    = '#e74c3c',
-    purple = '#8e44ad',
-    teal   = '#16a085',
-    orange = '#e67e22',
-    lt_blue= '#85c1e9',
-    lt_grn = '#a9dfbf',
-    bg     = '#f8f9fa',
-    # ── Energy-green design additions ─────────────────────────────
-    forest  = '#0a3d28',   # deep forest green — headings, hero primary
-    emerald = '#00b48a',   # bright emerald — accent lines, dividers
-    gold    = '#f9a825',   # solar gold — hero h2, callout accents
+    navy   = '#2c3e50',   # dark slate — headings, chart text
+    blue   = '#3498db',   # primary blue (hw1 primary_blue)
+    green  = '#27ae60',   # positive
+    amber  = '#f39c12',   # warning
+    red    = '#e74c3c',   # negative
+    purple = '#9b59b6',   # deep dive
+    teal   = '#1abc9c',   # secondary accent
+    orange = '#e67e22',   # warning cards
+    lt_blue= '#85c1e9',   # light blue fill
+    lt_grn = '#a9dfbf',   # light green fill
+    bg     = '#f8f9fa',   # light background
+    forest  = '#2c3e50',  # alias —— used in BL() titles
+    emerald = '#3498db',  # alias —— used in SA() grid accent
+    gold    = '#f39c12',  # alias —— used in highlight annotations
 )
 
 # Sector colours (consistent across every chart)
@@ -224,34 +231,34 @@ SC = {
     'EV/Components':     '#e67e22',
 }
 
-# ── Chart layout helper — forest-green title, emerald grid tint ──────────
+# ── Chart layout helper — matches hw1 clean white chart style ──────────
 def BL(title_text, height=440, legend_y=1.06, extra_t=0, **kw):
     return dict(
         title=dict(text=title_text, x=0.0, xanchor='left',
-                   font=dict(size=15, color=C['forest'], family='Segoe UI')),
+                   font=dict(size=15, color='#2C3E50', family='Segoe UI')),
         height=height,
         margin=dict(t=105 + extra_t, b=62, l=65, r=45),
         paper_bgcolor='white',
-        plot_bgcolor='#f8fffe',
-        font=dict(family='Segoe UI', size=12, color=C['navy']),
+        plot_bgcolor='#F8F9FA',
+        font=dict(family='Segoe UI', size=12, color='#2C3E50'),
         legend=dict(orientation='h', yanchor='bottom', y=legend_y,
                     xanchor='left', x=0, bgcolor='rgba(255,255,255,0.94)',
-                    bordercolor='#c8e6da', borderwidth=1,
+                    bordercolor='#dee2e6', borderwidth=1,
                     font=dict(size=11)),
         **kw
     )
 
 def SA(fig, xgrid=True, ygrid=True):
-    """Axis styler — emerald-tinted grid lines for energy-green identity."""
+    """Axis styler — clean grey grid matching hw1 Plotly charts."""
     fig.update_xaxes(
-        showgrid=xgrid, gridcolor='#e4f5ef', gridwidth=1,
-        zeroline=True, zerolinecolor='#c8e6da', zerolinewidth=1,
-        linecolor='#c8e6da', linewidth=1, showline=True,
+        showgrid=xgrid, gridcolor='#ecf0f1', gridwidth=1,
+        zeroline=True, zerolinecolor='#dee2e6', zerolinewidth=1,
+        linecolor='#dee2e6', linewidth=1, showline=True,
     )
     fig.update_yaxes(
-        showgrid=ygrid, gridcolor='#e4f5ef', gridwidth=1,
-        zeroline=True, zerolinecolor='#c8e6da', zerolinewidth=1,
-        linecolor='#c8e6da', linewidth=1, showline=True,
+        showgrid=ygrid, gridcolor='#ecf0f1', gridwidth=1,
+        zeroline=True, zerolinecolor='#dee2e6', zerolinewidth=1,
+        linecolor='#dee2e6', linewidth=1, showline=True,
     )
     return fig
 
@@ -623,13 +630,13 @@ prob_loss_str = str(round(prob_loss, 1))
 <div class="exec-hero">
 <h2>Monarch India Energy Transition Fund &nbsp;&nbsp;|&nbsp;&nbsp; February 2026</h2>
 <p>
-<span class="tag tag-blue">🌿 Sectoral Thematic · Energy Transition</span>
+<span class="tag tag-blue">📈 Sectoral Thematic &middot; Energy Transition</span>
 <span class="tag tag-blue">NSE India Universe</span>
-<span class="tag tag-green">Rs `{python} AUM_CR` Cr AUM (Hypothetical) · Monarch AMC</span>
+<span class="tag tag-green">Monarch AMC &middot; Rs `{python} AUM_CR` Cr AUM (Hypothetical)</span>
 <span class="tag tag-amber">Benchmark: Nifty 50 &nbsp;|&nbsp; `{python} n_stocks` Holdings</span>
 </p>
-<p style="margin-top:18px;">
-India's energy transition is the largest capital reallocation event of this decade. The government has committed to <strong>500 GW of non-fossil capacity by 2030</strong>, implying Rs 25–30 lakh crore of infrastructure investment over six years. This fund captures that structural shift across the full value chain — renewable developers, grid utilities, industrial capital goods and EPC, energy-efficient systems, and water infrastructure. This is a decade-long thematic; not a short-cycle momentum trade.
+<p style="margin-top:14px; color:#34495e;">
+India's energy transition is the largest capital reallocation event of this decade. The government has committed to <strong>500 GW of non-fossil capacity by 2030</strong>, implying Rs 25&ndash;30 lakh crore of infrastructure investment over six years. This fund captures that structural shift across the full value chain &mdash; renewable developers, grid utilities, industrial capital goods and EPC, energy-efficient systems, and water infrastructure.
 </p>
 <div class="metric-row">
   <div class="metric-pill">
@@ -657,9 +664,9 @@ India's energy transition is the largest capital reallocation event of this deca
     <div class="mp-lbl">Total Return</div>
   </div>
 </div>
-<p style="font-size:0.82em; color:rgba(232,245,233,0.60); margin-top:14px;">
-<strong>Team Mountains &amp; Accretions</strong> &nbsp;·&nbsp; IIM Indore &nbsp;·&nbsp;
-IIM-A Launchpad Alpha 2026 &nbsp;·&nbsp; Data through `{python} data_end`
+<p style="font-size:0.83em; color:#7f8c8d; margin-top:12px;">
+<strong>Team Mountains &amp; Accretions</strong> &nbsp;&middot;&nbsp; IIM Indore &nbsp;&middot;&nbsp;
+IIM-A Launchpad Alpha 2026 &nbsp;&middot;&nbsp; Data through `{python} data_end`
 </p>
 </div>
 
