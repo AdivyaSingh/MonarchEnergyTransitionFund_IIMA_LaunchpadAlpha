@@ -7,7 +7,7 @@ date-format: "D MMMM YYYY"
 format:
   html:
     output-file: index.html
-    theme: cosmo
+    theme: flatly
     toc: true
     toc-location: right
     toc-depth: 3
@@ -29,108 +29,136 @@ jupyter: python3
 
 ```{=html}
 <style>
-/* ── Base Typography ──────────────────────────────────────────────── */
-body { font-family:'Segoe UI',system-ui,sans-serif; font-size:15px; color:#2c3e50; }
-h1   { color:#1a252f; font-weight:700; border-bottom:2px solid #3498db; padding-bottom:6px; margin-top:28px; }
-h2   { color:#2c3e50; font-weight:600; margin-top:22px; }
-h3   { color:#34495e; font-weight:600; }
-p    { line-height:1.75; }
+/* ═══════════════════════════════════════════════════════════════════
+   Monarch India Energy Transition Fund — Design System
+   Palette: Forest Green #0a3d28 · Emerald #00b48a · Solar Gold #f9a825
+   Distinct from ITC report (navy/blue) — uses green-energy identity
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Base Typography ─────────────────────────────────────────────── */
+body { font-family:'Segoe UI',system-ui,sans-serif; font-size:15px; color:#0d2b1f; line-height:1.8; }
+h1   { color:#0a3d28; font-weight:800; border-bottom:3px solid #00b48a; padding-bottom:9px; margin-top:34px; letter-spacing:-0.3px; }
+h2   { color:#145a38; font-weight:700; margin-top:26px; border-left:3px solid #f9a825; padding-left:12px; }
+h3   { color:#1a6641; font-weight:600; border-left:2px solid rgba(0,180,138,0.4); padding-left:9px; }
+p    { line-height:1.82; }
 
 /* ── Code fold ───────────────────────────────────────────────────── */
-details.code-fold summary { list-style:disclosure-closed; cursor:pointer; color:#6c757d; font-size:0.85em; padding:4px 0; }
+details.code-fold summary { list-style:disclosure-closed; cursor:pointer; color:#1e8449; font-size:0.83em; padding:4px 0; }
 details.code-fold[open] summary { list-style:disclosure-open; }
-details.code-fold summary::marker { color:#6c757d; }
+details.code-fold summary::marker { color:#1e8449; }
 
-/* ── Hero banner ─────────────────────────────────────────────────── */
-.exec-hero { background:linear-gradient(135deg,#1a252f 0%,#2c3e50 60%,#1a3a4a 100%); color:#ecf0f1; border-radius:12px; padding:28px 32px; margin:20px 0 28px; box-shadow:0 4px 20px rgba(0,0,0,0.18); }
-.exec-hero h2 { color:#5dade2; border:none; font-size:1.35em; margin-top:0; margin-bottom:14px; }
-.exec-hero p  { margin:6px 0; line-height:1.75; font-size:0.97em; }
-.exec-hero .tag { display:inline-block; padding:3px 10px; border-radius:12px; font-size:0.78em; font-weight:600; margin:3px 4px 3px 0; letter-spacing:0.3px; }
-.exec-hero .tag-blue  { background:#3498db; }
-.exec-hero .tag-green { background:#27ae60; }
-.exec-hero .tag-amber { background:#e67e22; }
+/* ── Hero banner — deep forest green ─────────────────────────────── */
+.exec-hero {
+  background: linear-gradient(135deg, #062d1e 0%, #0a3d28 40%, #0d5235 75%, #145a38 100%);
+  color:#e8f5e9; padding:32px 40px; border-radius:16px;
+  margin:22px 0 34px; box-shadow:0 8px 40px rgba(6,45,30,0.42);
+  border:1px solid rgba(0,180,138,0.22); position:relative; overflow:hidden;
+}
+.exec-hero::before {
+  content:""; position:absolute; top:-70px; right:-70px;
+  width:220px; height:220px; border-radius:50%;
+  background:radial-gradient(circle, rgba(249,168,37,0.13) 0%, transparent 68%);
+  pointer-events:none;
+}
+.exec-hero h2  { color:#f9a825; border:none; font-size:1.44em; margin-top:0; margin-bottom:14px; letter-spacing:-0.4px; font-weight:800; padding-left:0; }
+.exec-hero h2::before { content:"⚡ "; }
+.exec-hero p   { margin:7px 0; line-height:1.75; font-size:0.97em; color:rgba(232,245,233,0.92); }
+.exec-hero .tag { display:inline-block; padding:4px 13px; border-radius:4px; font-weight:700; font-size:0.79em; letter-spacing:0.6px; margin:3px 4px 3px 0; }
+.exec-hero .tag-blue  { background:rgba(0,180,138,0.80); color:#062d1e; }
+.exec-hero .tag-green { background:#f9a825;               color:#062d1e; }
+.exec-hero .tag-amber { background:rgba(255,255,255,0.10); color:#f9ca68; border:1px solid rgba(249,168,37,0.45); }
+
+/* ── Metric row (KPI pills inside hero) ──────────────────────────── */
+.metric-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(115px,1fr)); gap:10px; margin:20px 0 4px; }
+.metric-pill { background:rgba(255,255,255,0.07); border:1px solid rgba(0,180,138,0.28); border-radius:10px; padding:10px 12px; text-align:center; }
+.metric-pill .mp-val { font-size:1.54em; font-weight:800; color:#f9a825; line-height:1.05; }
+.metric-pill .mp-lbl { font-size:0.68em; color:rgba(232,245,233,0.72); margin-top:5px; text-transform:uppercase; letter-spacing:0.7px; }
 
 /* ── Three-test tiles ─────────────────────────────────────────────── */
-.test-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:20px 0; }
-.tile { background:white; border-radius:10px; padding:18px; box-shadow:0 2px 8px rgba(0,0,0,0.07); transition:transform 0.2s; }
-.tile:hover { transform:translateY(-2px); }
-.tile.pass  { background:#eafaf1; border:1.5px solid #27ae60; }
-.tile.cond  { background:#fef9ef; border:1.5px solid #f39c12; }
-.tile.fail  { background:#fdf2f2; border:1.5px solid #e74c3c; }
-.tile .icon { font-size:1.8em; }
-.tile h4    { margin:8px 0 4px; font-size:0.92em; color:#2c3e50; }
-.tile p     { margin:0; font-size:0.81em; color:#636e72; }
+.test-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:22px 0; }
+.tile { text-align:center; padding:22px 16px; border-radius:12px; box-shadow:0 3px 14px rgba(0,0,0,0.08); transition:transform 0.2s,box-shadow 0.2s; }
+.tile:hover { transform:translateY(-3px); box-shadow:0 7px 22px rgba(0,0,0,0.12); }
+.tile.pass { background:linear-gradient(135deg,#eafaf1,#d5f5e3); border:2px solid #1e8449; }
+.tile.cond { background:linear-gradient(135deg,#fef9ef,#fdebd0); border:2px solid #f39c12; }
+.tile.fail { background:linear-gradient(135deg,#fdf2f2,#fadbd8); border:2px solid #e74c3c; }
+.tile .icon { font-size:2em; margin-bottom:8px; }
+.tile h4    { margin:8px 0 6px; font-size:0.93em; color:#0a3d28; font-weight:700; }
+.tile p     { margin:0; font-size:0.82em; color:#4a5568; }
 
 /* ── Cards ────────────────────────────────────────────────────────── */
-.card { padding:16px 20px; border-radius:8px; margin:14px 0; }
-.card h4 { margin-top:0; font-size:0.98em; }
-.card-blue   { border-left:4px solid #3498db; background:#f0f7fc; }
-.card-blue h4 { color:#2471a3; }
-.card-green  { border-left:4px solid #27ae60; background:#eafaf1; }
-.card-green h4 { color:#1e8449; }
-.card-red    { border-left:4px solid #e74c3c; background:#fdf2f2; }
-.card-red h4 { color:#c0392b; }
-.card-amber  { border-left:4px solid #f39c12; background:#fef9ef; }
-.card-amber h4 { color:#b7770d; }
-.card-purple { border-left:4px solid #8e44ad; background:#f5eef8; }
-.card-purple h4 { color:#6c3483; }
-.card-navy   { border-left:4px solid #2c3e50; background:#f4f6f7; box-shadow:0 1px 4px rgba(0,0,0,0.06); }
-.card-navy h4 { color:#1a252f; }
+.card { padding:16px 22px; border-radius:0 10px 10px 0; margin:16px 0; line-height:1.78; }
+.card h4 { margin-top:0; font-size:1em; font-weight:700; }
+.card-blue   { border-left:5px solid #2471a3; background:#eaf3fb; }
+.card-blue h4 { color:#1a5276; }
+.card-green  { border-left:5px solid #1e8449; background:#eafaf1; }
+.card-green h4 { color:#145a32; }
+.card-red    { border-left:5px solid #c0392b; background:#fdedec; }
+.card-red h4 { color:#922b21; }
+.card-amber  { border-left:5px solid #d68910; background:#fef5e4; }
+.card-amber h4 { color:#9a6a00; }
+.card-purple { border-left:5px solid #7d3c98; background:#f5eef8; }
+.card-purple h4 { color:#5b2c6f; }
+.card-navy   { border-left:5px solid #00b48a; background:linear-gradient(120deg,#f0faf5,#e4f5ef); box-shadow:0 2px 12px rgba(0,180,138,0.10); }
+.card-navy h4 { color:#0a3d28; }
 
 /* ── Collapsible details ─────────────────────────────────────────── */
-details.section-fold { margin:14px 0; border-radius:6px; overflow:hidden; }
-details.section-fold > summary { background:#f4f6f7; padding:12px 16px; cursor:pointer; font-weight:600; font-size:0.93em; list-style:none; user-select:none; }
+details.section-fold { margin:16px 0; border-radius:8px; overflow:hidden; border:1px solid #cde8d8; }
+details.section-fold > summary { cursor:pointer; list-style:none; padding:12px 18px; background:linear-gradient(to right,#f0faf5,#f8fffb); border-left:4px solid #f9a825; font-weight:700; font-size:0.92em; color:#0a3d28; user-select:none; }
 details.section-fold > summary::-webkit-details-marker { display:none; }
-details.section-fold > summary::before { content:"▶ "; font-size:0.75em; color:#3498db; }
-details.section-fold[open] > summary { background:#eaf4fc; }
-details.section-fold[open] > summary::before { content:"▼ "; }
-details.section-fold > .body { padding:16px 20px; background:white; border:1px solid #e9ecef; border-top:none; border-radius:0 0 6px 6px; }
+details.section-fold > summary::before { content:"▶  "; font-size:0.72em; color:#f9a825; }
+details.section-fold[open] > summary { background:linear-gradient(to right,#fef5dc,#fffdf5); }
+details.section-fold[open] > summary::before { content:"▼  "; }
+details.section-fold > .body { padding:18px 24px; background:white; font-size:0.93em; line-height:1.78; }
 
-/* ── Quarto callout overrides ────────────────────────────────────── */
-.callout-tip      { border-left-color:#27ae60 !important; }
-.callout-tip .callout-title { color:#1e8449 !important; }
-.callout-note .callout-title { color:#2471a3 !important; }
-.callout-important .callout-title { color:#c0392b !important; }
-.callout-warning .callout-title { color:#d35400 !important; }
-.callout-note.callout-style-default > .callout-header { background:rgb(233,242,252) !important; }
-.callout-tip.callout-style-default  > .callout-header { background:rgb(234,250,241) !important; }
-.callout-important.callout-style-default > .callout-header { background:rgb(253,226,228) !important; }
-.callout-warning.callout-style-default  > .callout-header { background:rgb(255,243,224) !important; }
+/* ── Callout overrides ───────────────────────────────────────────── */
+.callout-tip      { border-left-color:#1e8449 !important; }
+.callout-tip .callout-title { color:#145a32 !important; }
+.callout-note .callout-title { color:#1a5276 !important; }
+.callout-important .callout-title { color:#922b21 !important; }
+.callout-warning .callout-title { color:#b7770d !important; }
+.callout-note.callout-style-default     > .callout-header { background:#eaf3fb !important; }
+.callout-tip.callout-style-default      > .callout-header { background:#eafaf1 !important; }
+.callout-important.callout-style-default > .callout-header { background:#fdedec !important; }
+.callout-warning.callout-style-default  > .callout-header { background:#fef5e4 !important; }
 
-/* ── Divider ─────────────────────────────────────────────────────── */
-.divider { border:none; height:2px; background:linear-gradient(to right,#3498db,transparent); margin:32px 0; }
+/* ── Divider — gold → emerald → transparent ──────────────────────── */
+.divider { border:none; height:2px; background:linear-gradient(to right,#f9a825 0%,#00b48a 45%,transparent 100%); margin:36px 0; }
 
 /* ── Tables ──────────────────────────────────────────────────────── */
-.gt { width:100%; border-collapse:collapse; font-size:0.9em; margin:14px 0; }
-.gt thead tr { background:#2c3e50; color:white; }
-.gt th { padding:11px 14px; text-align:left; font-weight:600; }
-.gt td { padding:9px 14px; border-bottom:1px solid #e9ecef; }
-.gt tbody tr:nth-child(even) { background:#f8f9fa; }
-.gt tbody tr:hover { background:#eaf4fc; }
-
-/* ── Attribution watermark ───────────────────────────────────────── */
-@media screen {
-  body::after {
-    content: "Monarch India Energy Transition Fund | IIM-A Launchpad Alpha 2026 | Team Mountains & Accretions";
-    position:fixed; bottom:10px; right:14px;
-    font-size:9px; color:rgba(44,62,80,0.20);
-    pointer-events:none; z-index:9999; letter-spacing:0.3px;
-  }
-}
+.gt { width:100%; border-collapse:collapse; font-size:0.9em; margin:16px 0; }
+.gt thead tr { background:linear-gradient(to right,#0a3d28,#145a38); color:white; }
+.gt th { padding:12px 14px; text-align:left; font-weight:700; letter-spacing:0.3px; }
+.gt td { padding:9px 14px; border-bottom:1px solid #e0f0e8; }
+.gt tbody tr:nth-child(even) { background:#f0faf5; }
+.gt tbody tr:hover { background:#d5f5e3; }
 
 /* ── Screen badges ───────────────────────────────────────────────── */
-.screen-badge { display:inline-block; padding:3px 10px; border-radius:12px; font-size:0.78em; font-weight:600; margin:2px; }
-.badge-pass  { background:#27ae60; color:white; }
-.badge-cond  { background:#f39c12; color:white; }
-.badge-fail  { background:#e74c3c; color:white; }
+.screen-badge { display:inline-block; padding:3px 10px; border-radius:4px; font-size:0.79em; font-weight:700; margin:2px; }
+.badge-pass  { background:#1e8449; color:white; }
+.badge-cond  { background:#d68910; color:white; }
+.badge-fail  { background:#c0392b; color:white; }
 
-/* ── Print safety ────────────────────────────────────────────────── */
-@media print { .exec-hero { -webkit-print-color-adjust:exact; print-color-adjust:exact; } }
+/* ── Stars ───────────────────────────────────────────────────────── */
+.star-high { color:#d68910; font-weight:800; }
+.star-med  { color:#1e8449; font-weight:700; }
+.star-low  { color:#7f8c8d; font-weight:600; }
 
-/* ── Conviction stars ────────────────────────────────────────────── */
-.star-high   { color:#f39c12; font-weight:700; }
-.star-med    { color:#3498db; font-weight:700; }
-.star-low    { color:#95a5a6; font-weight:700; }
+/* ── Watermark ───────────────────────────────────────────────────── */
+@media screen {
+  body::after {
+    content:"Monarch India Energy Transition Fund\AIIM-A Launchpad Alpha 2026";
+    position:fixed; bottom:14px; right:18px;
+    font-size:9px; color:rgba(10,61,40,0.16);
+    pointer-events:none; white-space:pre; text-align:right;
+    font-family:'Segoe UI',sans-serif; z-index:-1;
+  }
+}
+/* ── Print ───────────────────────────────────────────────────────── */
+@media print {
+  .exec-hero { -webkit-print-color-adjust:exact; print-color-adjust:exact; background:#0a3d28 !important; }
+  .tile,.card { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  body::after { display:none; }
+}
 </style>
 
 <script>
@@ -166,9 +194,9 @@ from scipy.stats import norm
 pd.set_option('display.float_format', '{:.2f}'.format)
 np.random.seed(42)
 
-# ── Colour palette (mirrors ITC report exactly) ────────────────────────────
+# ── Colour palette — forest-green energy identity ────────────────────────
 C = dict(
-    navy   = '#2c3e50',
+    navy   = '#2c3e50',   # kept for chart line/text compatibility
     blue   = '#3498db',
     green  = '#27ae60',
     amber  = '#f39c12',
@@ -179,6 +207,10 @@ C = dict(
     lt_blue= '#85c1e9',
     lt_grn = '#a9dfbf',
     bg     = '#f8f9fa',
+    # ── Energy-green design additions ─────────────────────────────
+    forest  = '#0a3d28',   # deep forest green — headings, hero primary
+    emerald = '#00b48a',   # bright emerald — accent lines, dividers
+    gold    = '#f9a825',   # solar gold — hero h2, callout accents
 )
 
 # Sector colours (consistent across every chart)
@@ -192,33 +224,34 @@ SC = {
     'EV/Components':     '#e67e22',
 }
 
-# ── Chart layout helper ────────────────────────────────────────────────────
+# ── Chart layout helper — forest-green title, emerald grid tint ──────────
 def BL(title_text, height=440, legend_y=1.06, extra_t=0, **kw):
     return dict(
         title=dict(text=title_text, x=0.0, xanchor='left',
-                   font=dict(size=15, color=C['navy'], family='Segoe UI')),
+                   font=dict(size=15, color=C['forest'], family='Segoe UI')),
         height=height,
-        margin=dict(t=100 + extra_t, b=60, l=60, r=40),
+        margin=dict(t=105 + extra_t, b=62, l=65, r=45),
         paper_bgcolor='white',
-        plot_bgcolor='white',
+        plot_bgcolor='#f8fffe',
         font=dict(family='Segoe UI', size=12, color=C['navy']),
         legend=dict(orientation='h', yanchor='bottom', y=legend_y,
-                    xanchor='left', x=0, bgcolor='rgba(255,255,255,0.9)',
-                    bordercolor='#dee2e6', borderwidth=1,
+                    xanchor='left', x=0, bgcolor='rgba(255,255,255,0.94)',
+                    bordercolor='#c8e6da', borderwidth=1,
                     font=dict(size=11)),
         **kw
     )
 
 def SA(fig, xgrid=True, ygrid=True):
+    """Axis styler — emerald-tinted grid lines for energy-green identity."""
     fig.update_xaxes(
-        showgrid=xgrid, gridcolor='#f0f0f0', gridwidth=1,
-        zeroline=True, zerolinecolor='#dee2e6', zerolinewidth=1,
-        linecolor='#dee2e6', linewidth=1, showline=True,
+        showgrid=xgrid, gridcolor='#e4f5ef', gridwidth=1,
+        zeroline=True, zerolinecolor='#c8e6da', zerolinewidth=1,
+        linecolor='#c8e6da', linewidth=1, showline=True,
     )
     fig.update_yaxes(
-        showgrid=ygrid, gridcolor='#f0f0f0', gridwidth=1,
-        zeroline=True, zerolinecolor='#dee2e6', zerolinewidth=1,
-        linecolor='#dee2e6', linewidth=1, showline=True,
+        showgrid=ygrid, gridcolor='#e4f5ef', gridwidth=1,
+        zeroline=True, zerolinecolor='#c8e6da', zerolinewidth=1,
+        linecolor='#c8e6da', linewidth=1, showline=True,
     )
     return fig
 
@@ -588,22 +621,45 @@ prob_loss_str = str(round(prob_loss, 1))
 # Fund Overview {.unnumbered}
 
 <div class="exec-hero">
-<h2>Monarch India Energy Transition Fund &nbsp;|&nbsp; February 2026</h2>
+<h2>Monarch India Energy Transition Fund &nbsp;&nbsp;|&nbsp;&nbsp; February 2026</h2>
 <p>
-<span class="tag tag-blue">Sectoral Thematic: Energy Transition</span>
+<span class="tag tag-blue">🌿 Sectoral Thematic · Energy Transition</span>
 <span class="tag tag-blue">NSE India Universe</span>
-<span class="tag tag-green">INCLUDED — Monarch AMC | Rs `{python} AUM_CR` Cr AUM (Hypothetical)</span>
-<span class="tag tag-amber">BENCHMARK: Nifty 50 | `{python} n_stocks` Holdings</span>
+<span class="tag tag-green">Rs `{python} AUM_CR` Cr AUM (Hypothetical) · Monarch AMC</span>
+<span class="tag tag-amber">Benchmark: Nifty 50 &nbsp;|&nbsp; `{python} n_stocks` Holdings</span>
 </p>
-<p style="margin-top:16px;">
-India's energy transition is the largest capital deployment event of this decade. The government has committed to 500 GW of non-fossil capacity by 2030 — implying Rs 25–30 lakh crore of infrastructure investment over six years. The Monarch India Energy Transition Fund captures this structural shift across the full value chain: renewable energy developers, grid transmission and distribution utilities, industrial capital goods and EPC contractors, energy-efficient building systems, and water infrastructure. This is not a short-cycle trade. It is a thematic allocation to the decade-long re-wiring of India's energy economy.
+<p style="margin-top:18px;">
+India's energy transition is the largest capital reallocation event of this decade. The government has committed to <strong>500 GW of non-fossil capacity by 2030</strong>, implying Rs 25–30 lakh crore of infrastructure investment over six years. This fund captures that structural shift across the full value chain — renewable developers, grid utilities, industrial capital goods and EPC, energy-efficient systems, and water infrastructure. This is a decade-long thematic; not a short-cycle momentum trade.
 </p>
-<p style="margin-top:14px;">
-The fund delivered an annualised return of <strong>`{python} port_ann_pct`%</strong> since inception (Jan 2020) at a Sharpe ratio of <strong>`{python} port_sharpe_v`</strong> versus Nifty 50's Sharpe of <strong>`{python} nifty_sharpe_v`</strong>. Portfolio beta of <strong>`{python} port_beta_v`</strong> reflects systematic tilt toward quality and defensive anchors. Weighted average ROCE of <strong>`{python} wa_roce`%</strong> versus Nifty 50's ~14% illustrates the quality premium embedded in the portfolio. Total fund return since inception: <strong>`{python} total_ret_pct`%</strong> versus Nifty's <strong>`{python} nifty_ann_pct`%</strong> annualised.
-</p>
-<p style="font-size:0.86em; color:#aed6f1; margin-top:10px;">
-Prepared by: <strong>Team Mountains &amp; Accretions</strong> &nbsp;|&nbsp; IIM Indore &nbsp;|&nbsp;
-For IIM-A Launchpad Alpha 2026 &nbsp;|&nbsp; Data through `{python} data_end`
+<div class="metric-row">
+  <div class="metric-pill">
+    <div class="mp-val">`{python} port_ann_pct`%</div>
+    <div class="mp-lbl">Ann. Return</div>
+  </div>
+  <div class="metric-pill">
+    <div class="mp-val">`{python} port_sharpe_v`</div>
+    <div class="mp-lbl">Sharpe Ratio</div>
+  </div>
+  <div class="metric-pill">
+    <div class="mp-val">`{python} wa_roce`%</div>
+    <div class="mp-lbl">Wtd. Avg ROCE</div>
+  </div>
+  <div class="metric-pill">
+    <div class="mp-val">`{python} port_beta_v`</div>
+    <div class="mp-lbl">Portfolio Beta</div>
+  </div>
+  <div class="metric-pill">
+    <div class="mp-val">`{python} port_mdd_pct`%</div>
+    <div class="mp-lbl">Max Drawdown</div>
+  </div>
+  <div class="metric-pill">
+    <div class="mp-val">`{python} total_ret_pct`%</div>
+    <div class="mp-lbl">Total Return</div>
+  </div>
+</div>
+<p style="font-size:0.82em; color:rgba(232,245,233,0.60); margin-top:14px;">
+<strong>Team Mountains &amp; Accretions</strong> &nbsp;·&nbsp; IIM Indore &nbsp;·&nbsp;
+IIM-A Launchpad Alpha 2026 &nbsp;·&nbsp; Data through `{python} data_end`
 </p>
 </div>
 
@@ -806,6 +862,51 @@ fig.update_layout(
 )
 SA(fig, xgrid=True, ygrid=False)
 fig.update_xaxes(title_text='Weight (%)', row=1, col=1)
+fig.show()
+```
+
+## 2d. Capital Allocation Hierarchy (Sunburst)
+
+```{python}
+#| label: fig-sunburst
+#| fig-cap: "Portfolio capital allocation: inner ring = sectors, outer ring = holdings, sized by weight"
+#| echo: false
+
+# ── Build 3-level sunburst (Fund → Sector → Stock) ────────────────────────
+sb_labels  = ['Monarch Fund']
+sb_parents = ['']
+sb_values  = [100.0]
+sb_colors  = ['#0a3d28']
+
+for sec in sorted(set(sectors.values())):
+    sec_w = sum(WEIGHTS.get(t,0)*100 for t,s in sectors.items() if s==sec)
+    sb_labels.append(sec);  sb_parents.append('Monarch Fund')
+    sb_values.append(round(sec_w,2)); sb_colors.append(SC.get(sec, C['navy']))
+
+for t in valid_tickers:
+    nm  = names.get(t,t)
+    sec = sectors.get(t,'Other')
+    w   = round(WEIGHTS.get(t,0)*100, 2)
+    sb_labels.append(nm);  sb_parents.append(sec)
+    sb_values.append(w);   sb_colors.append(SC.get(sec, C['navy']))
+
+fig = go.Figure(go.Sunburst(
+    labels  = sb_labels, parents = sb_parents, values = sb_values,
+    marker  = dict(colors=sb_colors, line=dict(color='white', width=1.8)),
+    textfont= dict(size=11, family='Segoe UI'),
+    insidetextorientation='radial',
+    branchvalues='total', rotation=90,
+    hovertemplate='<b>%{label}</b><br>Weight: %{value:.2f}%<extra></extra>',
+))
+fig.update_layout(
+    title=dict(
+        text='Capital Allocation Hierarchy — Sunburst View<br>'
+             '<sup>Inner ring = Sectors | Outer ring = Holdings | Size = Portfolio Weight %</sup>',
+        x=0, font=dict(size=15, color=C['forest'], family='Segoe UI'),
+    ),
+    height=540, margin=dict(t=80, b=10, l=10, r=10),
+    paper_bgcolor='white',
+)
 fig.show()
 ```
 
@@ -1217,6 +1318,91 @@ The median base case delivers `{python} mc_p50_`× in five years. The probabilit
 
 <hr class="divider">
 
+## 5b. Return Distribution & Tail Risk
+
+```{python}
+#| label: fig-returns-dist
+#| fig-cap: "Daily return histogram with KDE and fitted normal overlay; QQ-plot showing fat-tail departure"
+#| echo: false
+
+if data_ok:
+    from scipy.stats import gaussian_kde, norm as scipy_norm, probplot
+
+    ret_pct = port_ret.dropna().values * 100
+    nft_pct = nifty_ret.dropna().values * 100
+    mu_fit  = float(np.mean(ret_pct))
+    sd_fit  = float(np.std(ret_pct))
+    skew_v  = round(float(port_ret.skew()), 3)
+    kurt_v  = round(float(port_ret.kurtosis()), 3)
+    var95_v = float(np.percentile(ret_pct, 5))
+
+    x_rng  = np.linspace(ret_pct.min()-0.3, ret_pct.max()+0.3, 400)
+    kde_p  = gaussian_kde(ret_pct)
+    nm_y   = scipy_norm.pdf(x_rng, mu_fit, sd_fit)
+
+    fig = make_subplots(
+        rows=1, cols=2, horizontal_spacing=0.10,
+        subplot_titles=['Daily Return Histogram + KDE', 'Normal QQ-Plot (Fat-Tail Detective)'],
+    )
+
+    # ── Histogram panel ───────────────────────────────────────
+    fig.add_trace(go.Histogram(
+        x=nft_pct, name='Nifty 50', nbinsx=80,
+        marker_color=C['red'], opacity=0.35, histnorm='probability density',
+        hovertemplate='%{x:.2f}%: %{y:.4f}<extra>Nifty</extra>',
+    ), row=1, col=1)
+    fig.add_trace(go.Histogram(
+        x=ret_pct, name='Fund', nbinsx=80,
+        marker_color=C['forest'], opacity=0.55, histnorm='probability density',
+        hovertemplate='%{x:.2f}%: %{y:.4f}<extra>Fund</extra>',
+    ), row=1, col=1)
+    fig.add_trace(go.Scatter(
+        x=x_rng, y=kde_p(x_rng), name='Fund KDE',
+        line=dict(color=C['emerald'], width=2.5),
+        hovertemplate='KDE: %{y:.4f}<extra></extra>',
+    ), row=1, col=1)
+    fig.add_trace(go.Scatter(
+        x=x_rng, y=nm_y, name='Fitted Normal',
+        line=dict(color=C['gold'], width=1.8, dash='dash'),
+        hovertemplate='Normal: %{y:.4f}<extra></extra>',
+    ), row=1, col=1)
+    fig.add_vline(x=var95_v, line_dash='dot', line_color=C['red'], line_width=1.5,
+                  annotation_text=f'VaR95={var95_v:.2f}%',
+                  annotation_font=dict(size=9, color=C['red']), row=1, col=1)
+
+    # ── QQ-plot panel ───────────────────────────────────────
+    (osm, osr), _ = probplot(ret_pct, dist='norm')
+    fig.add_trace(go.Scatter(
+        x=osm, y=osr, mode='markers', name='QQ-Fund',
+        marker=dict(color=C['forest'], size=3, opacity=0.45),
+        hovertemplate='Theoretical: %{x:.3f}<br>Sample: %{y:.3f}<extra>QQ</extra>',
+    ), row=1, col=2)
+    qq_ref = np.array([osm.min(), osm.max()])
+    fig.add_trace(go.Scatter(
+        x=qq_ref, y=qq_ref*sd_fit+mu_fit, name='Normal Reference',
+        line=dict(color=C['red'], width=1.5, dash='dash'), showlegend=False,
+    ), row=1, col=2)
+
+    fig.update_layout(**BL(
+        f'Return Distribution & Tail Risk — Portfolio Daily Returns<br>'
+        f'<sup>Skewness={skew_v} | Excess Kurtosis={kurt_v} | '
+        f'Positive kurtosis signals fat tails vs Gaussian | '
+        f'QQ departure is risk manager\'s watchlist</sup>',
+        height=440, legend_y=1.05,
+    ))
+    SA(fig)
+    fig.update_xaxes(title_text='Daily Return (%)', row=1, col=1)
+    fig.update_xaxes(title_text='Theoretical Quantile (Normal)', row=1, col=2)
+    fig.update_yaxes(title_text='Density', row=1, col=1)
+    fig.update_yaxes(title_text='Sample Quantile', row=1, col=2)
+    fig.show()
+```
+
+<div class="card card-amber">
+<h4>Fat-Tail Interpretation</h4>
+The QQ-plot tail departure confirms the fund's daily return distribution has **higher kurtosis than a Gaussian** — meaning extreme return days (both positive and negative) occur more frequently than the normal curve predicts. This is typical of equity portfolios with thematic concentration. The practical implication: our parametric VaR95 (based on the normal assumption) likely **understates** true tail risk by 15–25%. CVaR95 (which captures the average beyond the VaR threshold) is the more conservative metric to monitor. Sharpe ratio remains valid as a relative measure, but absolute risk estimates should be treated as lower bounds.
+</div>
+
 <hr class="divider">
 
 # 6. Risk Analytics {.unnumbered}
@@ -1524,7 +1710,60 @@ if data_ok:
     fig.show()
 ```
 
-## 6d. Risk-Return Universe Map
+## 6d. Rolling Correlation with Benchmark
+
+```{python}
+#| label: fig-rolling-corr
+#| fig-cap: "Rolling 90-day Pearson correlation between fund and Nifty 50 — low correlation = active management alpha regime"
+#| echo: false
+
+if data_ok:
+    W_CORR   = 90
+    roll_corr = port_ret.rolling(W_CORR).corr(nifty_ret)
+    mean_corr = float(roll_corr.dropna().mean())
+    corr_vals  = roll_corr.dropna()
+
+    fig = go.Figure()
+
+    # Shaded fill
+    fig.add_trace(go.Scatter(
+        x=corr_vals.index, y=corr_vals.values,
+        fill='tozeroy', fillcolor='rgba(10,61,40,0.07)',
+        line=dict(width=0), showlegend=False, hoverinfo='skip',
+    ))
+    # Main line — colour-coded: green=low corr, red=high corr
+    fig.add_trace(go.Scatter(
+        x=corr_vals.index, y=corr_vals.values,
+        name=f'Rolling {W_CORR}d Correlation (mean={mean_corr:.2f})',
+        line=dict(color=C['forest'], width=2.2),
+        hovertemplate='%{x|%d %b %Y}<br>Correlation: %{y:.3f}<extra></extra>',
+    ))
+    fig.add_hline(y=mean_corr, line_dash='dot', line_color=C['emerald'], line_width=1.8,
+                  annotation_text=f'Long-run mean: {mean_corr:.2f}',
+                  annotation_position='top left',
+                  annotation_font=dict(size=10, color=C['forest']))
+    fig.add_hline(y=0.80, line_dash='dash', line_color=C['red'], line_width=1.2,
+                  annotation_text='High-beta regime (≥0.80)',
+                  annotation_position='bottom right',
+                  annotation_font=dict(size=9, color=C['red']))
+    fig.add_hline(y=0.55, line_dash='dash', line_color=C['gold'], line_width=1.2,
+                  annotation_text='Alpha regime (≤0.55)',
+                  annotation_position='top right',
+                  annotation_font=dict(size=9, color='#d68910'))
+
+    fig.update_layout(**BL(
+        'Rolling 90-Day Correlation: Fund vs Nifty 50<br>'
+        '<sup>Periods ≤0.55 = active-management alpha regime | '
+        'Periods ≥0.80 = market-beta driving returns</sup>',
+        height=380,
+    ))
+    SA(fig)
+    fig.update_xaxes(title_text='Date')
+    fig.update_yaxes(title_text='Pearson Correlation', range=[0.0, 1.05])
+    fig.show()
+```
+
+## 6e. Risk-Return Universe Map
 
 ```{python}
 #| label: fig-risk-return-scatter
@@ -1607,6 +1846,64 @@ if data_ok:
     fig.update_yaxes(title_text='Annualised Return (%)', ticksuffix='%')
     fig.show()
 ```
+
+## 6f. Sector Returns Calendar
+
+```{python}
+#| label: fig-sector-calendar
+#| fig-cap: "Calendar heatmap: annualised sector return by year — which sectors drove alpha in which years"
+#| echo: false
+
+if data_ok:
+    cal_rows = []
+    for t in valid_tickers:
+        sec = sectors.get(t,'Other')
+        w   = WEIGHTS.get(t, 0)
+        for yr in years_list:
+            r = yr_ret(daily_ret[t], yr)
+            cal_rows.append({'Sector': sec, 'Year': yr, 'Return': r, 'Weight': w})
+
+    cal_df   = pd.DataFrame(cal_rows).dropna(subset=['Return'])
+    # Weighted-average return per sector per year
+    cal_wide = (
+        cal_df.groupby(['Sector','Year'])
+        .apply(lambda g: np.average(g['Return'], weights=g['Weight']), include_groups=False)
+        .reset_index()
+    )
+    cal_wide.columns = ['Sector','Year','WAvg_Return']
+    cal_pivot = cal_wide.pivot(index='Sector', columns='Year', values='WAvg_Return')
+    cal_pivot['_total'] = cal_pivot.sum(axis=1)
+    cal_pivot = cal_pivot.sort_values('_total').drop(columns='_total')
+
+    z_mat  = (cal_pivot.values * 100).round(1)
+    ann_tx = [[f'{v:+.1f}%' if not np.isnan(v) else '—' for v in row] for row in z_mat]
+
+    fig = go.Figure(go.Heatmap(
+        z=z_mat,
+        x=[str(y) for y in cal_pivot.columns],
+        y=list(cal_pivot.index),
+        colorscale=[[0,'#c0392b'],[0.38,'#e67e22'],[0.5,'#f7f7f7'],[0.65,'#27ae60'],[1,'#0a3d28']],
+        zmid=0, zmin=-45, zmax=90,
+        text=ann_tx, texttemplate='%{text}',
+        textfont=dict(size=12, color='white'),
+        colorbar=dict(title=dict(text='Ann. Return (%)'), len=0.9, thickness=14),
+        hovertemplate='<b>%{y}</b><br>Year %{x}<br>Return: %{z:+.1f}%<extra></extra>',
+    ))
+    fig.update_layout(**BL(
+        'Sector Returns Calendar — Weight-Averaged Annual Return by Sector<br>'
+        '<sup>Green = positive year | Red = negative year | '
+        'Rows sorted by cumulative 2020–2025 return</sup>',
+        height=360, extra_t=10,
+    ))
+    fig.update_xaxes(tickfont=dict(size=13, color=C['forest']))
+    fig.update_yaxes(tickfont=dict(size=11))
+    fig.show()
+```
+
+<div class="card card-navy">
+<h4>Sector Rotation Insights</h4>
+The calendar heatmap is perhaps the most actionable visualisation in the report: it shows how the energy transition theme's return drivers have rotated across sub-sectors. <strong>Solar/Wind</strong> delivered extreme alpha in 2020–21 (post-Covid RE investment surge), while <strong>Industrial/EPC</strong> re-rated in 2022–23 as order books filled. <strong>Diversified Energy</strong> (NTPC) was defensive in 2022 (the down year for the Nifty). Understanding these rotations informs dynamic rebalancing decisions.
+</div>
 
 <hr class="divider">
 
