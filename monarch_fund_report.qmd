@@ -20,7 +20,7 @@ format:
     self-contained: true
     fig-width: 10
     fig-height: 6
-
+    mainfont: "Segoe UI"
 execute:
   warning: false
   message: false
@@ -41,9 +41,9 @@ jupyter: python3
 
 /* ── Base Typography ─────────────────────────────────────────────────── */
 body { font-family:'Segoe UI',system-ui,sans-serif; font-size:15px; color:#2c3e50; line-height:1.78; }
-h1   { color:#2c3e50; font-weight:700; margin-top:2rem; }
-h2   { color:#34495e; font-weight:600; margin-top:1.6rem; }
-h3   { color:#2c3e50; font-weight:600; }
+h1   { color:#1a252f; font-weight:700; border-bottom:2px solid #3498db; padding-bottom:6px; margin-top:28px; }
+h2   { color:#2c3e50; font-weight:600; margin-top:22px; }
+h3   { color:#34495e; font-weight:600; }
 h4   { font-weight:600; }
 p    { line-height:1.78; }
 
@@ -177,10 +177,6 @@ details.section-fold > .body { padding:16px 22px; background:white; font-size:0.
 #quarto-sidebar .nav-link { font-size: 0.85rem; color: #495057; }
 #quarto-sidebar .nav-link:hover { color: #3498db; }
 #quarto-sidebar .active > .nav-link { color: #3498db !important; font-weight: 600; border-left: 3px solid #3498db; background: #f0f7fc; }
-/* Document title area - styled but visible */
-.quarto-title-meta { font-size: 0.88em; color: #6c757d; }
-.quarto-title h1.title { color: #2c3e50; font-weight: 700; margin-bottom: 0.3rem; }
-.quarto-title .subtitle { color: #3498db; font-weight: 500; }
 
 /* ── Print ───────────────────────────────────────────────────────── */
 @media print {
