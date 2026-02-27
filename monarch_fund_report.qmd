@@ -30,7 +30,7 @@ jupyter: python3
 ```{=html}
 <style>
 /* ============================================================
-   Monarch India Energy Transition Fund — Design System
+   Monarch India Energy Transition Fund - Design System
    Palette mirrors hw1_index: #3498DB primary blue, #2C3E50 dark,
    white/light-grey backgrounds, clean Segoe UI typography.
    ============================================================ */
@@ -52,7 +52,7 @@ details.code-fold summary { cursor:pointer; list-style:disclosure-closed; color:
 details.code-fold[open] summary { list-style:disclosure-open; }
 details.code-fold summary::marker { color:#6c757d; }
 
-/* ── Hero banner — light grey gradient + blue left border (like hw1 exec-summary-hero) */
+/* ── Hero banner - light grey gradient + blue left border (like hw1 exec-summary-hero) */
 .exec-hero {
   background: linear-gradient(135deg, #f8f9fa 0%, #ebf5fb 60%, #e8f4f8 100%);
   border-left: 5px solid #3498db;
@@ -130,7 +130,7 @@ details.section-fold > .body { padding:16px 22px; background:white; font-size:0.
 .callout-warning.callout-style-default  > .callout-header { background-color:rgb(255,243,224) !important; }
 .callout-important.callout-style-default > .callout-header { background-color:rgb(253,229,229) !important; }
 
-/* ── Section divider — grey fade (exactly hw1's .section-divider) ─────── */
+/* ── Section divider - grey fade (exactly hw1's .section-divider) ─────── */
 .divider { border:none; height:2px; background:linear-gradient(90deg,transparent,#bdc3c7,transparent); margin:2.5rem 0; }
 
 /* ── Tables (hw1 .styled-table) ────────────────────────────────────────── */
@@ -153,7 +153,7 @@ details.section-fold > .body { padding:16px 22px; background:white; font-size:0.
 /* ── Watermark ───────────────────────────────────────────────────── */
 @media screen {
   body::after {
-    content:"Monarch India Energy Transition Fund\AIIM-A Launchpad Alpha 2026";
+    content:"TEAM: Mountains & Accretions\AIIM Indore ";
     position:fixed; bottom:5px; right:10px;
     font-size:11px; color:rgba(100,100,100,0.35);
     font-family:'Segoe UI',Arial,sans-serif; pointer-events:none;
@@ -178,8 +178,10 @@ details.section-fold > .body { padding:16px 22px; background:white; font-size:0.
 #quarto-sidebar .nav-link { font-size: 0.85rem; color: #495057; }
 #quarto-sidebar .nav-link:hover { color: #3498db; }
 #quarto-sidebar .active > .nav-link { color: #3498db !important; font-weight: 600; border-left: 3px solid #3498db; background: #f0f7fc; }
-/* Document title area */
-#quarto-content .quarto-title { display: none; }
+/* Document title area - styled but visible */
+.quarto-title-meta { font-size: 0.88em; color: #6c757d; }
+.quarto-title h1.title { color: #2c3e50; font-weight: 700; margin-bottom: 0.3rem; }
+.quarto-title .subtitle { color: #3498db; font-weight: 500; }
 
 /* ── Print ───────────────────────────────────────────────────────── */
 @media print {
@@ -194,12 +196,26 @@ details.section-fold > .body { padding:16px 22px; background:white; font-size:0.
 document.addEventListener('DOMContentLoaded', function() {
   function resizePlots() {
     if (window.Plotly) {
-      document.querySelectorAll('.plotly-graph-div').forEach(function(el) {
-        Plotly.Plots.resize(el);
+      document.querySelectorAll('.js-plotly-plot').forEach(function(el) {
+        try { Plotly.Plots.resize(el); } catch(e) {}
       });
     }
   }
+  // Fire on initial page load (matches hw1_index.qmd pattern)
+  setTimeout(resizePlots, 300);
+  setTimeout(resizePlots, 800);
+  setTimeout(resizePlots, 2000);
+  window.addEventListener('load', function() {
+    setTimeout(resizePlots, 200);
+    setTimeout(resizePlots, 800);
+  });
   window.addEventListener('resize', function(){ setTimeout(resizePlots, 100); });
+  // Re-render when details/summary sections open
+  document.querySelectorAll('details').forEach(function(details) {
+    details.addEventListener('toggle', function() {
+      if (details.open) { setTimeout(resizePlots, 150); }
+    });
+  });
 });
 </script>
 ```
@@ -223,9 +239,9 @@ from scipy.stats import norm
 pd.set_option('display.float_format', '{:.2f}'.format)
 np.random.seed(42)
 
-# ── Colour palette — mirrors hw1_index.qmd (pastel blue, clean) ────────────
+# ── Colour palette - mirrors hw1_index.qmd (pastel blue, clean) ────────────
 C = dict(
-    navy   = '#2c3e50',   # dark slate — headings, chart text
+    navy   = '#2c3e50',   # dark slate - headings, chart text
     blue   = '#3498db',   # primary blue (hw1 primary_blue)
     green  = '#27ae60',   # positive
     amber  = '#f39c12',   # warning
@@ -236,9 +252,9 @@ C = dict(
     lt_blue= '#85c1e9',   # light blue fill
     lt_grn = '#a9dfbf',   # light green fill
     bg     = '#f8f9fa',   # light background
-    forest  = '#2c3e50',  # alias —— used in BL() titles
-    emerald = '#3498db',  # alias —— used in SA() grid accent
-    gold    = '#f39c12',  # alias —— used in highlight annotations
+    forest  = '#2c3e50',  # alias -- used in BL() titles
+    emerald = '#3498db',  # alias -- used in SA() grid accent
+    gold    = '#f39c12',  # alias -- used in highlight annotations
 )
 
 # Sector colours (consistent across every chart)
@@ -252,7 +268,7 @@ SC = {
     'EV/Components':     '#e67e22',
 }
 
-# ── Chart layout helper — matches hw1 clean white chart style ──────────
+# ── Chart layout helper - matches hw1 clean white chart style ──────────
 def BL(title_text, height=440, legend_y=1.06, extra_t=0, **kw):
     return dict(
         title=dict(text=title_text, x=0.0, xanchor='left',
@@ -270,7 +286,7 @@ def BL(title_text, height=440, legend_y=1.06, extra_t=0, **kw):
     )
 
 def SA(fig, xgrid=True, ygrid=True):
-    """Axis styler — clean grey grid matching hw1 Plotly charts."""
+    """Axis styler - clean grey grid matching hw1 Plotly charts."""
     fig.update_xaxes(
         showgrid=xgrid, gridcolor='#ecf0f1', gridwidth=1,
         zeroline=True, zerolinecolor='#dee2e6', zerolinewidth=1,
@@ -318,7 +334,7 @@ TRADING_DAYS = 252
 AUM_CR       = 500   # hypothetical Rs Cr
 
 # ── Desired portfolio weights (pre-normalisation) ──────────────────────────
-# Logic: risk-quality composite — Sharpe/Vol × ROCE premium × policy anchor bonus
+# Logic: risk-quality composite - Sharpe/Vol × ROCE premium × policy anchor bonus
 # NTPC & PowerGrid → anchor overweight (stable, policy-backed, defensive beta)
 # Quality industrials (Cummins, ABB) → premium for high ROCE
 # RE pure-plays → capped due to extreme volatility (Suzlon 56%, Inox 56%)
@@ -682,7 +698,7 @@ industrial capital goods &amp; EPC, energy-efficient systems, and water infrastr
 </div>
 <p style="font-size:0.83em; color:#7f8c8d; margin-top:14px;">
 <strong>Team Mountains &amp; Accretions</strong> &nbsp;&middot;&nbsp; IIM Indore &nbsp;&middot;&nbsp;
-IIM-A Launchpad Alpha 2026 &nbsp;&middot;&nbsp; Data through {data_end}
+Developed for: IIM-A Launchpad Alpha &nbsp;&middot;&nbsp; Data through {data_end}
 </p>
 </div>
 """
@@ -691,14 +707,14 @@ display(HTML(hero_html))
 
 ::: {.callout-note appearance="simple"}
 ## Transparency Note
-All price and returns data sourced from public market data (yfinance). Fundamental data (ROCE, P/E, DPS, FCF yield) are trailing FY2025 estimates based on published annual reports and earnings releases. Portfolio weights are model-derived — not NAV-based marks. AUM of Rs `{python} AUM_CR` Cr is hypothetical. All analysis is for educational purposes only.
+All price and returns data sourced from public market data (yfinance). Fundamental data (ROCE, P/E, DPS, FCF yield) are trailing FY2025 estimates based on published annual reports and earnings releases. Portfolio weights are model-derived - not NAV-based marks. AUM of Rs `{python} AUM_CR` Cr is hypothetical. All analysis is for educational purposes only.
 :::
 
 <hr class="divider">
 
-# 1. Portfolio Scorecard — Monarch Three-Test Framework {.unnumbered}
+# 1. Portfolio Scorecard - Monarch Three-Test Framework {.unnumbered}
 
-The Monarch Three-Test Framework — Moat, Management Quality, Valuation — is applied here at the **portfolio level**, not individual stock level. A portfolio that passes all three tests is eligible for inclusion and active management.
+The Monarch Three-Test Framework - Moat, Management Quality, Valuation - is applied here at the **portfolio level**, not individual stock level. A portfolio that passes all three tests is eligible for inclusion and active management.
 
 <div class="test-grid">
 <div class="tile pass">
@@ -720,7 +736,7 @@ The Monarch Three-Test Framework — Moat, Management Quality, Valuation — is 
 
 ```{python}
 #| label: fig-scorecard-bars
-#| fig-cap: "Portfolio-level Monarch Three-Test scoring — sub-criteria breakdown"
+#| fig-cap: "Portfolio-level Monarch Three-Test scoring - sub-criteria breakdown"
 #| echo: false
 
 criteria = [
@@ -760,7 +776,7 @@ for i, (lbl, thr) in enumerate(zip(labels, thresholds)):
     ))
 
 fig.update_layout(**BL(
-    'Monarch Three-Test Scoring — Portfolio Level<br>'
+    'Monarch Three-Test Scoring - Portfolio Level<br>'
     '<sup>Bars = score out of 10 | Red markers = minimum pass threshold</sup>',
     height=460, legend_y=1.05,
 ))
@@ -776,13 +792,13 @@ fig.show()
 
 ## 2a. Position Sizing Methodology
 
-The fund's position sizing follows a **risk-quality composite** framework — not equal-weighting. Each stock's target weight is derived from three factors:
+The fund's position sizing follows a **risk-quality composite** framework - not equal-weighting. Each stock's target weight is derived from three factors:
 
-1. **Sharpe/Volatility Score** — higher Sharpe per unit of volatility → higher weight. This is equivalent to a risk-parity tilt but penalises pure-momentum stocks with extreme volatility (e.g., Suzlon capped at 4.2% despite Sharpe of 1.80 due to 56% annualised volatility).
+1. **Sharpe/Volatility Score** - higher Sharpe per unit of volatility → higher weight. This is equivalent to a risk-parity tilt but penalises pure-momentum stocks with extreme volatility (e.g., Suzlon capped at 4.2% despite Sharpe of 1.80 due to 56% annualised volatility).
 
-2. **ROCE Premium** — stocks with ROCE ≥ 25% receive a 10–20% weight premium. In a long-time-horizon sectoral fund, quality of capital deployment compounds. Cummins India (38% ROCE) and ABB (35% ROCE) receive premium weights reflecting this.
+2. **ROCE Premium** - stocks with ROCE ≥ 25% receive a 10–20% weight premium. In a long-time-horizon sectoral fund, quality of capital deployment compounds. Cummins India (38% ROCE) and ABB (35% ROCE) receive premium weights reflecting this.
 
-3. **Policy Anchor Bonus** — NTPC and Power Grid are public-sector utilities with regulated returns and government-backed balance sheets. They receive explicit overweights as the fund's defensive core — portfolio anchors during periods of risk-off selling.
+3. **Policy Anchor Bonus** - NTPC and Power Grid are public-sector utilities with regulated returns and government-backed balance sheets. They receive explicit overweights as the fund's defensive core - portfolio anchors during periods of risk-off selling.
 
 <div class="card card-navy">
 <h4>Portfolio Concentration Metrics</h4>
@@ -800,14 +816,14 @@ The fund's position sizing follows a **risk-quality composite** framework — no
 
 ::: {.callout-tip}
 ## On Cap vs Floor
-No single position exceeds **8%** to prevent over-concentration in any one regulatory regime. A minimum floor of **1.5%** ensures no purely token positions — every holding must earn its seat in the portfolio. NTPC and Power Grid together constitute the defensive anchor at **14%** of AUM.
+No single position exceeds **8%** to prevent over-concentration in any one regulatory regime. A minimum floor of **1.5%** ensures no purely token positions - every holding must earn its seat in the portfolio. NTPC and Power Grid together constitute the defensive anchor at **14%** of AUM.
 :::
 
 ## 2b. Portfolio Treemap
 
 ```{python}
 #| label: fig-treemap
-#| fig-cap: "Portfolio allocation — sector → stock decomposition; area proportional to portfolio weight"
+#| fig-cap: "Portfolio allocation - sector → stock decomposition; area proportional to portfolio weight"
 #| echo: false
 
 tm_df = holdings_df.copy()
@@ -832,7 +848,7 @@ fig = go.Figure(go.Treemap(
     ),
 ))
 fig.update_layout(
-    title    = dict(text='Portfolio Allocation — Sector & Stock Treemap',
+    title    = dict(text='Portfolio Allocation - Sector & Stock Treemap',
                     x=0, font=dict(size=15, color=C['navy'])),
     height   = 480,
     margin   = dict(t=60, b=10, l=10, r=10),
@@ -926,7 +942,7 @@ fig = go.Figure(go.Sunburst(
 ))
 fig.update_layout(
     title=dict(
-        text='Capital Allocation Hierarchy — Sunburst View<br>'
+        text='Capital Allocation Hierarchy - Sunburst View<br>'
              '<sup>Inner ring = Sectors | Outer ring = Holdings | Size = Portfolio Weight %</sup>',
         x=0, font=dict(size=15, color=C['forest'], family='Segoe UI'),
     ),
@@ -942,7 +958,7 @@ fig.show()
 
 ```{python}
 #| label: fig-holdings-table
-#| fig-cap: "All holdings — weight, conviction, price target, upside, and investment thesis"
+#| fig-cap: "All holdings - weight, conviction, price target, upside, and investment thesis"
 #| echo: false
 
 hdf = holdings_df.copy()
@@ -1013,7 +1029,7 @@ fig = go.Figure(go.Table(
     ),
 ))
 fig.update_layout(
-    title=dict(text='Holdings Table — Monarch India Energy Transition Fund',
+    title=dict(text='Holdings Table - Monarch India Energy Transition Fund',
                x=0, font=dict(size=15, color=C['navy'])),
     height=760, margin=dict(t=70, b=10, l=10, r=10),
     paper_bgcolor='white',
@@ -1022,22 +1038,22 @@ fig.show()
 ```
 
 <details class="section-fold">
-<summary>Thesis Detail — Top 7 High-Conviction Holdings</summary>
+<summary>Thesis Detail - Top 7 High-Conviction Holdings</summary>
 <div class="body">
 
-**NTPC (7.5% weight, ★★★★★)** — India's largest power utility with 70 GW installed capacity and an incremental 60 GW renewable target by FY2032. NTPC operates under regulated return frameworks that guarantee 15–16% ROE on regulated equity. With a dividend yield of 5.5%, it functions as the portfolio's income anchor. The ongoing shift from coal-only to diversified generation (solar, wind, hydro, pump storage) gives NTPC the longest structural runway in the fund.
+**NTPC (7.5% weight, ★★★★★)** - India's largest power utility with 70 GW installed capacity and an incremental 60 GW renewable target by FY2032. NTPC operates under regulated return frameworks that guarantee 15–16% ROE on regulated equity. With a dividend yield of 5.5%, it functions as the portfolio's income anchor. The ongoing shift from coal-only to diversified generation (solar, wind, hydro, pump storage) gives NTPC the longest structural runway in the fund.
 
-**Power Grid (6.5% weight, ★★★★★)** — A regulated monopoly on inter-state transmission. Power Grid earns 15.5% ROE on a Rs 2.6 lakh crore regulatory asset base, with Rs 1.5 lakh crore of new capex sanctioned through FY2030 in the Revamped Distribution Sector Scheme. With beta of 0.69 — the lowest in the fund — and a 5.5% dividend yield, this is the truest defensive position in the portfolio.
+**Power Grid (6.5% weight, ★★★★★)** - A regulated monopoly on inter-state transmission. Power Grid earns 15.5% ROE on a Rs 2.6 lakh crore regulatory asset base, with Rs 1.5 lakh crore of new capex sanctioned through FY2030 in the Revamped Distribution Sector Scheme. With beta of 0.69 - the lowest in the fund - and a 5.5% dividend yield, this is the truest defensive position in the portfolio.
 
-**Cummins India (6.0% weight, ★★★★★)** — The quality king of the industrial EPC sector. 38% ROCE, zero net debt, and a secular demand driver in data center and industrial gensets as India's grid remains unreliable for large consumers. Cummins's parent exports approvals give it technology access unavailable to domestic competition. The data center power demand boom (India AI capex) adds a materially incremental kicker.
+**Cummins India (6.0% weight, ★★★★★)** - The quality king of the industrial EPC sector. 38% ROCE, zero net debt, and a secular demand driver in data center and industrial gensets as India's grid remains unreliable for large consumers. Cummins's parent exports approvals give it technology access unavailable to domestic competition. The data center power demand boom (India AI capex) adds a materially incremental kicker.
 
-**Tata Power (5.5% weight, ★★★★☆)** — India's most diversified integrated clean energy company: 15 GW renewable capacity, distribution licenses in Delhi and Mumbai, and an EPC division executing rooftop solar at scale. Uniquely positioned to benefit from both generation growth and distribution privatisation.
+**Tata Power (5.5% weight, ★★★★☆)** - India's most diversified integrated clean energy company: 15 GW renewable capacity, distribution licenses in Delhi and Mumbai, and an EPC division executing rooftop solar at scale. Uniquely positioned to benefit from both generation growth and distribution privatisation.
 
-**ABB India (5.5% weight, ★★★★☆)** — Global technology moat expressed locally. ABB's HVDC (high-voltage direct current) systems are essential for India's long-distance renewable energy corridors. As India builds 15 GW of offshore wind (2030 target) requiring deep-sea DC transmission, ABB becomes a near-monopoly supplier. ROCE of 35% reflects the technology premium.
+**ABB India (5.5% weight, ★★★★☆)** - Global technology moat expressed locally. ABB's HVDC (high-voltage direct current) systems are essential for India's long-distance renewable energy corridors. As India builds 15 GW of offshore wind (2030 target) requiring deep-sea DC transmission, ABB becomes a near-monopoly supplier. ROCE of 35% reflects the technology premium.
 
-**Torrent Power (5.0% weight, ★★★★☆)** — The most efficient private distribution utility in India — AT&C losses below 8% versus the national average of 18%. Torrent's Ahmedabad and Surat franchises generate stable FCF that funds renewable capacity growth. Calmar ratio of 1.06 — best in the Grid sector — confirms the defensive earnings profile.
+**Torrent Power (5.0% weight, ★★★★☆)** - The most efficient private distribution utility in India - AT&C losses below 8% versus the national average of 18%. Torrent's Ahmedabad and Surat franchises generate stable FCF that funds renewable capacity growth. Calmar ratio of 1.06 - best in the Grid sector - confirms the defensive earnings profile.
 
-**Siemens India (5.0% weight, ★★★★☆)** — Smart grid automation demand from the National Smart Grid Mission + metro rail electrification from the Urban Transport capex push. Siemens's transformer and switchgear divisions are direct beneficiaries. Parent Siemens AG's global technology pipeline gives the India subsidiary continuous product reinvention.
+**Siemens India (5.0% weight, ★★★★☆)** - Smart grid automation demand from the National Smart Grid Mission + metro rail electrification from the Urban Transport capex push. Siemens's transformer and switchgear divisions are direct beneficiaries. Parent Siemens AG's global technology pipeline gives the India subsidiary continuous product reinvention.
 </div>
 </details>
 
@@ -1049,7 +1065,7 @@ fig.show()
 
 ```{python}
 #| label: fig-kpi-dashboard
-#| fig-cap: "Key portfolio metrics vs Nifty 50 benchmark — as of February 2026"
+#| fig-cap: "Key portfolio metrics vs Nifty 50 benchmark - as of February 2026"
 #| echo: false
 
 kpis = [
@@ -1087,7 +1103,7 @@ for i, (lbl, val, ref, sfx, lower_better) in enumerate(kpis):
     ), row=r+1, col=c+1)
 
 fig.update_layout(
-    title=dict(text='Portfolio KPI Dashboard — Monarch Energy Transition Fund (Jan 2020 – Feb 2026)',
+    title=dict(text='Portfolio KPI Dashboard - Monarch Energy Transition Fund (Jan 2020 – Feb 2026)',
                x=0, font=dict(size=15, color=C['navy'])),
     height=340, margin=dict(t=80, b=20, l=20, r=20),
     paper_bgcolor='white',
@@ -1100,7 +1116,7 @@ fig.show()
 
 ```{python}
 #| label: fig-cumulative-perf
-#| fig-cap: "Cumulative NAV vs Nifty 50 — fund vs benchmark since January 2020"
+#| fig-cap: "Cumulative NAV vs Nifty 50 - fund vs benchmark since January 2020"
 #| echo: false
 
 if data_ok:
@@ -1111,7 +1127,7 @@ if data_ok:
         shared_xaxes=True,
     )
 
-    # Main panel — cumulative returns
+    # Main panel - cumulative returns
     fig.add_trace(go.Scatter(
         x=cum_port.index, y=cum_port.values,
         name='Monarch Fund', line=dict(color=C['navy'], width=2.5),
@@ -1147,7 +1163,7 @@ if data_ok:
     fig.add_hline(y=1.0, line_dash='dash', line_color='#95a5a6', line_width=1, row=2, col=1)
 
     fig.update_layout(**BL(
-        'Cumulative Performance — Monarch Fund vs Nifty 50 (Base = 1.0×)<br>'
+        'Cumulative Performance - Monarch Fund vs Nifty 50 (Base = 1.0×)<br>'
         f'<sup>Total Fund Return: {total_ret_pct:+.1f}% | Ann. Nifty: {nifty_ann_pct:.1f}%</sup>',
         height=500, legend_y=1.04,
     ))
@@ -1162,7 +1178,7 @@ if data_ok:
 
 ```{python}
 #| label: fig-efficient-frontier
-#| fig-cap: "Efficient frontier — 5,000 random portfolios coloured by Sharpe ratio; actual fund portfolio marked"
+#| fig-cap: "Efficient frontier - 5,000 random portfolios coloured by Sharpe ratio; actual fund portfolio marked"
 #| echo: false
 
 if data_ok and len(valid_tickers) >= 4:
@@ -1267,7 +1283,7 @@ if data_ok and len(valid_tickers) >= 4:
     ))
 
     fig.update_layout(**BL(
-        'Mean-Variance Efficient Frontier — Energy Transition Universe<br>'
+        'Mean-Variance Efficient Frontier - Energy Transition Universe<br>'
         f'<sup>5,000 random portfolios coloured by Sharpe | '
         f'Monarch Fund Sharpe = {act_sh:.2f} | Long-only allocations only</sup>',
         height=520, legend_y=1.05,
@@ -1280,14 +1296,14 @@ if data_ok and len(valid_tickers) >= 4:
 
 <div class="card card-blue">
 <h4>Efficient Frontier Interpretation</h4>
-The scatter confirms the fund's positioning near the efficient frontier — not at the absolute minimum-variance point (which would require near-100% NTPC/PowerGrid), but on the upper-right region where higher quality/momentum names add return at an acceptable volatility cost. The **Capital Market Line** (tangent from the risk-free rate) passes through the Monarch Fund star, indicating optimal Sharpe positioning given the universe constraints.
+The scatter confirms the fund's positioning near the efficient frontier - not at the absolute minimum-variance point (which would require near-100% NTPC/PowerGrid), but on the upper-right region where higher quality/momentum names add return at an acceptable volatility cost. The **Capital Market Line** (tangent from the risk-free rate) passes through the Monarch Fund star, indicating optimal Sharpe positioning given the universe constraints.
 </div>
 
 ## 4d. Portfolio Monthly Return Fingerprint
 
 ```{python}
 #| label: fig-monthly-heatmap
-#| fig-cap: "Monthly return heatmap — portfolio calendar showing best/worst months by year"
+#| fig-cap: "Monthly return heatmap - portfolio calendar showing best/worst months by year"
 #| echo: false
 
 if data_ok:
@@ -1318,7 +1334,7 @@ if data_ok:
         hovertemplate='<b>%{y} %{x}</b><br>Return: %{z:+.2f}%<extra></extra>',
     ))
     fig.update_layout(**BL(
-        'Monthly Return Fingerprint — Monarch Fund Calendar<br>'
+        'Monthly Return Fingerprint - Monarch Fund Calendar<br>'
         '<sup>Green cells = positive months | Red = negative | Sorted newest year first</sup>',
         height=340, extra_t=20,
     ))
@@ -1331,7 +1347,7 @@ if data_ok:
 
 ```{python}
 #| label: fig-annual-returns
-#| fig-cap: "Calendar year returns — fund vs Nifty 50 by year"
+#| fig-cap: "Calendar year returns - fund vs Nifty 50 by year"
 #| echo: false
 
 yrs = [y for y in years_list if port_ann_yr.get(y) is not None and not np.isnan(port_ann_yr.get(y, np.nan))]
@@ -1352,7 +1368,7 @@ fig.add_trace(go.Bar(
     hovertemplate='<b>%{x}</b><br>Nifty: %{y:+.1f}%<extra></extra>',
 ))
 fig.update_layout(**BL(
-    'Calendar Year Returns — Fund vs Nifty 50',
+    'Calendar Year Returns - Fund vs Nifty 50',
     height=430, legend_y=1.04,
     barmode='group',
 ))
@@ -1422,7 +1438,7 @@ fig.show()
 
 ```{python}
 #| label: fig-rolling-sharpe
-#| fig-cap: "Rolling 90-day annualised Sharpe ratio — fund vs Nifty 50"
+#| fig-cap: "Rolling 90-day annualised Sharpe ratio - fund vs Nifty 50"
 #| echo: false
 
 if data_ok:
@@ -1459,7 +1475,7 @@ if data_ok:
                   annotation_font=dict(size=10, color=C['green']))
     fig.add_hline(y=0, line_color='#dee2e6', line_width=1)
 
-    fig.update_layout(**BL('Rolling 90-Day Sharpe Ratio — Fund vs Nifty 50', height=400))
+    fig.update_layout(**BL('Rolling 90-Day Sharpe Ratio - Fund vs Nifty 50', height=400))
     SA(fig)
     fig.update_yaxes(title_text='Sharpe Ratio (Annualised)')
     fig.update_xaxes(title_text='Date')
@@ -1467,18 +1483,18 @@ if data_ok:
 ```
 
 <div class="card card-blue">
-<h4>Performance Summary — Fund vs Nifty 50</h4>
+<h4>Performance Summary - Fund vs Nifty 50</h4>
 
 | Metric | Monarch Fund | Nifty 50 | Alpha |
 |---|---|---|---|
 | **Annualised Return** | `{python} port_ann_pct`% | `{python} nifty_ann_pct`% | `{python} round(port_ann_pct - nifty_ann_pct, 1)`% |
 | **Sharpe Ratio** | `{python} port_sharpe_v` | `{python} nifty_sharpe_v` | `{python} round(port_sharpe_v - nifty_sharpe_v, 2)` |
-| **Sortino Ratio** | `{python} port_sortino_v` | `{python} round(ns['sortino'],2) if data_ok else 0.46` | — |
-| **Beta** | `{python} port_beta_v` | 1.00 | — |
-| **Max Drawdown** | `{python} port_mdd_pct`% | `{python} round(ns['max_dd']*100,1) if data_ok else -38.4`% | — |
-| **Information Ratio** | `{python} port_ir_v` | — | — |
+| **Sortino Ratio** | `{python} port_sortino_v` | `{python} round(ns['sortino'],2) if data_ok else 0.46` | - |
+| **Beta** | `{python} port_beta_v` | 1.00 | - |
+| **Max Drawdown** | `{python} port_mdd_pct`% | `{python} round(ns['max_dd']*100,1) if data_ok else -38.4`% | - |
+| **Information Ratio** | `{python} port_ir_v` | - | - |
 
-The annualised alpha of **`{python} round(port_ann_pct - nifty_ann_pct, 1)`%** reflects genuine thematic outperformance from India's energy capex cycle. The Information Ratio of **`{python} port_ir_v`** — the consistency of that alpha per unit of tracking error — is the most important single number in this report. It confirms that the outperformance is structural, not a one-year anomaly.
+The annualised alpha of **`{python} round(port_ann_pct - nifty_ann_pct, 1)`%** reflects genuine thematic outperformance from India's energy capex cycle. The Information Ratio of **`{python} port_ir_v`** - the consistency of that alpha per unit of tracking error - is the most important single number in this report. It confirms that the outperformance is structural, not a one-year anomaly.
 </div>
 
 <hr class="divider">
@@ -1489,7 +1505,7 @@ A 5-year forward projection using Geometric Brownian Motion calibrated to the fu
 
 ```{python}
 #| label: fig-monte-carlo
-#| fig-cap: "Monte Carlo NAV fan chart — 5-year projection (8,000 GBM simulations)"
+#| fig-cap: "Monte Carlo NAV fan chart - 5-year projection (8,000 GBM simulations)"
 #| echo: false
 
 x_yr  = np.linspace(0, 5, N_DAYS+1)
@@ -1538,7 +1554,7 @@ fig.add_hline(y=1.0, line_dash='dot', line_color='#95a5a6', line_width=1,
               annotation_text='Break-even', annotation_font=dict(size=9))
 
 fig.update_layout(**BL(
-    f'5-Year Monte Carlo NAV Projection — Geometric Brownian Motion<br>'
+    f'5-Year Monte Carlo NAV Projection - Geometric Brownian Motion<br>'
     f'<sup>N=8,000 sims | Ann.μ={mu_d*TRADING_DAYS*100:.1f}% | '
     f'Ann.σ={sig_d*np.sqrt(TRADING_DAYS)*100:.1f}% | '
     f'P(Beat Nifty)={prob_beat:.0f}% | P(Loss after 5Y)={prob_loss:.0f}%</sup>',
@@ -1561,8 +1577,8 @@ fig.show()
 | **Base (P50 median)** | `{python} mc_p50_`× | `{python} int(mc_base_ret)`% |
 | **Bull (P95)** | `{python} mc_p95_`× | `{python} int(mc_bull_ret)`% |
 | **Nifty GBM median** | `{python} nifty_final`× | `{python} int(nifty_ret_5y)`% |
-| **P(Beat Nifty after 5Y)** | — | **`{python} prob_beat_str`%** |
-| **P(Capital Loss after 5Y)** | — | `{python} prob_loss_str`% |
+| **P(Beat Nifty after 5Y)** | - | **`{python} prob_beat_str`%** |
+| **P(Capital Loss after 5Y)** | - | `{python} prob_loss_str`% |
 
 The median base case delivers `{python} mc_p50_`× in five years. The probability of capital loss over a 5-year horizon is only `{python} prob_loss_str`%, which reflects the high Sharpe ratio and consistent compounding of underlying businesses. The fund is expected to beat the Nifty 50 GBM median trajectory in `{python} prob_beat_str`% of simulations.
 </div>
@@ -1635,7 +1651,7 @@ if data_ok:
     ), row=1, col=2)
 
     fig.update_layout(**BL(
-        f'Return Distribution & Tail Risk — Portfolio Daily Returns<br>'
+        f'Return Distribution & Tail Risk - Portfolio Daily Returns<br>'
         f'<sup>Skewness={skew_v} | Excess Kurtosis={kurt_v} | '
         f'Positive kurtosis signals fat tails vs Gaussian | '
         f'QQ departure is risk manager\'s watchlist</sup>',
@@ -1651,7 +1667,7 @@ if data_ok:
 
 <div class="card card-amber">
 <h4>Fat-Tail Interpretation</h4>
-The QQ-plot tail departure confirms the fund's daily return distribution has **higher kurtosis than a Gaussian** — meaning extreme return days (both positive and negative) occur more frequently than the normal curve predicts. This is typical of equity portfolios with thematic concentration. The practical implication: our parametric VaR95 (based on the normal assumption) likely **understates** true tail risk by 15–25%. CVaR95 (which captures the average beyond the VaR threshold) is the more conservative metric to monitor. Sharpe ratio remains valid as a relative measure, but absolute risk estimates should be treated as lower bounds.
+The QQ-plot tail departure confirms the fund's daily return distribution has **higher kurtosis than a Gaussian** - meaning extreme return days (both positive and negative) occur more frequently than the normal curve predicts. This is typical of equity portfolios with thematic concentration. The practical implication: our parametric VaR95 (based on the normal assumption) likely **understates** true tail risk by 15–25%. CVaR95 (which captures the average beyond the VaR threshold) is the more conservative metric to monitor. Sharpe ratio remains valid as a relative measure, but absolute risk estimates should be treated as lower bounds.
 </div>
 
 <hr class="divider">
@@ -1682,7 +1698,7 @@ else:
 # Value: 1/PE (lower PE = cheaper = higher value score)
 # Quality: ROCE% (higher ROCE = better quality)
 # Momentum: annualised return over data period
-# Low Volatility: 1/(ann vol %) — lower vol = higher low-vol score
+# Low Volatility: 1/(ann vol %) - lower vol = higher low-vol score
 fac_rows = []
 for t in valid_tickers:
     f    = FUNDAMENTALS.get(t, (15,30,0,2))
@@ -1710,11 +1726,11 @@ for col in ['Value_z','Quality_z','Momentum_z','LowVol_z']:
 
 # ── Scenario Analysis ──────────────────────────────────────────────────────
 # 4 macro/thematic shocks; impact on each stock modelled as:
-# Scenario 1 — Market crash (Nifty -25%): stock_impact ≈ beta_i × -25%
-# Scenario 2 — Rate hike +150bps: duration_proxy × (-0.015); 
+# Scenario 1 - Market crash (Nifty -25%): stock_impact ≈ beta_i × -25%
+# Scenario 2 - Rate hike +150bps: duration_proxy × (-0.015); 
 #              utilities shorter duration (regulated tariffs), industrials longer
-# Scenario 3 — Commodity spike (steel/copper +40%): affects EPC margin (input cost %)
-# Scenario 4 — Policy reversal (RE tariff freeze / subsidy cut ~30%):
+# Scenario 3 - Commodity spike (steel/copper +40%): affects EPC margin (input cost %)
+# Scenario 4 - Policy reversal (RE tariff freeze / subsidy cut ~30%):
 #              directly hits RE developers and wind OEMs
 
 DURATION_PROXY = {  # higher = more interest-rate sensitive (like bond duration)
@@ -1807,7 +1823,7 @@ pf_value_str      = str(round(port_fac['Value_z'],2))
 
 ```{python}
 #| label: fig-corr-heatmap
-#| fig-cap: "Pairwise return correlation matrix — lower-triangle; sorted by sector"
+#| fig-cap: "Pairwise return correlation matrix - lower-triangle; sorted by sector"
 #| echo: false
 
 if data_ok:
@@ -1850,7 +1866,7 @@ if data_ok:
     ))
     fig.update_layout(annotations=annotations)
     fig.update_layout(**BL(
-        'Return Correlation Matrix — Energy Transition Fund Universe<br>'
+        'Return Correlation Matrix - Energy Transition Fund Universe<br>'
         '<sup>Lower triangle | Sorted by sector grouping | Jan 2020–Feb 2026</sup>',
         height=600, extra_t=20,
     ))
@@ -1861,14 +1877,14 @@ if data_ok:
 
 <div class="card card-navy">
 <h4>Correlation Insights</h4>
-Within-sector correlations are predictably high (Solar/Wind stocks cluster at 0.55–0.75) while cross-sector correlations are more moderate. The most important observation: **NTPC and Power Grid** — the fund's two largest anchor positions — show relatively low correlation to pure-play RE names (r ≈ 0.35–0.45), confirming their diversification benefit within the portfolio. The EV/Components (Motherson) and Water/Waste (Wabag) allocations provide genuine cross-sectoral diversification.
+Within-sector correlations are predictably high (Solar/Wind stocks cluster at 0.55–0.75) while cross-sector correlations are more moderate. The most important observation: **NTPC and Power Grid** - the fund's two largest anchor positions - show relatively low correlation to pure-play RE names (r ≈ 0.35–0.45), confirming their diversification benefit within the portfolio. The EV/Components (Motherson) and Water/Waste (Wabag) allocations provide genuine cross-sectoral diversification.
 </div>
 
-## 6b. Fundamental Quality Map — ROCE vs P/E
+## 6b. Fundamental Quality Map - ROCE vs P/E
 
 ```{python}
 #| label: fig-quality-map
-#| fig-cap: "Fundamental quality map: ROCE (quality) vs P/E (valuation) — ideal holdings are top-left (high ROCE, low P/E); bubble size = portfolio weight"
+#| fig-cap: "Fundamental quality map: ROCE (quality) vs P/E (valuation) - ideal holdings are top-left (high ROCE, low P/E); bubble size = portfolio weight"
 #| echo: false
 
 fig = go.Figure()
@@ -1926,7 +1942,7 @@ for t in valid_tickers:
     ))
 
 fig.update_layout(**BL(
-    'Fundamental Quality Map — ROCE vs P/E<br>'
+    'Fundamental Quality Map - ROCE vs P/E<br>'
     '<sup>Top-left = Quality Compounder (ideal) | Bubble size = portfolio weight | Sector colour coded</sup>',
     height=540, legend_y=1.04,
 ))
@@ -1940,14 +1956,14 @@ fig.show()
 
 <div class="card card-blue">
 <h4>Quality Map Reading Guide</h4>
-The ideal holding sits in the **top-left quadrant**: high ROCE (capital-efficient business), reasonable P/E (not overvalued). Cummins India and ABB occupy this space — the fund's quality anchors. NTPC and Power Grid appear in the mid-range (regulated ROCE ~12–16%, moderate P/E ~18×), which is appropriate for utility-grade regulated returns. The solar pure-plays (Adani Green, Waaree) show high P/E relative to current ROCE, justified by forward growth optionality — these are the highest-risk, highest-conviction names.
+The ideal holding sits in the **top-left quadrant**: high ROCE (capital-efficient business), reasonable P/E (not overvalued). Cummins India and ABB occupy this space - the fund's quality anchors. NTPC and Power Grid appear in the mid-range (regulated ROCE ~12–16%, moderate P/E ~18×), which is appropriate for utility-grade regulated returns. The solar pure-plays (Adani Green, Waaree) show high P/E relative to current ROCE, justified by forward growth optionality - these are the highest-risk, highest-conviction names.
 </div>
 
 ## 6c. Component VaR Contribution
 
 ```{python}
 #| label: fig-var-contribution
-#| fig-cap: "Each holding's contribution to portfolio annualised VaR 95% — Component VaR decomposition"
+#| fig-cap: "Each holding's contribution to portfolio annualised VaR 95% - Component VaR decomposition"
 #| echo: false
 
 cvar_df = pd.DataFrame([
@@ -2044,7 +2060,7 @@ if data_ok:
 
 ```{python}
 #| label: fig-rolling-corr
-#| fig-cap: "Rolling 90-day Pearson correlation between fund and Nifty 50 — low correlation = active management alpha regime"
+#| fig-cap: "Rolling 90-day Pearson correlation between fund and Nifty 50 - low correlation = active management alpha regime"
 #| echo: false
 
 if data_ok:
@@ -2061,7 +2077,7 @@ if data_ok:
         fill='tozeroy', fillcolor='rgba(52,152,219,0.07)',
         line=dict(width=0), showlegend=False, hoverinfo='skip',
     ))
-    # Main line — colour-coded: green=low corr, red=high corr
+    # Main line - colour-coded: green=low corr, red=high corr
     fig.add_trace(go.Scatter(
         x=corr_vals.index, y=corr_vals.values,
         name=f'Rolling {W_CORR}d Correlation (mean={mean_corr:.2f})',
@@ -2097,7 +2113,7 @@ if data_ok:
 
 ```{python}
 #| label: fig-risk-return-scatter
-#| fig-cap: "Risk-return scatter — bubble size = portfolio weight; colour = sector"
+#| fig-cap: "Risk-return scatter - bubble size = portfolio weight; colour = sector"
 #| echo: false
 
 if data_ok:
@@ -2167,7 +2183,7 @@ if data_ok:
     ))
 
     fig.update_layout(**BL(
-        'Risk-Return Universe — Bubble Size = Portfolio Weight<br>'
+        'Risk-Return Universe - Bubble Size = Portfolio Weight<br>'
         '<sup>Capital Market Line uses fund Sharpe ratio as slope | Jan 2020–Feb 2026</sup>',
         height=540, legend_y=1.04,
     ))
@@ -2181,7 +2197,7 @@ if data_ok:
 
 ```{python}
 #| label: fig-sector-calendar
-#| fig-cap: "Calendar heatmap: annualised sector return by year — which sectors drove alpha in which years"
+#| fig-cap: "Calendar heatmap: annualised sector return by year - which sectors drove alpha in which years"
 #| echo: false
 
 if data_ok:
@@ -2206,7 +2222,7 @@ if data_ok:
     cal_pivot = cal_pivot.sort_values('_total').drop(columns='_total')
 
     z_mat  = (cal_pivot.values * 100).round(1)
-    ann_tx = [[f'{v:+.1f}%' if not np.isnan(v) else '—' for v in row] for row in z_mat]
+    ann_tx = [[f'{v:+.1f}%' if not np.isnan(v) else '-' for v in row] for row in z_mat]
 
     fig = go.Figure(go.Heatmap(
         z=z_mat,
@@ -2220,7 +2236,7 @@ if data_ok:
         hovertemplate='<b>%{y}</b><br>Year %{x}<br>Return: %{z:+.1f}%<extra></extra>',
     ))
     fig.update_layout(**BL(
-        'Sector Returns Calendar — Weight-Averaged Annual Return by Sector<br>'
+        'Sector Returns Calendar - Weight-Averaged Annual Return by Sector<br>'
         '<sup>Green = positive year | Red = negative year | '
         'Rows sorted by cumulative 2020–2025 return</sup>',
         height=360, extra_t=10,
@@ -2239,13 +2255,13 @@ The calendar heatmap is perhaps the most actionable visualisation in the report:
 
 # 7. Factor Exposure Analysis {.unnumbered}
 
-The fund's factor exposures are computed from four systematic factors — **Value** (earnings yield), **Quality** (ROCE), **Momentum** (annualised return), and **Low Volatility** (inverse of annualised vol). Each factor is z-score normalised across the 23-stock universe. Portfolio-level factor tilt is the weight-averaged z-score.
+The fund's factor exposures are computed from four systematic factors - **Value** (earnings yield), **Quality** (ROCE), **Momentum** (annualised return), and **Low Volatility** (inverse of annualised vol). Each factor is z-score normalised across the 23-stock universe. Portfolio-level factor tilt is the weight-averaged z-score.
 
 ## 7a. Stock-Level Factor Heatmap
 
 ```{python}
 #| label: fig-factor-heatmap
-#| fig-cap: "Factor score heatmap — z-scores by stock and factor; green = high score, red = low score"
+#| fig-cap: "Factor score heatmap - z-scores by stock and factor; green = high score, red = low score"
 #| echo: false
 
 fac_plot = fac_df.sort_values('Weight', ascending=False)
@@ -2271,7 +2287,7 @@ fig = go.Figure(go.Heatmap(
     hovertemplate='<b>%{y}</b><br>%{x}: %{z:.2f} σ<extra></extra>',
 ))
 fig.update_layout(**BL(
-    'Factor Exposure Heatmap — Z-Scores by Stock<br>'
+    'Factor Exposure Heatmap - Z-Scores by Stock<br>'
     '<sup>Sorted by portfolio weight (largest first) | Green = high factor score</sup>',
     height=340, extra_t=10,
 ))
@@ -2332,20 +2348,20 @@ fig.show()
 <div class="card card-amber">
 <h4>Factor Tilt Interpretation</h4>
 
-The portfolio exhibits a deliberate **Quality + Momentum** tilt. Quality (ROCE) z-score of `{python} pf_quality_str` reflects the premium given to Cummins (ROCE 38%), ABB (35%), and Power Grid (16.5% regulated return) — businesses that earn structurally above their cost of capital. The Momentum tilt (`{python} pf_momentum_str` σ) captures the energy capex cycle acceleration that began in FY2021.
+The portfolio exhibits a deliberate **Quality + Momentum** tilt. Quality (ROCE) z-score of `{python} pf_quality_str` reflects the premium given to Cummins (ROCE 38%), ABB (35%), and Power Grid (16.5% regulated return) - businesses that earn structurally above their cost of capital. The Momentum tilt (`{python} pf_momentum_str` σ) captures the energy capex cycle acceleration that began in FY2021.
 
-The **Low Volatility** tilt (`{python} pf_lowvol_str` σ) is mildly negative — the fund accepts slightly higher volatility than the average Nifty constituent because energy transition stocks carry episodic capex-cycle volatility that is not the same as permanent capital impairment risk. The **Value** tilt (`{python} pf_value_str` σ) reflects that quality businesses in a structural growth theme trade at premium PE multiples, which is appropriate and sustainable.
+The **Low Volatility** tilt (`{python} pf_lowvol_str` σ) is mildly negative - the fund accepts slightly higher volatility than the average Nifty constituent because energy transition stocks carry episodic capex-cycle volatility that is not the same as permanent capital impairment risk. The **Value** tilt (`{python} pf_value_str` σ) reflects that quality businesses in a structural growth theme trade at premium PE multiples, which is appropriate and sustainable.
 </div>
 
 <hr class="divider">
 
 # 8. Scenario Analysis {.unnumbered}
 
-Four macro and thematic stress scenarios are modelled. Each scenario applies a stock-specific shock calibrated to (1) market beta, (2) interest rate duration proxy, (3) input cost sensitivity, and (4) policy exposure. These are **not VaR/CVaR estimates** — they are deterministic stress tests for fund manager communication.
+Four macro and thematic stress scenarios are modelled. Each scenario applies a stock-specific shock calibrated to (1) market beta, (2) interest rate duration proxy, (3) input cost sensitivity, and (4) policy exposure. These are **not VaR/CVaR estimates** - they are deterministic stress tests for fund manager communication.
 
 ```{python}
 #| label: fig-scenario-bars
-#| fig-cap: "Portfolio-level impact from each stress scenario — all values as % NAV change"
+#| fig-cap: "Portfolio-level impact from each stress scenario - all values as % NAV change"
 #| echo: false
 
 sc_labels = list(port_sc.keys())
@@ -2361,7 +2377,7 @@ fig = go.Figure(go.Bar(
 ))
 fig.add_hline(y=0, line_color='#dee2e6', line_width=1)
 fig.update_layout(**BL(
-    'Stress Scenario — Portfolio NAV Impact Estimates<br>'
+    'Stress Scenario - Portfolio NAV Impact Estimates<br>'
     '<sup>Deterministic stress tests | Not probabilistic VaR | Four scenarios modelled</sup>',
     height=400, extra_t=10,
 ))
@@ -2373,7 +2389,7 @@ fig.show()
 
 ```{python}
 #| label: fig-scenario-heatmap
-#| fig-cap: "Stock-level scenario impact matrix — all four stress scenarios simultaneously"
+#| fig-cap: "Stock-level scenario impact matrix - all four stress scenarios simultaneously"
 #| echo: false
 
 sc_plot = sc_df.sort_values('Weight%', ascending=False).head(18)
@@ -2393,7 +2409,7 @@ fig = go.Figure(go.Heatmap(
     hovertemplate='<b>%{y}</b><br>%{x}: %{z:+.1f}%<extra></extra>',
 ))
 fig.update_layout(**BL(
-    'Scenario Impact Matrix — Top 18 Holdings by Weight<br>'
+    'Scenario Impact Matrix - Top 18 Holdings by Weight<br>'
     '<sup>Red = loss | Green = gain/defensive | Sorted by weight</sup>',
     height=360, extra_t=10,
 ))
@@ -2404,20 +2420,20 @@ fig.show()
 
 ::: {.callout-warning appearance="simple"}
 ## Key Risk: Policy Is the Dominant Shock
-The **Policy Reversal** scenario produces the most asymmetric impact — highly concentrated in solar/wind pure-plays (Adani Green, Suzlon, Inox Wind). This is the fund's primary idiosyncratic risk. Mitigation: (a) anchor positions in regulated utilities (NTPC, PowerGrid) are *beneficiaries* of RE policy uncertainty as baseload demand rises, (b) industrial/EPC names (ABB, Siemens, Cummins) are policy-neutral, and (c) no single RE developer exceeds 5% of AUM.
+The **Policy Reversal** scenario produces the most asymmetric impact - highly concentrated in solar/wind pure-plays (Adani Green, Suzlon, Inox Wind). This is the fund's primary idiosyncratic risk. Mitigation: (a) anchor positions in regulated utilities (NTPC, PowerGrid) are *beneficiaries* of RE policy uncertainty as baseload demand rises, (b) industrial/EPC names (ABB, Siemens, Cummins) are policy-neutral, and (c) no single RE developer exceeds 5% of AUM.
 :::
 
 <details class="section-fold">
-<summary>Scenario Methodology — Assumptions & Limitations</summary>
+<summary>Scenario Methodology - Assumptions & Limitations</summary>
 <div class="body">
 
-**Scenario 1 — Market Crash (-25% Nifty):** Impact = portfolio beta × -25%. Beta is computed from 5 years of daily returns. This is a linear approximation — in actual crashes, correlations typically rise (contagion), which would make the impact worse than linear beta implies.
+**Scenario 1 - Market Crash (-25% Nifty):** Impact = portfolio beta × -25%. Beta is computed from 5 years of daily returns. This is a linear approximation - in actual crashes, correlations typically rise (contagion), which would make the impact worse than linear beta implies.
 
-**Scenario 2 — Rate Shock (+150bps):** Based on interest rate sensitivity proxied by sector duration. Grid/Transmission utilities (regulated return concessions with 25–40 year asset lives) are most sensitive; industrials with shorter project cycles are less sensitive. Rule of thumb: 1% rise in discount rate reduces asset value by ~duration years × 1%.
+**Scenario 2 - Rate Shock (+150bps):** Based on interest rate sensitivity proxied by sector duration. Grid/Transmission utilities (regulated return concessions with 25–40 year asset lives) are most sensitive; industrials with shorter project cycles are less sensitive. Rule of thumb: 1% rise in discount rate reduces asset value by ~duration years × 1%.
 
-**Scenario 3 — Commodity Spike (Steel/Copper +40%):** EPC-heavy sectors bear the burden of materials cost inflation. Industrial/EPC companies face 4–8% margin compression at the EBIT level; however, many EPC contracts include escalation clauses, limiting impact to ~50% pass-through. The 6% impact for Industrial/EPC assumes partial escalation protection.
+**Scenario 3 - Commodity Spike (Steel/Copper +40%):** EPC-heavy sectors bear the burden of materials cost inflation. Industrial/EPC companies face 4–8% margin compression at the EBIT level; however, many EPC contracts include escalation clauses, limiting impact to ~50% pass-through. The 6% impact for Industrial/EPC assumes partial escalation protection.
 
-**Scenario 4 — Policy Reversal (RE Tariff Freeze / Subsidy Cut ~30%):** Most severe for independent power producers with merchant exposure. NTPC, PowerGrid, and distribution utilities are largely insulated (regulated tariffs). RE developers (Adani Green) face discounted cash flow re-rating due to reduced PPA competitiveness.
+**Scenario 4 - Policy Reversal (RE Tariff Freeze / Subsidy Cut ~30%):** Most severe for independent power producers with merchant exposure. NTPC, PowerGrid, and distribution utilities are largely insulated (regulated tariffs). RE developers (Adani Green) face discounted cash flow re-rating due to reduced PPA competitiveness.
 </div>
 </details>
 
@@ -2427,7 +2443,7 @@ The **Policy Reversal** scenario produces the most asymmetric impact — highly 
 
 ```{python}
 #| label: fig-attribution
-#| fig-cap: "Expected return contribution per holding — based on sector P/E price targets over 3-year horizon"
+#| fig-cap: "Expected return contribution per holding - based on sector P/E price targets over 3-year horizon"
 #| echo: false
 
 attr_plot = attr_df.copy()
@@ -2472,7 +2488,7 @@ fig.add_trace(go.Bar(
 ), row=1, col=2)
 
 fig.update_layout(**BL(
-    'Return Attribution to Price Targets — 3-Year Horizon<br>'
+    'Return Attribution to Price Targets - 3-Year Horizon<br>'
     f'<sup>Price targets from sector P/E mean-reversion model | '
     f'Portfolio total upside: {total_portfolio_upside:+.1f}% | '
     f'Annualised: {total_ann_alpha:+.1f}% p.a.</sup>',
@@ -2488,9 +2504,9 @@ fig.show()
 <div class="card card-green">
 <h4>Attribution Summary</h4>
 
-If all 23 holdings reach their sector-median P/E derived price targets over a 3-year horizon, the portfolio delivers a total return of **`{python} total_ups_str`%** — equivalent to **`{python} total_ann_str`% per annum**. This compares to the Nifty 50 GBM-implied 3-year return of approximately `{python} nifty_3yr_str`%.
+If all 23 holdings reach their sector-median P/E derived price targets over a 3-year horizon, the portfolio delivers a total return of **`{python} total_ups_str`%** - equivalent to **`{python} total_ann_str`% per annum**. This compares to the Nifty 50 GBM-implied 3-year return of approximately `{python} nifty_3yr_str`%.
 
-The largest contributors are the high-weight anchors (NTPC, Power Grid, Cummins) combined with the meaningful upside in the mid-conviction names (ABB, Tata Power, Bhel). Key caveat: price targets are sector-median P/E based. If sector re-rating stalls — for example because of a prolonged rate cycle — the fair value multiples may compress.
+The largest contributors are the high-weight anchors (NTPC, Power Grid, Cummins) combined with the meaningful upside in the mid-conviction names (ABB, Tata Power, Bhel). Key caveat: price targets are sector-median P/E based. If sector re-rating stalls - for example because of a prolonged rate cycle - the fair value multiples may compress.
 </div>
 
 <hr class="divider">
@@ -2498,7 +2514,7 @@ The largest contributors are the high-weight anchors (NTPC, Power Grid, Cummins)
 # Appendix {.unnumbered}
 
 <details class="section-fold">
-<summary>Full Quantitative Scorecard — All Holdings</summary>
+<summary>Full Quantitative Scorecard - All Holdings</summary>
 <div class="body">
 
 ```{python}
@@ -2552,7 +2568,7 @@ fig = go.Figure(go.Table(
     ),
 ))
 fig.update_layout(
-    title=dict(text='Full Quantitative Scorecard — Monarch Energy Transition Fund',
+    title=dict(text='Full Quantitative Scorecard - Monarch Energy Transition Fund',
                x=0, font=dict(size=14, color=C['navy'])),
     height=680, margin=dict(t=60, b=10, l=10, r=10),
     paper_bgcolor='white',
@@ -2575,7 +2591,7 @@ fig.show()
 
 **Price Targets:** Derived using sector-median forward P/E multiples applied to trailing EPS (current_price × target_PE / current_PE). This is a simplified relative valuation framework. It does not incorporate DCF analysis, which would require project-level cash flow models for each regulated utility.
 
-**Monte Carlo Simulation:** 8,000-path Geometric Brownian Motion simulation calibrated to trailing daily mean return and daily standard deviation. GBM assumes log-normal returns and constant parameters — it does not capture fat tails, regime changes, or serial correlation. The simulation is illustrative of the distribution of possible outcomes given historical parameters, not a prediction.
+**Monte Carlo Simulation:** 8,000-path Geometric Brownian Motion simulation calibrated to trailing daily mean return and daily standard deviation. GBM assumes log-normal returns and constant parameters - it does not capture fat tails, regime changes, or serial correlation. The simulation is illustrative of the distribution of possible outcomes given historical parameters, not a prediction.
 
 **Factor Scores:** Cross-sectional z-scores computed from the 23-stock universe. All z-scores are computed relative to the fund's own universe, not relative to the broader market. This means a "high Quality" score means high-ROCE within the energy transition universe, not relative to the full NSE market.
 
@@ -2586,7 +2602,7 @@ fig.show()
 ---
 
 <p style="text-align:center; font-size:0.82em; color:#95a5a6; margin-top:32px;">
-Monarch India Energy Transition Fund &nbsp;|&nbsp; Portfolio Transparency Report — February 2026 &nbsp;|&nbsp;
+Monarch India Energy Transition Fund &nbsp;|&nbsp; Portfolio Transparency Report - February 2026 &nbsp;|&nbsp;
 Team Mountains &amp; Accretions &nbsp;|&nbsp; IIM Indore &nbsp;|&nbsp; IIM-A Launchpad Alpha 2026
 </p>
 
