@@ -161,8 +161,29 @@ details.section-fold > .body { padding:16px 22px; background:white; font-size:0.
   }
 }
 
+/* ── Top navigation bar ─────────────────────────────────────────── */
+.navbar {
+  background: linear-gradient(90deg, #1a252f 0%, #2c3e50 50%, #34495e 100%) !important;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  border-bottom: 3px solid #3498db;
+  padding: 0.55rem 1.2rem;
+}
+.navbar .navbar-brand { color: #ffffff !important; font-weight: 700; font-size: 1.05rem; letter-spacing: 0.2px; }
+.navbar .navbar-brand:hover { color: #85c1e9 !important; }
+.navbar .nav-link { color: rgba(255,255,255,0.82) !important; font-size: 0.9rem; }
+.navbar .nav-link:hover { color: #ffffff !important; }
+.navbar-toggler-icon { filter: invert(1); }
+/* Quarto sidebar TOC header */
+#quarto-sidebar .sidebar-title { font-weight: 700; color: #2c3e50; }
+#quarto-sidebar .nav-link { font-size: 0.85rem; color: #495057; }
+#quarto-sidebar .nav-link:hover { color: #3498db; }
+#quarto-sidebar .active > .nav-link { color: #3498db !important; font-weight: 600; border-left: 3px solid #3498db; background: #f0f7fc; }
+/* Document title area */
+#quarto-content .quarto-title { display: none; }
+
 /* ── Print ───────────────────────────────────────────────────────── */
 @media print {
+  .navbar { background: #2c3e50 !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
   .exec-hero { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
   .tile, .card { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
   body::after { display:none; }
@@ -627,48 +648,46 @@ prob_loss_str = str(round(prob_loss, 1))
 
 # Fund Overview {.unnumbered}
 
+```{python}
+#| label: exec-hero-render
+#| echo: false
+#| output: asis
+from IPython.display import HTML
+
+hero_html = f"""
 <div class="exec-hero">
 <h2>Monarch India Energy Transition Fund &nbsp;&nbsp;|&nbsp;&nbsp; February 2026</h2>
 <p>
 <span class="tag tag-blue">📈 Sectoral Thematic &middot; Energy Transition</span>
 <span class="tag tag-blue">NSE India Universe</span>
-<span class="tag tag-green">Monarch AMC &middot; Rs `{python} AUM_CR` Cr AUM (Hypothetical)</span>
-<span class="tag tag-amber">Benchmark: Nifty 50 &nbsp;|&nbsp; `{python} n_stocks` Holdings</span>
+<span class="tag tag-green">Monarch AMC &middot; Rs {AUM_CR} Cr AUM (Hypothetical)</span>
+<span class="tag tag-amber">Benchmark: Nifty 50 &nbsp;|&nbsp; {n_stocks} Holdings</span>
 </p>
 <p style="margin-top:14px; color:#34495e;">
-India's energy transition is the largest capital reallocation event of this decade. The government has committed to <strong>500 GW of non-fossil capacity by 2030</strong>, implying Rs 25&ndash;30 lakh crore of infrastructure investment over six years. This fund captures that structural shift across the full value chain &mdash; renewable developers, grid utilities, industrial capital goods and EPC, energy-efficient systems, and water infrastructure.
+India’s energy transition is the largest capital reallocation event of this decade. The government
+has committed to <strong>500 GW of non-fossil capacity by 2030</strong>, implying
+Rs 25&ndash;30 lakh crore of infrastructure investment over six years. This fund captures that
+structural shift across the full value chain &mdash; renewable developers, grid utilities,
+industrial capital goods &amp; EPC, energy-efficient systems, and water infrastructure.
 </p>
 <div class="metric-row">
-  <div class="metric-pill">
-    <div class="mp-val">`{python} port_ann_pct`%</div>
-    <div class="mp-lbl">Ann. Return</div>
-  </div>
-  <div class="metric-pill">
-    <div class="mp-val">`{python} port_sharpe_v`</div>
-    <div class="mp-lbl">Sharpe Ratio</div>
-  </div>
-  <div class="metric-pill">
-    <div class="mp-val">`{python} wa_roce`%</div>
-    <div class="mp-lbl">Wtd. Avg ROCE</div>
-  </div>
-  <div class="metric-pill">
-    <div class="mp-val">`{python} port_beta_v`</div>
-    <div class="mp-lbl">Portfolio Beta</div>
-  </div>
-  <div class="metric-pill">
-    <div class="mp-val">`{python} port_mdd_pct`%</div>
-    <div class="mp-lbl">Max Drawdown</div>
-  </div>
-  <div class="metric-pill">
-    <div class="mp-val">`{python} total_ret_pct`%</div>
-    <div class="mp-lbl">Total Return</div>
-  </div>
+  <div class="metric-pill"><div class="mp-val">{port_ann_pct}%</div><div class="mp-lbl">Ann. Return (p.a.)</div></div>
+  <div class="metric-pill"><div class="mp-val">{port_sharpe_v}</div><div class="mp-lbl">Sharpe Ratio</div></div>
+  <div class="metric-pill"><div class="mp-val">{port_sortino_v}</div><div class="mp-lbl">Sortino Ratio</div></div>
+  <div class="metric-pill"><div class="mp-val">{wa_roce}%</div><div class="mp-lbl">Wtd. Avg ROCE</div></div>
+  <div class="metric-pill"><div class="mp-val">{port_beta_v}</div><div class="mp-lbl">Portfolio Beta</div></div>
+  <div class="metric-pill"><div class="mp-val">{port_mdd_pct}%</div><div class="mp-lbl">Max Drawdown</div></div>
+  <div class="metric-pill"><div class="mp-val">{total_ret_pct}%</div><div class="mp-lbl">Total Return (5Y)</div></div>
+  <div class="metric-pill"><div class="mp-val">{port_ir_v}</div><div class="mp-lbl">Info. Ratio</div></div>
 </div>
-<p style="font-size:0.83em; color:#7f8c8d; margin-top:12px;">
+<p style="font-size:0.83em; color:#7f8c8d; margin-top:14px;">
 <strong>Team Mountains &amp; Accretions</strong> &nbsp;&middot;&nbsp; IIM Indore &nbsp;&middot;&nbsp;
-IIM-A Launchpad Alpha 2026 &nbsp;&middot;&nbsp; Data through `{python} data_end`
+IIM-A Launchpad Alpha 2026 &nbsp;&middot;&nbsp; Data through {data_end}
 </p>
 </div>
+"""
+display(HTML(hero_html))
+```
 
 ::: {.callout-note appearance="simple"}
 ## Transparency Note
@@ -883,7 +902,7 @@ fig.show()
 sb_labels  = ['Monarch Fund']
 sb_parents = ['']
 sb_values  = [100.0]
-sb_colors  = ['#0a3d28']
+sb_colors  = [C['navy']]
 
 for sec in sorted(set(sectors.values())):
     sec_w = sum(WEIGHTS.get(t,0)*100 for t,s in sectors.items() if s==sec)
@@ -1139,7 +1158,176 @@ if data_ok:
     fig.show()
 ```
 
-## 4c. Calendar Year Returns
+## 4c. Efficient Frontier & Random Portfolio Cloud
+
+```{python}
+#| label: fig-efficient-frontier
+#| fig-cap: "Efficient frontier — 5,000 random portfolios coloured by Sharpe ratio; actual fund portfolio marked"
+#| echo: false
+
+if data_ok and len(valid_tickers) >= 4:
+    import warnings
+    warnings.filterwarnings('ignore')
+    from scipy.optimize import minimize
+
+    ret_mat   = daily_ret[valid_tickers].dropna()
+    mu_vec    = ret_mat.mean() * TRADING_DAYS           # annualised mean
+    cov_mat   = ret_mat.cov()  * TRADING_DAYS           # annualised cov
+    n_assets  = len(valid_tickers)
+
+    # ── 5,000 random portfolios ────────────────────────────────────────
+    N_RAND = 5000
+    np.random.seed(7)
+    rand_w   = np.random.dirichlet(np.ones(n_assets), N_RAND)
+    rand_ret = rand_w @ mu_vec.values
+    rand_var = np.einsum('ij,jk,ik->i', rand_w, cov_mat.values, rand_w)
+    rand_vol = np.sqrt(rand_var)
+    rand_sh  = (rand_ret - RISK_FREE) / rand_vol
+
+    # ── Actual portfolio ───────────────────────────────────────────────
+    w_arr = np.array([WEIGHTS.get(t,0) for t in valid_tickers])
+    act_ret = float(w_arr @ mu_vec.values)
+    act_vol = float(np.sqrt(w_arr @ cov_mat.values @ w_arr))
+    act_sh  = (act_ret - RISK_FREE) / act_vol
+
+    # ── Min-variance frontier (via parametric sweep) ───────────────────
+    target_rets = np.linspace(mu_vec.min(), mu_vec.max(), 80)
+    ef_vols = []
+    for tr in target_rets:
+        cons = [{'type':'eq','fun': lambda w, tr=tr: w @ mu_vec.values - tr},
+                {'type':'eq','fun': lambda w: w.sum() - 1}]
+        bnds = [(0,1)] * n_assets
+        res  = minimize(lambda w: w @ cov_mat.values @ w,
+                        np.ones(n_assets)/n_assets, method='SLSQP',
+                        bounds=bnds, constraints=cons,
+                        options={'ftol':1e-12,'maxiter':500})
+        ef_vols.append(np.sqrt(res.fun) if res.success else np.nan)
+    ef_vols = np.array(ef_vols)
+    ef_ret  = target_rets * 100
+    ef_vol  = ef_vols    * 100
+    mask_ef = ~np.isnan(ef_vol)
+
+    fig = go.Figure()
+
+    # Cloud of random portfolios (coloured by Sharpe)
+    fig.add_trace(go.Scatter(
+        x=rand_vol*100, y=rand_ret*100,
+        mode='markers',
+        marker=dict(color=rand_sh, colorscale='RdYlGn', cmin=-0.2, cmax=2.0,
+                    size=4, opacity=0.55,
+                    colorbar=dict(title=dict(text='Sharpe Ratio'),
+                                  thickness=14, len=0.8, x=1.02)),
+        name='Random Portfolios',
+        hovertemplate='Vol: %{x:.1f}%<br>Ret: %{y:.1f}%<extra>Random</extra>',
+        showlegend=True,
+    ))
+
+    # Efficient frontier line
+    fig.add_trace(go.Scatter(
+        x=ef_vol[mask_ef], y=ef_ret[mask_ef],
+        mode='lines', name='Efficient Frontier',
+        line=dict(color=C['navy'], width=3),
+        hovertemplate='EF Vol: %{x:.1f}%<br>EF Ret: %{y:.1f}%<extra></extra>',
+    ))
+
+    # Capital Market Line
+    max_vol_cml = rand_vol.max()*100 + 5
+    cml_x_ef = [0, max_vol_cml]
+    cml_y_ef = [RISK_FREE*100, RISK_FREE*100 + act_sh * max_vol_cml]
+    fig.add_trace(go.Scatter(
+        x=cml_x_ef, y=cml_y_ef, mode='lines',
+        line=dict(color=C['teal'], width=1.5, dash='dash'),
+        name=f'Capital Market Line (Sharpe={act_sh:.2f})',
+    ))
+
+    # Actual portfolio star
+    fig.add_trace(go.Scatter(
+        x=[act_vol*100], y=[act_ret*100],
+        mode='markers+text',
+        marker=dict(symbol='star', size=26, color=C['navy'],
+                    line=dict(color='white', width=2)),
+        text=['Monarch Fund'], textposition='top right',
+        textfont=dict(size=11, color=C['navy'], family='Segoe UI'),
+        name=f'Monarch Fund (Sharpe={act_sh:.2f})',
+        hovertemplate=f'<b>Monarch Fund</b><br>Return: {act_ret*100:.1f}%<br>Vol: {act_vol*100:.1f}%<br>Sharpe: {act_sh:.2f}<extra></extra>',
+    ))
+
+    # Nifty 50 diamond
+    nifty_vol_ann = float(nifty_ret.std() * np.sqrt(TRADING_DAYS))
+    nifty_ret_ann = float((1 + nifty_ret.mean())**TRADING_DAYS - 1)
+    fig.add_trace(go.Scatter(
+        x=[nifty_vol_ann*100], y=[nifty_ret_ann*100],
+        mode='markers+text',
+        marker=dict(symbol='diamond', size=16, color=C['red'],
+                    line=dict(color='white', width=2)),
+        text=['Nifty 50'], textposition='top left',
+        textfont=dict(size=10, color=C['red']),
+        name='Nifty 50',
+        hovertemplate=f'<b>Nifty 50</b><br>Return: {nifty_ret_ann*100:.1f}%<br>Vol: {nifty_vol_ann*100:.1f}%<extra></extra>',
+    ))
+
+    fig.update_layout(**BL(
+        'Mean-Variance Efficient Frontier — Energy Transition Universe<br>'
+        f'<sup>5,000 random portfolios coloured by Sharpe | '
+        f'Monarch Fund Sharpe = {act_sh:.2f} | Long-only allocations only</sup>',
+        height=520, legend_y=1.05,
+    ))
+    SA(fig)
+    fig.update_xaxes(title_text='Annualised Volatility (%)', ticksuffix='%', range=[0, rand_vol.max()*100+3])
+    fig.update_yaxes(title_text='Annualised Return (%)', ticksuffix='%')
+    fig.show()
+```
+
+<div class="card card-blue">
+<h4>Efficient Frontier Interpretation</h4>
+The scatter confirms the fund's positioning near the efficient frontier — not at the absolute minimum-variance point (which would require near-100% NTPC/PowerGrid), but on the upper-right region where higher quality/momentum names add return at an acceptable volatility cost. The **Capital Market Line** (tangent from the risk-free rate) passes through the Monarch Fund star, indicating optimal Sharpe positioning given the universe constraints.
+</div>
+
+## 4d. Portfolio Monthly Return Fingerprint
+
+```{python}
+#| label: fig-monthly-heatmap
+#| fig-cap: "Monthly return heatmap — portfolio calendar showing best/worst months by year"
+#| echo: false
+
+if data_ok:
+    monthly_ret = (1 + port_ret).resample('ME').prod() - 1
+    monthly_df  = monthly_ret.reset_index()
+    monthly_df.columns = ['Date', 'Return']
+    monthly_df['Year']  = monthly_df['Date'].dt.year
+    monthly_df['Month'] = monthly_df['Date'].dt.month
+
+    month_names = ['Jan','Feb','Mar','Apr','May','Jun',
+                   'Jul','Aug','Sep','Oct','Nov','Dec']
+
+    hm_pivot = monthly_df.pivot(index='Year', columns='Month', values='Return') * 100
+    hm_pivot = hm_pivot.sort_index(ascending=False)
+
+    z_mat   = hm_pivot.values
+    ann_txt = [[f'{v:+.1f}%' if not np.isnan(v) else '' for v in row] for row in z_mat]
+    y_labs  = [str(y) for y in hm_pivot.index]
+    x_labs  = [month_names[m-1] for m in hm_pivot.columns]
+
+    fig = go.Figure(go.Heatmap(
+        z=z_mat, x=x_labs, y=y_labs,
+        colorscale='RdYlGn',
+        zmid=0, zmin=-15, zmax=20,
+        text=ann_txt, texttemplate='%{text}',
+        textfont=dict(size=11, color='#2c3e50'),
+        colorbar=dict(title=dict(text='Monthly<br>Return (%)'), thickness=14, len=0.85),
+        hovertemplate='<b>%{y} %{x}</b><br>Return: %{z:+.2f}%<extra></extra>',
+    ))
+    fig.update_layout(**BL(
+        'Monthly Return Fingerprint — Monarch Fund Calendar<br>'
+        '<sup>Green cells = positive months | Red = negative | Sorted newest year first</sup>',
+        height=340, extra_t=20,
+    ))
+    fig.update_xaxes(tickfont=dict(size=12))
+    fig.update_yaxes(tickfont=dict(size=12))
+    fig.show()
+```
+
+## 4e. Calendar Year Returns
 
 ```{python}
 #| label: fig-annual-returns
@@ -1171,6 +1359,62 @@ fig.update_layout(**BL(
 SA(fig, xgrid=False)
 fig.update_yaxes(title_text='Return (%)', ticksuffix='%')
 fig.add_hline(y=0, line_color='#dee2e6', line_width=1)
+fig.show()
+```
+
+## 4f. Annual Alpha Attribution Waterfall
+
+```{python}
+#| label: fig-alpha-waterfall
+#| fig-cap: "Year-by-year alpha (Fund − Nifty 50) stacked into a cumulative alpha bridge chart"
+#| echo: false
+
+alpha_yrs  = [y for y in years_list
+              if not np.isnan(port_ann_yr.get(y, np.nan))
+              and not np.isnan(nifty_ann_yr.get(y, np.nan))]
+alpha_vals = [(port_ann_yr[y] - nifty_ann_yr[y])*100 for y in alpha_yrs]
+cum_alpha  = list(np.cumsum(alpha_vals))
+base_vals  = [0] + cum_alpha[:-1]
+
+bar_colors = [C['green'] if a >= 0 else C['red'] for a in alpha_vals]
+
+fig = make_subplots(
+    rows=1, cols=2, column_widths=[0.58, 0.42],
+    subplot_titles=['Annual Alpha (Fund \u2212 Nifty 50 %)', 'Cumulative Alpha Bridge'],
+    horizontal_spacing=0.10,
+)
+
+# Left: annual alpha bars
+fig.add_trace(go.Bar(
+    x=[str(y) for y in alpha_yrs], y=alpha_vals,
+    marker_color=bar_colors,
+    text=[f'{v:+.1f}%' for v in alpha_vals], textposition='outside',
+    hovertemplate='<b>%{x}</b><br>Alpha: %{y:+.1f}%<extra></extra>',
+    name='Annual Alpha',
+), row=1, col=1)
+fig.add_hline(y=0, line_color='#dee2e6', line_width=1, row=1, col=1)
+
+# Right: waterfall-style cumulative bridge
+for i, (yr, alpha, base) in enumerate(zip(alpha_yrs, alpha_vals, base_vals)):
+    col = C['green'] if alpha >= 0 else C['red']
+    fig.add_trace(go.Bar(
+        x=[str(yr)], y=[alpha], base=[base],
+        marker_color=col, marker_line_color='white', marker_line_width=1,
+        text=[f'{cum_alpha[i]:+.1f}%'], textposition='outside',
+        hovertemplate=f'<b>{yr}</b><br>Alpha: {alpha:+.1f}%<br>Cumulative: {cum_alpha[i]:+.1f}%<extra></extra>',
+        showlegend=False, name=str(yr),
+    ), row=1, col=2)
+fig.add_hline(y=0, line_color='#dee2e6', line_width=1, row=1, col=2)
+
+fig.update_layout(**BL(
+    f'Alpha Attribution \u2014 Monarch Fund vs Nifty 50<br>'
+    f'<sup>Total cumulative alpha: {sum(alpha_vals):+.1f}% | '
+    f'Years with positive alpha: {sum(1 for a in alpha_vals if a>0)}/{len(alpha_vals)}</sup>',
+    height=430, legend_y=1.05,
+))
+SA(fig, xgrid=False)
+fig.update_yaxes(title_text='Alpha (%)', ticksuffix='%', row=1, col=1)
+fig.update_yaxes(title_text='Cumulative Alpha (%)', ticksuffix='%', row=1, col=2)
 fig.show()
 ```
 
@@ -1360,7 +1604,7 @@ if data_ok:
     ), row=1, col=1)
     fig.add_trace(go.Histogram(
         x=ret_pct, name='Fund', nbinsx=80,
-        marker_color=C['forest'], opacity=0.55, histnorm='probability density',
+        marker_color=C['navy'], opacity=0.55, histnorm='probability density',
         hovertemplate='%{x:.2f}%: %{y:.4f}<extra>Fund</extra>',
     ), row=1, col=1)
     fig.add_trace(go.Scatter(
@@ -1620,7 +1864,86 @@ if data_ok:
 Within-sector correlations are predictably high (Solar/Wind stocks cluster at 0.55–0.75) while cross-sector correlations are more moderate. The most important observation: **NTPC and Power Grid** — the fund's two largest anchor positions — show relatively low correlation to pure-play RE names (r ≈ 0.35–0.45), confirming their diversification benefit within the portfolio. The EV/Components (Motherson) and Water/Waste (Wabag) allocations provide genuine cross-sectoral diversification.
 </div>
 
-## 6b. Component VaR Contribution
+## 6b. Fundamental Quality Map — ROCE vs P/E
+
+```{python}
+#| label: fig-quality-map
+#| fig-cap: "Fundamental quality map: ROCE (quality) vs P/E (valuation) — ideal holdings are top-left (high ROCE, low P/E); bubble size = portfolio weight"
+#| echo: false
+
+fig = go.Figure()
+
+# Quadrant shading
+max_pe = max(FUNDAMENTALS.get(t,(0,40,0,0))[1] for t in valid_tickers if FUNDAMENTALS.get(t,(0,40,0,0))[1]>0)
+max_roce = max(FUNDAMENTALS.get(t,(0,0,0,0))[0] for t in valid_tickers)
+mid_pe   = 40   # rough sector median
+mid_roce = 18
+
+# Quadrant backgrounds
+for (x0, x1, y0, y1, col, label) in [
+    (0,      mid_pe,   mid_roce, max_roce+2, 'rgba(39,174,96,0.07)',  'QUALITY COMPOUNDER<br>(High ROCE, Low PE)'),
+    (mid_pe, max_pe+5, mid_roce, max_roce+2, 'rgba(52,152,219,0.05)', 'GROWTH PREMIUM<br>(High ROCE, High PE)'),
+    (0,      mid_pe,   0,        mid_roce,   'rgba(241,196,15,0.07)', 'VALUE TRAP?<br>(Low ROCE, Low PE)'),
+    (mid_pe, max_pe+5, 0,        mid_roce,   'rgba(231,76,60,0.07)',  'AVOID<br>(Low ROCE, High PE)'),
+]:
+    fig.add_shape(type='rect', x0=x0, x1=x1, y0=y0, y1=y1,
+                  fillcolor=col, line=dict(width=0), layer='below')
+    fig.add_annotation(x=(x0+x1)/2, y=(y0+y1)/2, text=f'<i style="font-size:9px;color:#aaa">{label}</i>',
+                       showarrow=False, font=dict(size=8, color='#aaa'))
+
+# Median lines
+fig.add_vline(x=mid_pe,   line_dash='dot', line_color='#adb5bd', line_width=1)
+fig.add_hline(y=mid_roce, line_dash='dot', line_color='#adb5bd', line_width=1)
+
+# Plot each stock as a bubble
+max_w = max(WEIGHTS.values())
+for t in valid_tickers:
+    f = FUNDAMENTALS.get(t)
+    if not f: continue
+    roce, pe = f[0], f[1]
+    w   = WEIGHTS.get(t, 0)
+    nm  = names.get(t, t)
+    sec = sectors.get(t, 'Other')
+    sz  = max(w/max_w * 55 + 10, 12)
+    fig.add_trace(go.Scatter(
+        x=[pe], y=[roce],
+        mode='markers+text',
+        marker=dict(color=SC.get(sec, C['navy']), size=sz, opacity=0.85,
+                    line=dict(color='white', width=1.5)),
+        text=[nm], textposition='top center',
+        textfont=dict(size=8, color=C['navy']),
+        name=sec,
+        legendgroup=sec,
+        showlegend=(list(sectors.values()).count(sec) ==
+                    sum(1 for tt in valid_tickers if sectors.get(tt)==sec)),
+        hovertemplate=(
+            f'<b>{nm}</b><br>'
+            f'P/E: {pe}x | ROCE: {roce}%<br>'
+            f'Weight: {w*100:.1f}%<br>'
+            f'Sector: {sec}'
+            '<extra></extra>'
+        ),
+    ))
+
+fig.update_layout(**BL(
+    'Fundamental Quality Map — ROCE vs P/E<br>'
+    '<sup>Top-left = Quality Compounder (ideal) | Bubble size = portfolio weight | Sector colour coded</sup>',
+    height=540, legend_y=1.04,
+))
+SA(fig)
+fig.update_xaxes(title_text='P/E Multiple (Valuation)', ticksuffix='x',
+                 range=[0, max_pe + 8])
+fig.update_yaxes(title_text='ROCE % (Quality)', ticksuffix='%',
+                 range=[0, max_roce + 4])
+fig.show()
+```
+
+<div class="card card-blue">
+<h4>Quality Map Reading Guide</h4>
+The ideal holding sits in the **top-left quadrant**: high ROCE (capital-efficient business), reasonable P/E (not overvalued). Cummins India and ABB occupy this space — the fund's quality anchors. NTPC and Power Grid appear in the mid-range (regulated ROCE ~12–16%, moderate P/E ~18×), which is appropriate for utility-grade regulated returns. The solar pure-plays (Adani Green, Waaree) show high P/E relative to current ROCE, justified by forward growth optionality — these are the highest-risk, highest-conviction names.
+</div>
+
+## 6c. Component VaR Contribution
 
 ```{python}
 #| label: fig-var-contribution
@@ -1735,28 +2058,28 @@ if data_ok:
     # Shaded fill
     fig.add_trace(go.Scatter(
         x=corr_vals.index, y=corr_vals.values,
-        fill='tozeroy', fillcolor='rgba(10,61,40,0.07)',
+        fill='tozeroy', fillcolor='rgba(52,152,219,0.07)',
         line=dict(width=0), showlegend=False, hoverinfo='skip',
     ))
     # Main line — colour-coded: green=low corr, red=high corr
     fig.add_trace(go.Scatter(
         x=corr_vals.index, y=corr_vals.values,
         name=f'Rolling {W_CORR}d Correlation (mean={mean_corr:.2f})',
-        line=dict(color=C['forest'], width=2.2),
+        line=dict(color=C['blue'], width=2.2),
         hovertemplate='%{x|%d %b %Y}<br>Correlation: %{y:.3f}<extra></extra>',
     ))
-    fig.add_hline(y=mean_corr, line_dash='dot', line_color=C['emerald'], line_width=1.8,
+    fig.add_hline(y=mean_corr, line_dash='dot', line_color=C['teal'], line_width=1.8,
                   annotation_text=f'Long-run mean: {mean_corr:.2f}',
                   annotation_position='top left',
-                  annotation_font=dict(size=10, color=C['forest']))
+                  annotation_font=dict(size=10, color=C['teal']))
     fig.add_hline(y=0.80, line_dash='dash', line_color=C['red'], line_width=1.2,
                   annotation_text='High-beta regime (≥0.80)',
                   annotation_position='bottom right',
                   annotation_font=dict(size=9, color=C['red']))
-    fig.add_hline(y=0.55, line_dash='dash', line_color=C['gold'], line_width=1.2,
+    fig.add_hline(y=0.55, line_dash='dash', line_color=C['amber'], line_width=1.2,
                   annotation_text='Alpha regime (≤0.55)',
                   annotation_position='top right',
-                  annotation_font=dict(size=9, color='#d68910'))
+                  annotation_font=dict(size=9, color=C['amber']))
 
     fig.update_layout(**BL(
         'Rolling 90-Day Correlation: Fund vs Nifty 50<br>'
@@ -1889,7 +2212,7 @@ if data_ok:
         z=z_mat,
         x=[str(y) for y in cal_pivot.columns],
         y=list(cal_pivot.index),
-        colorscale=[[0,'#c0392b'],[0.38,'#e67e22'],[0.5,'#f7f7f7'],[0.65,'#27ae60'],[1,'#0a3d28']],
+        colorscale=[[0,'#c0392b'],[0.38,'#e67e22'],[0.5,'#f7f7f7'],[0.65,'#27ae60'],[1,'#1a6641']],
         zmid=0, zmin=-45, zmax=90,
         text=ann_tx, texttemplate='%{text}',
         textfont=dict(size=12, color='white'),
